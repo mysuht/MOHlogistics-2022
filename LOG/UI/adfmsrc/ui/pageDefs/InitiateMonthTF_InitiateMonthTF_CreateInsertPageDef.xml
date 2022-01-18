@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.60.81"
+                id="InitiateMonthTF_InitiateMonthTF_CreateInsertPageDef" Package="ui.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="ActiveMonthsVO" RangeSize="25" DataControl="LOGAMDataControl" id="ActiveMonthsVOIterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="ActiveMonthsVOIterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+  </bindings>
+</pageDefinition>

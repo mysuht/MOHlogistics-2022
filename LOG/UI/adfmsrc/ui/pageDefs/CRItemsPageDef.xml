@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.60.17" id="CRItemsPageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CtfItemCtfMainOverreteVO" RangeSize="25" DataControl="LOGAMDataControl"
+              id="CtfItemCtfMainOverreteVOIterator"/>
+    <searchRegion Binds="CtfItemCtfMainOverreteVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="CtfItemCtfMainOverreteVOQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CtfItemCtfMainOverreteVOIterator" id="CtfItemCtfMainOverreteVO">
+      <nodeDefinition DefName="model.View.CtfItemCtfMainOverreteVO" Name="CtfItemCtfMainOverreteVO0">
+        <AttrNames>
+          <Item Value="AdjTypeId"/>
+          <Item Value="Adjustments"/>
+          <Item Value="AvgMnthlyCons"/>
+          <Item Value="ClosingBal"/>
+          <Item Value="ContVisits"/>
+          <Item Value="CtfItemId"/>
+          <Item Value="CtfMainId"/>
+          <Item Value="DeStat"/>
+          <Item Value="ErrAmc"/>
+          <Item Value="ErrCb"/>
+          <Item Value="ErrOb"/>
+          <Item Value="ErrQtyRcvd"/>
+          <Item Value="ErrQtyRqrd"/>
+          <Item Value="Issues"/>
+          <Item Value="NewVisits"/>
+          <Item Value="OpenBal"/>
+          <Item Value="PDate"/>
+          <Item Value="ProdId"/>
+          <Item Value="QtyReceived"/>
+          <Item Value="QtyRequired"/>
+          <Item Value="Receipts"/>
+          <Item Value="ProName"/>
+          <Item Value="ProdId1"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="LOGAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="LOGAMDataControl"/>
+  </bindings>
+</pageDefinition>

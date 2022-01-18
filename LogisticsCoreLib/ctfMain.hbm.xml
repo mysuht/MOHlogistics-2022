@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="moh.logistics.lib.reports.resources.CTFMain" table="CTF_MAIN" catalog="LOG5">
+        <id name="ctfMainId" type="java.lang.Integer">
+            <column name="CTF_MAIN_ID"/>
+            <generator class="identity"/>
+        </id>
+        <property name="facilityId" type="java.lang.Integer">
+            <column name="FACILITY_ID" length="7"/>
+        </property>
+         <property name="pdate" >
+            <column name="P_DATE"/>
+        </property>
+        <!--
+        <property name="stockName" type="string">
+            <column name="STOCK_NAME" length="20" not-null="true" unique="true" />
+        </property>
+        -->
+        <set name="ctfItems" table="CTF_ITEM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CTF_MAIN_ID"/>
+            </key>
+            <one-to-many class="moh.logistics.lib.reports.resources.CTFItems"/>
+        </set>
+    </class>
+</hibernate-mapping>

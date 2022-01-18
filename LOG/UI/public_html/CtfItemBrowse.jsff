@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelBox id="pb1">
+    <f:facet name="toolbar">
+      <af:toolbar id="t1">
+        <af:commandButton text="Return to CTF Main" id="cb4" action="goMain"/>
+        <af:commandButton id="cb5"/>
+        <af:commandButton text="Add" id="cb1" action="insert"/>
+        <af:commandButton text="Modify" id="cb2" action="update"/>
+        <af:commandButton actionListener="#{bindings.Delete.execute}"
+                          text="Delete" disabled="#{!bindings.Delete.enabled}"
+                          id="cb3" partialTriggers="t2"/>
+      </af:toolbar>
+    </f:facet>
+    <af:table value="#{bindings.CtfItemCtfMainVO.collectionModel}" var="row"
+              rows="#{bindings.CtfItemCtfMainVO.rangeSize}"
+              emptyText="#{bindings.CtfItemCtfMainVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.CtfItemCtfMainVO.rangeSize}"
+              rowBandingInterval="0"
+              filterModel="#{bindings.CtfItemCtfMainVOQuery.queryDescriptor}"
+              queryListener="#{bindings.CtfItemCtfMainVOQuery.processQuery}"
+              filterVisible="true" varStatus="vs"
+              selectedRowKeys="#{bindings.CtfItemCtfMainVO.collectionModel.selectedRow}"
+              selectionListener="#{bindings.CtfItemCtfMainVO.collectionModel.makeCurrent}"
+              rowSelection="single" id="t2" width="100%">
+      <af:column sortProperty="CtfItemId" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.CtfItemId.label}"
+                 id="c18">
+        <af:outputText value="#{row.CtfItemId}" id="ot23"/>
+      </af:column>
+      <af:column sortProperty="CtfMainId" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.CtfMainId.label}"
+                 id="c14" filterFeatures="caseInsensitive">
+        <af:outputText value="#{row.CtfMainId}" id="ot6">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainVO.hints.CtfMainId.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="PDate" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.PDate.label}"
+                 id="c5">
+        <f:facet name="filter">
+          <af:inputDate value="#{vs.filterCriteria.PDate}" id="id1"/>
+        </f:facet>
+        <af:outputText value="#{row.PDate}" id="ot9">
+          <af:convertDateTime pattern="#{bindings.CtfItemCtfMainVO.hints.PDate.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="ProdId" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.ProdId.label}"
+                 id="c15" filterFeatures="caseInsensitive">
+        <af:outputText value="#{row.ProdId}" id="ot3">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainVO.hints.ProdId.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="OpenBal" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.OpenBal.label}"
+                 id="c13">
+        <af:outputText value="#{row.OpenBal}" id="ot21">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainVO.hints.OpenBal.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="Receipts" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.Receipts.label}"
+                 id="c3">
+        <af:outputText value="#{row.Receipts}" id="ot10">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainVO.hints.Receipts.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="Issues" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.Issues.label}"
+                 id="c8">
+        <af:outputText value="#{row.Issues}" id="ot17">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainVO.hints.Issues.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="Adjustments" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.Adjustments.label}"
+                 id="c4">
+        <af:outputText value="#{row.Adjustments}" id="ot4">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainVO.hints.Adjustments.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="AdjTypeId" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.AdjTypeId.label}"
+                 id="c17">
+        <af:outputText value="#{row.AdjTypeId}" id="ot25">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainVO.hints.AdjTypeId.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="ClosingBal" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.ClosingBal.label}"
+                 id="c24">
+        <af:outputText value="#{row.ClosingBal}" id="ot18">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainVO.hints.ClosingBal.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="ErrOb" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.ErrOb.label}"
+                 id="c7">
+        <af:outputText value="#{row.ErrOb}" id="ot19"/>
+      </af:column>
+      <af:column sortProperty="ErrCb" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.ErrCb.label}"
+                 id="c6">
+        <af:outputText value="#{row.ErrCb}" id="ot1"/>
+      </af:column>
+      <af:column sortProperty="DeStat" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.DeStat.label}"
+                 id="c20">
+        <af:outputText value="#{row.DeStat}" id="ot8"/>
+      </af:column>
+      <af:column sortProperty="NewVisits" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.NewVisits.label}"
+                 id="c21">
+        <af:outputText value="#{row.NewVisits}" id="ot12">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainVO.hints.NewVisits.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="ContVisits" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.ContVisits.label}"
+                 id="c22">
+        <af:outputText value="#{row.ContVisits}" id="ot7">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainVO.hints.ContVisits.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="ErrQtyRqrd" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.ErrQtyRqrd.label}"
+                 id="c11">
+        <af:outputText value="#{row.ErrQtyRqrd}" id="ot14"/>
+      </af:column>
+      <af:column sortProperty="ErrQtyRcvd" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.ErrQtyRcvd.label}"
+                 id="c16">
+        <af:outputText value="#{row.ErrQtyRcvd}" id="ot20"/>
+      </af:column>
+      <af:column sortProperty="ErrAmc" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.ErrAmc.label}"
+                 id="c23">
+        <af:outputText value="#{row.ErrAmc}" id="ot13"/>
+      </af:column>
+      <af:column sortProperty="AvgMnthlyCons" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.AvgMnthlyCons.label}"
+                 id="c10">
+        <af:outputText value="#{row.AvgMnthlyCons}" id="ot22"/>
+      </af:column>
+      <af:column sortProperty="QtyRequired" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.QtyRequired.label}"
+                 id="c9">
+        <af:outputText value="#{row.QtyRequired}" id="ot16">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainVO.hints.QtyRequired.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="QtyReceived" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.QtyReceived.label}"
+                 id="c1">
+        <af:outputText value="#{row.QtyReceived}" id="ot15">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainVO.hints.QtyReceived.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="TypeName" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.TypeName.label}"
+                 id="c12">
+        <af:outputText value="#{row.TypeName}" id="ot11"/>
+      </af:column>
+      <af:column sortProperty="AdjTypeId1" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.AdjTypeId1.label}"
+                 id="c25">
+        <af:outputText value="#{row.AdjTypeId1}" id="ot5"/>
+      </af:column>
+      <af:column sortProperty="ProName" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.ProName.label}"
+                 id="c19">
+        <af:outputText value="#{row.ProName}" id="ot24"/>
+      </af:column>
+      <af:column sortProperty="ProdId1" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainVO.hints.ProdId1.label}"
+                 id="c2">
+        <af:outputText value="#{row.ProdId1}" id="ot2"/>
+      </af:column>
+    </af:table>
+  </af:panelBox>
+</jsp:root>

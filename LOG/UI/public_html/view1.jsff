@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <af:panelBox text="PanelBox1" id="pb1" inlineStyle="height:345px;">
+    <f:facet name="toolbar">
+      <af:toolbar id="t1">
+        <af:commandButton text="commandButton 1" id="cb1"/>
+      </af:toolbar>
+    </f:facet>
+  </af:panelBox>
+</jsp:root>

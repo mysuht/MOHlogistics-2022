@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:facelets="http://xmlns.oracle.com/jdev/webapp/facelets"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:messages id="m1"/>
+    <af:panelFormLayout id="pfl1">
+        <af:panelGroupLayout id="pgl4" layout="horizontal">
+            <af:inputText value="#{bindings.GofId.inputValue}" label="#{bindings.GofId.hints.label}"
+                          required="#{bindings.GofId.hints.mandatory}" columns="#{bindings.GofId.hints.displayWidth}"
+                          maximumLength="#{bindings.GofId.hints.precision}" shortDesc="#{bindings.GofId.hints.tooltip}"
+                          id="it1">
+                <f:validator binding="#{bindings.GofId.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.GofId.format}"/>
+            </af:inputText>
+        </af:panelGroupLayout>
+        <af:panelGroupLayout id="pgl2" layout="horizontal">
+            <af:inputListOfValues id="gofFacilityIdId"
+                                  popupTitle="Search and Select: #{bindings.GofFacilityId.hints.label}"
+                                  value="#{bindings.GofFacilityId.inputValue}"
+                                  label="#{bindings.GofFacilityId.hints.label}"
+                                  model="#{bindings.GofFacilityId.listOfValuesModel}"
+                                  required="#{bindings.GofFacilityId.hints.mandatory}"
+                                  columns="#{bindings.GofFacilityId.hints.displayWidth}"
+                                  shortDesc="#{bindings.GofFacilityId.hints.tooltip}" autoSubmit="true">
+                <f:validator binding="#{bindings.GofFacilityId.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.GofFacilityId.format}"/>
+            </af:inputListOfValues>
+            <af:inputText value="#{bindings.FacCode.inputValue}" label="#{bindings.FacCode.hints.label}"
+                          required="#{bindings.FacCode.hints.mandatory}"
+                          columns="#{bindings.FacCode.hints.displayWidth}"
+                          maximumLength="#{bindings.FacCode.hints.precision}"
+                          shortDesc="#{bindings.FacCode.hints.tooltip}" id="it4" partialTriggers="gofFacilityIdId">
+                <f:validator binding="#{bindings.FacCode.validator}"/>
+            </af:inputText>
+            <af:spacer width="20" height="10" id="s1"/>
+            <af:inputText value="#{bindings.FacName.inputValue}" label="#{bindings.FacName.hints.label}"
+                          required="#{bindings.FacName.hints.mandatory}"
+                          columns="#{bindings.FacName.hints.displayWidth}"
+                          maximumLength="#{bindings.FacName.hints.precision}"
+                          shortDesc="#{bindings.FacName.hints.tooltip}" id="it6" partialTriggers="gofFacilityIdId pgl2">
+                <f:validator binding="#{bindings.FacName.validator}"/>
+            </af:inputText>
+        </af:panelGroupLayout>
+        <af:panelGroupLayout id="pgl3" layout="horizontal">
+            <af:inputListOfValues id="gofGrpIdId" popupTitle="Search and Select: #{bindings.GofGrpId.hints.label}"
+                                  value="#{bindings.GofGrpId.inputValue}" label="#{bindings.GofGrpId.hints.label}"
+                                  model="#{bindings.GofGrpId.listOfValuesModel}"
+                                  required="#{bindings.GofGrpId.hints.mandatory}"
+                                  columns="#{bindings.GofGrpId.hints.displayWidth}"
+                                  shortDesc="#{bindings.GofGrpId.hints.tooltip}" autoSubmit="true">
+                <f:validator binding="#{bindings.GofGrpId.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.GofGrpId.format}"/>
+            </af:inputListOfValues>
+            <af:inputText value="#{bindings.GrpDesc.inputValue}" label="#{bindings.GrpDesc.hints.label}"
+                          required="#{bindings.GrpDesc.hints.mandatory}"
+                          columns="#{bindings.GrpDesc.hints.displayWidth}"
+                          maximumLength="#{bindings.GrpDesc.hints.precision}"
+                          shortDesc="#{bindings.GrpDesc.hints.tooltip}" id="it2" partialTriggers="gofGrpIdId pgl3">
+                <f:validator binding="#{bindings.GrpDesc.validator}"/>
+            </af:inputText>
+        </af:panelGroupLayout>
+        <f:facet name="footer">
+            <af:group id="g1">
+                <af:panelGroupLayout id="pgl1">
+                    <af:commandButton actionListener="#{bindings.Commit.execute}" text="Save"
+                                      disabled="#{!bindings.Commit.enabled}" id="cb1" action="back"/>
+                    <af:commandButton actionListener="#{bindings.Rollback.execute}" text="Cancel"
+                                      disabled="#{!bindings.Rollback.enabled}" immediate="true" id="cb2" action="back">
+                        <af:resetActionListener/>
+                    </af:commandButton>
+                </af:panelGroupLayout>
+            </af:group>
+        </f:facet>
+    </af:panelFormLayout>
+</ui:composition>

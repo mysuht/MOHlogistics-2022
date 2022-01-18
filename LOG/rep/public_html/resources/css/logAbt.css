@@ -1,0 +1,277 @@
+table.page-break{
+  page-break-after:always; page-break-inside: avoid;page-break-before: avoid;
+}
+
+body
+{
+  background-color: White;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1
+{
+
+  color: navy;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: x-large;
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+h2
+{
+
+  color: navy;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+h3
+{
+  color: navy;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  font-weight: lighter;
+  text-transform: capitalize;
+}
+
+
+.button_behavior{
+    padding:3pt; 
+    text-align:center;
+    position:absolute; 
+    vertical-align:middle;
+    cursor:pointer;
+    background:Silver ;
+    font-weight:bold;
+}
+
+.sel_beh{
+    background-color: rgb(214,214,214);
+    cursor: pointer;
+}
+
+.main_div{
+font-weight:bold;
+    width:99%;
+}
+
+.dRight{
+/*float:left;*/
+text-align:right;
+/*font-size:11pt;*/
+width:35%;
+}
+
+.dLeft{
+/*float:left;*/
+text-align:left;
+/*font-size:11pt;*/
+width:35%;
+}
+
+.dCenter{
+/*float:left;*/
+text-align:center;
+font-size:11pt;
+width:30%;
+}
+
+
+.logo{
+    position: relative;
+    margin-bottom: 12pt;
+}
+
+
+
+.top_table_style_ar {
+background-color:#079ED7;
+}
+.report_title_w_ar {
+	font-family: "Traditional Arabic";
+	font-size: 20px;
+	font-weight: bold;
+	color: #000000;
+	background-color:#079ED7;
+	background-repeat:no-repeat;
+}
+.parameters_titles_ar {
+	font-family:"Arabic Transparent";
+	font-size:14px;
+	font-weight: bold;
+	color:#000000;
+	background-color:#FFFFFF;
+}
+.black_text_ar {
+	font-family: "Traditional Arabic";
+	font-size: 16px;
+	font-weight: bold;
+	color: #000000;
+}
+.black_text {
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #000000;
+}
+/********************** End of Report Title Styles ***************************/
+
+
+/********************** Report Result Styles *********************************/
+
+.table_style_ar {
+background-color:#91ABD0;
+}
+.col_titles_ar {
+	font-family:"Arabic Transparent";
+	font-size:14px;
+	font-weight: bold;
+	color:#000000;
+	background-color:#91ABD0;
+}
+.col_titles_2_ar {
+	font-family:"Arabic Transparent";
+	font-size:14px;
+	font-weight: bold;
+	color:#000000;
+	background-color:#C8D7EE;
+}
+.arial_bold_ar {
+	font-family: Arial;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	background-color:#C8D7EE;
+}
+.row_titles_ar {
+	font-family:"Arabic Transparent";
+	font-size:14px;
+	color:#000000;
+	background-color:#E2F0FA;
+	
+}
+.row_titles_2_ar {
+	font-family:"Arabic Transparent";
+	font-size:14px;
+	color:#000000;
+	background-color:#F2F9FD;
+}
+.arial_bold_ar {
+        font-family:"Arabic Transparent";
+	font-size:14px;
+	font-weight: bold;
+	color: #000000;
+	background-color:#C8D7EE;
+}
+/**************** End of Report Result Styles ********************************/
+
+
+
+/*************************** Report Title Styles ***************************/
+
+.top_table_style {
+background-color:#079ED7;
+}
+.report_title_w {
+	font-family: Tahoma;
+	font-size: 16px;
+	font-weight: bold;
+	color: #000000;
+	background-color:#FFFFFF;
+	background-repeat:no-repeat;
+}
+.parameters_titles {
+	font-family:Tahoma;
+	font-size:11px;
+	font-weight: bold;
+	color:#000000;
+	background-color:#FFFFFF;
+}
+
+/********************** End of Report Title Styles ***************************/
+
+
+/********************** Report Result Styles *********************************/
+
+.table_style {
+background-color:#91ABD0;
+}
+.col_titles {
+	font-family:Tahoma;
+	font-size:12px;
+	font-weight: bold;
+	color:#000000;
+	background-color:#91ABD0;
+        
+}
+.col_titles_2 {
+	font-family:Tahoma;
+	font-size:11px;
+	font-weight: bold;
+	color:#000000;
+	background-color:#C8D7EE;
+}
+.arial_bold {
+	font-family: Arial;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	background-color:#C8D7EE;
+        text-align: center;
+}
+.row_titles {
+	font-family:Tahoma;
+	font-size:11px;
+	color:#000000;
+	background-color:#f7f7f7;
+	
+}
+
+.noF {
+font-family:'Times New Roman', 'Arial Black', times, Serif;
+	font-size:11px;
+        font-weight: bold;
+	color:#000000;
+    background-color: rgb(167,255,240);
+}
+
+.noM {
+font-family:'Times New Roman', 'Arial Black', times, Serif;
+font-weight: bold;
+	font-size:11px;
+	color:#000000;
+    background-color:rgb(213,255,224);
+}
+
+.noSum {
+font-family:Tahoma;
+font-weight: bold;
+	font-size:11px;
+	color:#000000;
+    background-color:rgb(148,130,255);
+}
+
+.colHeadRight {
+font-family:Tahoma;
+font-weight: bold;
+	font-size:11px;
+	color:#000000;
+    background-color:rgb(190,166,255);
+}
+
+.row_titles_2 {
+	font-family:Tahoma;
+	font-size:11px;
+	color:#000000;
+	background-color:#F2F9FD;
+}
+/**************** End of Report Result Styles ********************************/
+
+.blue_class{
+  background-color: rgb(181,255,222);
+}
+.yellow_class{
+  background-color: rgb(255,255,148);
+}
+

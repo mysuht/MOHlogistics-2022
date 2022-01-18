@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" locale="en">
+    <af:document title="login.jsf" id="d1">
+     <af:resource type="javascript">
+        function whenEnterPressed(componentEvent){
+         var evt = componentEvent.getNativeEvent();
+    var keyCode = AdfAgent.AGENT.getKeyCode(evt);  
+
+    if (AdfAgent.AGENT.getKeyCode(evt) == 13) // 13 is ENTER
+    {
+        AdfFocusUtils.focusNextTabStop(componentEvent.getNativeEventTarget());
+    }
+}
+        </af:resource>
+        <af:form id="f1">
+            <af:panelDashboard id="pd1" dimensionsFrom="auto">
+                <af:panelGroupLayout id="pgl1" styleClass="AFStretchWidth"/>
+                <af:panelGroupLayout id="pgl2"/>
+                <af:panelGroupLayout id="pgl3"/>
+            </af:panelDashboard>
+            <af:panelDashboard id="pd2" dimensionsFrom="auto" rowHeight="500px">
+                <af:panelGroupLayout id="pgl11"/>
+                <af:panelGroupLayout id="pgl4" layout="vertical"
+                                     inlineStyle="border-style:solid; border-width:thin; background-attachment:scroll;">
+                    <af:panelGroupLayout id="pgl5" halign="center" inlineStyle="width:inherit;" layout="vertical">
+                        <af:spacer width="10" height="10" id="s1"/>
+                        <af:panelGroupLayout id="pgl17" layout="vertical" halign="center">
+                            <af:panelGroupLayout id="pgl18" layout="horizontal" halign="center"
+                                                 inlineStyle="width:145px;">
+                                <af:panelGroupLayout id="pgl22">
+                                    <af:spacer width="40" height="10" id="s15"/>
+                                    <af:image source="#{resource['images:Logo_en.png']}" shortDesc="image" id="i3"
+                                              inlineStyle="height:70px; width:71px; "/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="5" id="s4"/>
+                            <af:panelGroupLayout id="pgl16" layout="vertical" halign="center">
+                                <af:outputText value="وزارة الصحة" id="ot2" inlineStyle="font-size:medium;"/>
+                                <af:spacer width="10" height="15" id="s2"/>
+                                 <af:outputText value="مديرية صحة المرأة والطفل" id="ot8"
+                                               inlineStyle="font-size:medium;"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:separator id="s5"/>
+                        <af:spacer width="10" height="10" id="s18"/>
+                        <af:outputText value="نظام تزويد وسائل تنظيم الأسرة    " id="ot3"
+                                       inlineStyle="font-size:medium; font-weight:bold;"/>
+                        <af:spacer width="10" height="10" id="s3"/>
+                        <af:outputText value="   (Logistics System)" id="ot1"
+                                       inlineStyle="font-size:medium; font-weight:bold;"/>
+                        <af:spacer width="10" height="10" id="s6"/>
+                    </af:panelGroupLayout>
+                    <af:panelGroupLayout id="pgl6" halign="center" inlineStyle="width:inherit;" layout="vertical">
+                        <af:spacer width="10" height="10" id="s7"/>
+                        <af:outputText value="تسجيل الدخول" id="ot4" inlineStyle="font-size:medium;"/>
+                        <af:spacer width="10" height="20" id="s11"/>
+                        <af:panelGroupLayout id="pgl7" layout="horizontal" inlineStyle="width:inherit;">
+                            <af:panelGroupLayout id="pgl8">
+                                <af:panelFormLayout id="pfl1">
+                                    <f:facet name="footer"/>
+                                    <af:panelGroupLayout id="pgl19" layout="horizontal">
+                                        <af:outputText value="User Name: " id="ot7"
+                                                       inlineStyle="font-size:medium;font-weight:bold"/>
+                                        <af:spacer width="20" height="10" id="s9"/>
+                                        <af:inputText id="it1" columns="22" binding="#{loginbean.userName}"
+                                                      inlineStyle="font-size:medium;" contentStyle="font-size:medium;"
+                                                      labelStyle="font-size:medium; text-align:right;"
+                                                      clientComponent="true">
+                                            <af:clientListener method="whenEnterPressed" type="keyUp"/>
+                                        </af:inputText>
+                                    </af:panelGroupLayout>
+                                    <af:spacer width="5" height="3" id="s10"/>
+                                    <af:panelGroupLayout id="pgl14" layout="horizontal">
+                                        <af:outputText id="ot6" inlineStyle="font-size:medium;font-weight:bold;"
+                                                       value="Password: "/>
+                                        <af:spacer width="30" height="10" id="s16"/>
+                                        <af:inputText id="it2" columns="22" secret="true"
+                                                      contentStyle="font-size:medium;" labelStyle="font-size:medium;"
+                                                      binding="#{loginbean.password}" clientComponent="true">
+                                            <af:clientListener method="whenEnterPressed" type="keyUp"/>
+                                        </af:inputText>
+                                    </af:panelGroupLayout>
+                                </af:panelFormLayout>
+                                <af:panelGroupLayout id="pgl10" inlineStyle="height:inherit;" layout="vertical">
+                                    <af:spacer width="10" height="20" id="s14"/>
+                                </af:panelGroupLayout>
+                                <af:panelGroupLayout id="pgl15" layout="horizontal">
+                                    <af:spacer width="170" height="1" id="s17"/>
+                                    <af:commandButton text="دخول" id="cb1"
+                                                      inlineStyle="font-size:medium; font-weight:bold;"
+                                                      action="#{loginbean.checkUser}"/>
+                                  
+                                </af:panelGroupLayout>
+                                <af:spacer width="10" height="10" id="s8"/>
+                                
+                            </af:panelGroupLayout>
+                            <af:spacer height="40" id="s12"/>
+                            <af:panelGroupLayout id="pgl9"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl13" layout="vertical">
+                            <af:spacer width="10" height="10" id="s13"/>
+                            <af:outputText id="ot5"
+                                           inlineStyle="font-size:small; color:Red;" binding="#{loginbean.msg}"
+                                           partialTriggers="cb1"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl12"/>
+            </af:panelDashboard>
+        </af:form>
+       
+ <af:popup childCreation="deferred" autoCancel="disabled" id="p2" contentDelivery="immediate">
+    <af:dialog id="d22" type="none" closeIconVisible="false"
+               inlineStyle="background-color:Scrollbar; ">
+                <af:panelGroupLayout id="pgl21" layout="horizontal">
+                    <af:image shortDesc="Loading" id="i2" source="#{resource['images:loading.gif']}"/>
+                </af:panelGroupLayout>
+            </af:dialog>
+  </af:popup>
+    </af:document>
+</f:view>

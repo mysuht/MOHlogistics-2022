@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.56.60" id="CtfMainOperationPageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CtfMainVO" RangeSize="25" DataControl="LOGAMDataControl"
+              id="CtfMainVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CtfMainVOIterator" id="CtfMainId">
+      <AttrNames>
+        <Item Value="CtfMainId"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false" IterBinding="CtfMainVOIterator"
+                  Uses="LOV_FacilityId" id="FacilityId"/>
+    <attributeValues IterBinding="CtfMainVOIterator" id="PDate">
+      <AttrNames>
+        <Item Value="PDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="DeDate">
+      <AttrNames>
+        <Item Value="DeDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="DeStaff">
+      <AttrNames>
+        <Item Value="DeStaff"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="LcDate">
+      <AttrNames>
+        <Item Value="LcDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="LcStaff">
+      <AttrNames>
+        <Item Value="LcStaff"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="CtfComments">
+      <AttrNames>
+        <Item Value="CtfComments"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="FacName">
+      <AttrNames>
+        <Item Value="FacName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="FacilityId1">
+      <AttrNames>
+        <Item Value="FacilityId1"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="CtfMainVOIterator" id="CtfStatus1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="CtfStatus"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="LOGAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="LOGAMDataControl"/>
+  </bindings>
+</pageDefinition>

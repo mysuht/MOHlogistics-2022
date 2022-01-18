@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.56.60" id="AdjTypeOperationPageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="AdjTypeVO" RangeSize="25" DataControl="LOGAMDataControl"
+              id="AdjTypeVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="AdjTypeVOIterator" id="AdjTypeId">
+      <AttrNames>
+        <Item Value="AdjTypeId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="AdjTypeVOIterator" id="TypeName">
+      <AttrNames>
+        <Item Value="TypeName"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="AdjTypeVOIterator" id="AlwaysNegative1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="AlwaysNegative"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <button IterBinding="AdjTypeVOIterator" id="UserCanEnter1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="UserCanEnter"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <button IterBinding="AdjTypeVOIterator" id="AdjActive1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="AdjActive"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="LOGAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="LOGAMDataControl"/>
+  </bindings>
+</pageDefinition>

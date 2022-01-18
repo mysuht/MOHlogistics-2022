@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="CtfMainTF1">
+    <default-activity>CtfMainBrowse</default-activity>
+    <managed-bean id="__13">
+      <managed-bean-name>ctfitembean1</managed-bean-name>
+      <managed-bean-class>ui.CtfItemClass1</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__10">
+      <managed-bean-name>getDataBean</managed-bean-name>
+      <managed-bean-class>ui.getDataClass</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__14">
+      <managed-bean-name>MainItemsBean</managed-bean-name>
+      <managed-bean-class>ui.MainItemsClass</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="view111">
+      <page>/view111.jsff</page>
+    </view>
+    <view id="CtfMainOperation">
+      <page>/CtfMainOperation.jsff</page>
+    </view>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome>
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="CtfMainBrowse">
+      <page>/CtfMainBrowse.jsff</page>
+    </view>
+    <method-call id="Execute">
+      <method>#{bindings.Execute.execute}</method>
+      <outcome>
+        <fixed-outcome>Execute</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="newItems">
+      <page>/newItems.jsff</page>
+    </view>
+    <control-flow-rule id="__1">
+      <from-activity-id>CtfMainBrowse</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>goItem</from-outcome>
+        <to-activity-id>Execute</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__3">
+        <from-outcome>insert</from-outcome>
+        <to-activity-id>CreateInsert</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__6">
+        <from-outcome>update</from-outcome>
+        <to-activity-id>CtfMainOperation</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__4">
+      <from-activity-id>CreateInsert</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>CreateInsert</from-outcome>
+        <to-activity-id>CtfMainOperation</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__7">
+      <from-activity-id>CtfMainOperation</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome>back</from-outcome>
+        <to-activity-id>CtfMainBrowse</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__9">
+        <from-outcome>cancel</from-outcome>
+        <to-activity-id>CtfMainBrowse</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__11">
+      <from-activity-id>Execute</from-activity-id>
+      <control-flow-case id="__12">
+        <from-outcome>Execute</from-outcome>
+        <to-activity-id>view111</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__16">
+      <from-activity-id>view111</from-activity-id>
+      <control-flow-case id="__17">
+        <from-outcome>backMain</from-outcome>
+        <to-activity-id>CtfMainBrowse</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

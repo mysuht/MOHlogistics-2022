@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.56.60" id="DataBindings" SeparateXMLFiles="false"
+             Package="ui" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+    <factory nameSpace="http://xmlns.oracle.com/adfm/dvt"
+             className="oracle.adfinternal.view.faces.dvt.model.binding.FacesBindingFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/WEB-INF/FacTypeTF.xml#FacTypeTF@CreateInsert"
+          usageId="ui_FacTypeTF_FacTypeTF_CreateInsertPageDef"/>
+    <page path="/WEB-INF/FacilityTF.xml#FacilityTF@CreateInsert"
+          usageId="ui_FacilityTF_FacilityTF_CreateInsertPageDef"/>
+    <page path="/FacilityBrowse.jsff" usageId="ui_FacilityBrowsePageDef"/>
+    <page path="/FacilityOperation.jsff" usageId="ui_FacilityOperationPageDef"/>
+    <page path="/FacTypeBrowse.jsff" usageId="ui_FacTypeBrowsePageDef"/>
+    <page path="/FacTypeOperation.jsff" usageId="ui_FacTypeOperationPageDef"/>
+    <page path="/WEB-INF/AdjTypeTF.xml#AdjTypeTF@CreateInsert"
+          usageId="ui_AdjTypeTF_AdjTypeTF_CreateInsertPageDef"/>
+    <page path="/AdjTypeBrowse.jsff" usageId="ui_AdjTypeBrowsePageDef"/>
+    <page path="/AdjTypeOperation.jsff" usageId="ui_AdjTypeOperationPageDef"/>
+    <page path="/WEB-INF/ProductTF.xml#ProductTF@CreateInsert"
+          usageId="ui_ProductTF_ProductTF_CreateInsertPageDef"/>
+    <page path="/ProductBrowse.jsff" usageId="ui_ProductBrowsePageDef"/>
+    <page path="/ProductOperation.jsff" usageId="ui_ProductOperationPageDef"/>
+    <page path="/WEB-INF/CtfItemTF.xml#CtfItemTF@CreateInsert"
+          usageId="ui_CtfItemTF_CtfItemTF_CreateInsertPageDef"/>
+    <page path="/WEB-INF/CtfMainTF.xml#CtfMainTF@CreateInsert"
+          usageId="ui_CtfMainTF_CtfMainTF_CreateInsertPageDef"/>
+    <page path="/CtfMainBrowse.jsff" usageId="ui_CtfMainBrowsePageDef"/>
+    <page path="/CtfMainOperation.jsff" usageId="ui_CtfMainOperationPageDef"/>
+    <page path="/CtfItemBrowse.jsff" usageId="ui_CtfItemBrowsePageDef"/>
+    <page path="/CtfItemOperation.jsff" usageId="ui_CtfItemOperationPageDef"/>
+    <page path="/newCtfItem.jsff" usageId="ui_newCtfItemPageDef"/>
+    <page path="/newItems.jsff" usageId="ui_newItemsPageDef"/>
+    <page path="/CRItems.jsff" usageId="ui_CRItemsPageDef"/>
+    <page path="/WEB-INF/CtfMainTF.xml#CtfMainTF@Execute" usageId="ui_CtfMainTF_CtfMainTF_ExecutePageDef"/>
+    <page path="/ApproveCTF.jsff" usageId="ui_ApproveCTFPageDef"/>
+    <page path="/FirstNew.jsf" usageId="ui_FirstNewPageDef"/>
+    <page path="/SecondNew.jsf" usageId="ui_SecondNewPageDef"/>
+    <page path="/WEB-INF/InitiateMonthTF.xml#InitiateMonthTF@CreateInsert"
+          usageId="ui_InitiateMonthTF_InitiateMonthTF_CreateInsertPageDef"/>
+    <page path="/AciveMonthsOperations.jsff" usageId="ui_AciveMonthsOperationsPageDef"/>
+    <page path="/ActiveMonthsBrowse.jsff" usageId="ui_ActiveMonthsBrowsePageDef"/>
+    <page path="/QueryView.jsff" usageId="ui_QueryViewPageDef"/>
+    <page path="/WEB-INF/GofTF.xml#GofTF@CreateInsert" usageId="ui_GofTF_GofTF_CreateInsertPageDef"/>
+    <page path="/GofBrowse.jsff" usageId="ui_GofBrowsePageDef"/>
+    <page path="/GofOperations.jsff" usageId="ui_GofOperationsPageDef"/>
+    <page path="/WEB-INF/GroupsTF.xml#GroupsTF@CreateInsert" usageId="ui_GroupsTF_GroupsTF_CreateInsertPageDef"/>
+    <page path="/GroupsBrowse.jsff" usageId="ui_GroupsBrowsePageDef"/>
+    <page path="/GroupsOperations.jsff" usageId="ui_GroupsOperationsPageDef"/>
+    <page path="/ThirdNew.jsf" usageId="ui_ThirdNewPageDef"/>
+    <page path="/WEB-INF/CtfMainTF1.xml#CtfMainTF1@CreateInsert"
+          usageId="ui_CtfMainTF1_CtfMainTF1_CreateInsertPageDef"/>
+    <page path="/WEB-INF/CtfMainTF1.xml#CtfMainTF1@Execute" usageId="ui_CtfMainTF1_CtfMainTF1_ExecutePageDef"/>
+    <page path="/test.jsf" usageId="ui_testPageDef"/>
+    <page path="/view111.jsff" usageId="ui_view111PageDef"/>
+    <page path="/groupTypePage.jsff" usageId="ui_groupTypePagePageDef"/>
+    <page path="/graphs.jsff" usageId="ui_graphsPageDef"/>
+    <page path="/WEB-INF/CtfMainTF.xml#CtfMainTF@exeEmptyMainCtfItems"
+          usageId="ui_CtfMainTF_CtfMainTF_exeEmptyMainCtfItemsPageDef"/>
+    <page path="/WEB-INF/CtfMainTF.xml#CtfMainTF@resetMainCtf" usageId="ui_CtfMainTF_CtfMainTF_resetMainCtfPageDef"/>
+    <page path="/WEB-INF/CtfMainTF.xml#CtfMainTF@SetCurrentRowWithKeyValue"
+          usageId="ui_CtfMainTF_CtfMainTF_SetCurrentRowWithKeyValuePageDef"/>
+    
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="ui_FacTypeTF_FacTypeTF_CreateInsertPageDef"
+          path="ui.pageDefs.FacTypeTF_FacTypeTF_CreateInsertPageDef"/>
+    <page id="ui_FacTypeBrowsePageDef" path="ui.pageDefs.FacTypeBrowsePageDef"/>
+    <page id="ui_FacTypeOperationPageDef"
+          path="ui.pageDefs.FacTypeOperationPageDef"/>
+    <page id="ui_FacilityTF_FacilityTF_CreateInsertPageDef"
+          path="ui.pageDefs.FacilityTF_FacilityTF_CreateInsertPageDef"/>
+    <page id="ui_FacilityBrowsePageDef"
+          path="ui.pageDefs.FacilityBrowsePageDef"/>
+    <page id="ui_FacilityOperationPageDef"
+          path="ui.pageDefs.FacilityOperationPageDef"/>
+    <page id="ui_AdjTypeTF_AdjTypeTF_CreateInsertPageDef"
+          path="ui.pageDefs.AdjTypeTF_AdjTypeTF_CreateInsertPageDef"/>
+    <page id="ui_AdjTypeBrowsePageDef" path="ui.pageDefs.AdjTypeBrowsePageDef"/>
+    <page id="ui_AdjTypeOperationPageDef"
+          path="ui.pageDefs.AdjTypeOperationPageDef"/>
+    <page id="ui_ProductTF_ProductTF_CreateInsertPageDef"
+          path="ui.pageDefs.ProductTF_ProductTF_CreateInsertPageDef"/>
+    <page id="ui_ProductBrowsePageDef" path="ui.pageDefs.ProductBrowsePageDef"/>
+    <page id="ui_ProductOperationPageDef"
+          path="ui.pageDefs.ProductOperationPageDef"/>
+    <page id="ui_CtfItemTF_CtfItemTF_CreateInsertPageDef"
+          path="ui.pageDefs.CtfItemTF_CtfItemTF_CreateInsertPageDef"/>
+    <page id="ui_CtfItemBrowsePageDef" path="ui.pageDefs.CtfItemBrowsePageDef"/>
+    <page id="ui_CtfItemOperationPageDef"
+          path="ui.pageDefs.CtfItemOperationPageDef"/>
+    <page id="ui_CtfMainTF_CtfMainTF_CreateInsertPageDef"
+          path="ui.pageDefs.CtfMainTF_CtfMainTF_CreateInsertPageDef"/>
+    <page id="ui_CtfMainBrowsePageDef" path="ui.pageDefs.CtfMainBrowsePageDef"/>
+    <page id="ui_CtfMainOperationPageDef"
+          path="ui.pageDefs.CtfMainOperationPageDef"/>
+    <page id="ui_newCtfItemPageDef" path="ui.pageDefs.newCtfItemPageDef"/>
+    <page id="ui_newItemsPageDef" path="ui.pageDefs.newItemsPageDef"/>
+    <page id="ui_CRItemsPageDef" path="ui.pageDefs.CRItemsPageDef"/>
+    <page id="ui_CtfMainTF_CtfMainTF_ExecutePageDef" path="ui.pageDefs.CtfMainTF_CtfMainTF_ExecutePageDef"/>
+    <page id="ui_ApproveCTFPageDef" path="ui.pageDefs.ApproveCTFPageDef"/>
+    <page id="ui_FirstNewPageDef" path="ui.pageDefs.FirstNewPageDef"/>
+    <page id="ui_SecondNewPageDef" path="ui.pageDefs.SecondNewPageDef"/>
+    <page id="ui_InitiateMonthTF_InitiateMonthTF_CreateInsertPageDef"
+          path="ui.pageDefs.InitiateMonthTF_InitiateMonthTF_CreateInsertPageDef"/>
+    <page id="ui_AciveMonthsOperationsPageDef" path="ui.pageDefs.AciveMonthsOperationsPageDef"/>
+    <page id="ui_ActiveMonthsBrowsePageDef" path="ui.pageDefs.ActiveMonthsBrowsePageDef"/>
+    <page id="ui_QueryViewPageDef" path="ui.pageDefs.QueryViewPageDef"/>
+    <page id="ui_GofTF_GofTF_CreateInsertPageDef" path="ui.pageDefs.GofTF_GofTF_CreateInsertPageDef"/>
+    <page id="ui_GofBrowsePageDef" path="ui.pageDefs.GofBrowsePageDef"/>
+    <page id="ui_GofOperationsPageDef" path="ui.pageDefs.GofOperationsPageDef"/>
+    <page id="ui_GroupsTF_GroupsTF_CreateInsertPageDef" path="ui.pageDefs.GroupsTF_GroupsTF_CreateInsertPageDef"/>
+    <page id="ui_GroupsBrowsePageDef" path="ui.pageDefs.GroupsBrowsePageDef"/>
+    <page id="ui_GroupsOperationsPageDef" path="ui.pageDefs.GroupsOperationsPageDef"/>
+    <page id="ui_ThirdNewPageDef" path="ui.pageDefs.ThirdNewPageDef"/>
+    <page id="ui_CtfMainTF1_CtfMainTF1_CreateInsertPageDef"
+          path="ui.pageDefs.CtfMainTF1_CtfMainTF1_CreateInsertPageDef"/>
+    <page id="ui_CtfMainTF1_CtfMainTF1_ExecutePageDef" path="ui.pageDefs.CtfMainTF1_CtfMainTF1_ExecutePageDef"/>
+    <page id="ui_testPageDef" path="ui.pageDefs.testPageDef"/>
+    <page id="ui_view111PageDef" path="ui.pageDefs.view111PageDef"/>
+    <page id="ui_groupTypePagePageDef" path="ui.pageDefs.groupTypePagePageDef"/>
+    <page id="ui_graphsPageDef" path="ui.pageDefs.graphsPageDef"/>
+    <page id="ui_CtfMainTF_CtfMainTF_exeEmptyMainCtfItemsPageDef"
+          path="ui.pageDefs.CtfMainTF_CtfMainTF_exeEmptyMainCtfItemsPageDef"/>
+    <page id="ui_CtfMainTF_CtfMainTF_resetMainCtfPageDef" path="ui.pageDefs.CtfMainTF_CtfMainTF_resetMainCtfPageDef"/>
+    <page id="ui_CtfMainTF_CtfMainTF_SetCurrentRowWithKeyValuePageDef"
+          path="ui.pageDefs.CtfMainTF_CtfMainTF_SetCurrentRowWithKeyValuePageDef"/>
+    <page id="ui_CtfMainTF_CtfMainTF_provideCtfMainByFacilityReportPageDef"
+          path="ui.pageDefs.CtfMainTF_CtfMainTF_provideCtfMainByFacilityReportPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="LOGAMDataControl" Package="model.AM"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="LOGAMLocal"
+                     syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

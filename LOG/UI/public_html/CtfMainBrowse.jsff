@@ -1,0 +1,281 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelStretchLayout id="psl1" dimensionsFrom="parent">
+    <f:facet name="center">
+      <af:panelGroupLayout id="pgl1" layout="scroll">
+        <af:panelFormLayout id="pfl1" rendered="false">
+          <af:panelLabelAndMessage label="#{bindings.CtfMainId.hints.label}" id="plam1">
+            <af:outputText value="#{bindings.CtfMainId.inputValue}" id="ot12">
+              <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfMainId.format}"/>
+            </af:outputText>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacilityId.hints.label}" id="plam2">
+            <af:outputText value="#{bindings.FacilityId.inputValue}" id="ot13">
+              <af:convertNumber groupingUsed="false" pattern="#{bindings.FacilityId.format}"/>
+            </af:outputText>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.PDate.hints.label}" id="plam3">
+            <af:outputText value="#{bindings.PDate.inputValue}" id="ot14">
+              <af:convertDateTime pattern="#{bindings.PDate.format}"/>
+            </af:outputText>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.DeDate.hints.label}" id="plam4">
+            <af:outputText value="#{bindings.DeDate.inputValue}" id="ot15">
+              <af:convertDateTime pattern="#{bindings.DeDate.format}"/>
+            </af:outputText>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.DeStaff.hints.label}" id="plam5">
+            <af:outputText value="#{bindings.DeStaff.inputValue}" id="ot16"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.LcDate.hints.label}" id="plam6">
+            <af:outputText value="#{bindings.LcDate.inputValue}" id="ot17">
+              <af:convertDateTime pattern="#{bindings.LcDate.format}"/>
+            </af:outputText>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.LcStaff.hints.label}" id="plam7">
+            <af:outputText value="#{bindings.LcStaff.inputValue}" id="ot18"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.CtfStatus.hints.label}" id="plam8">
+            <af:outputText value="#{bindings.CtfStatus.inputValue}" id="ot19"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.CtfComments.hints.label}" id="plam9">
+            <af:outputText value="#{bindings.CtfComments.inputValue}" id="ot20"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacName.hints.label}" id="plam10">
+            <af:outputText value="#{bindings.FacName.inputValue}" id="ot21"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacilityId1.hints.label}" id="plam11">
+            <af:outputText value="#{bindings.FacilityId1.inputValue}" id="ot22">
+              <af:convertNumber groupingUsed="false" pattern="#{bindings.FacilityId1.format}"/>
+            </af:outputText>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacCode.hints.label}" id="plam12">
+            <af:outputText value="#{bindings.FacCode.inputValue}" id="ot23"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacTypeId.hints.label}" id="plam13">
+            <af:outputText value="#{bindings.FacTypeId.inputValue}" id="ot24">
+              <af:convertNumber groupingUsed="false" pattern="#{bindings.FacTypeId.format}"/>
+            </af:outputText>
+          </af:panelLabelAndMessage>
+        </af:panelFormLayout>
+        <af:panelBox id="pb1">
+          <f:facet name="toolbar">
+            <af:toolbar id="t1">
+              <af:button text="Search Facility" id="b6" partialSubmit="false"
+                         action="#{MainItemsBean.callSearchMainItemsPopup}" icon="#{resource['images:search.png']}"/>
+              <af:spacer width="20" height="10" id="s2"/>
+              <af:commandButton text="Items" id="cb4" action="goItem" actionListener="#{MainItemsBean.getData}"
+                                icon="#{resource['images:things.png']}"/>
+              <af:commandButton id="cb5"/>
+              <af:commandButton text="Add" id="cb1" action="insert" visible="#{sessionScope.sType != 'D'}"
+                                icon="#{resource['images:insert.png']}"/>
+              <af:commandButton text="Modify" id="cb2" action="update" visible="#{sessionScope.sType != 'D'}"
+                                icon="#{resource['images:update (1).png']}"/>
+              <af:commandButton actionListener="#{bindings.Delete.execute}" text="Delete"
+                                disabled="#{!bindings.Delete.enabled}" id="cb3" partialTriggers="t2"
+                                visible="#{sessionScope.sType != 'D'}" icon="#{resource['images:delete (2).png']}"/>
+              <af:spacer width="20" height="10" id="s1"/>
+              <af:button text="Delete Data" id="b3"
+                         partialTriggers="t2" inlineStyle="background-color:Gray; color:red;"
+                         visible="#{sessionScope.sType != 'D'}" icon="#{resource['images:trash.png']}"
+                         action="#{MainItemsBean.callDeletetemsPopup}"/>
+            </af:toolbar>
+          </f:facet>
+          <af:panelGroupLayout id="pgl2" layout="horizontal">
+            <af:inputText label="Processing Date" id="it1" binding="#{MainItemsBean.getDateCtfMain}" autoSubmit="true"
+                          visible="false"/>
+            <af:button text="Search" id="b1" actionListener="#{MainItemsBean.searchDate}" partialTriggers="it1"
+                       partialSubmit="true" visible="false"/>
+            <af:button text="clear" id="b2" actionListener="#{MainItemsBean.resetInputText}" partialTriggers="t2"
+                       visible="false"/>
+          </af:panelGroupLayout>
+          <af:table value="#{bindings.CtfMainVO.collectionModel}" var="row" rows="#{bindings.CtfMainVO.rangeSize}"
+                    emptyText="#{bindings.CtfMainVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.CtfMainVO.rangeSize}" rowBandingInterval="0"
+                    filterModel="#{bindings.CtfMainVOQuery.queryDescriptor}"
+                    queryListener="#{bindings.CtfMainVOQuery.processQuery}" filterVisible="true" varStatus="vs"
+                    selectionListener="#{MainItemsBean.getCtfMainId}" rowSelection="single" id="t2" width="100%"
+                    binding="#{MainItemsBean.filterDateMainBrowse}" partialTriggers="::it1 ::b1 ::b2 ::b3 ::cb3"
+                    scrollPolicy="page" selectedRowKeys="#{bindings.CtfMainVO.collectionModel.selectedRow}">
+            <af:column id="c14"  width="14"  rowHeader="true">
+              
+              
+            </af:column>
+            <af:column sortProperty="CtfMainId" filterable="true" sortable="true"
+                       headerText="#{bindings.CtfMainVO.hints.CtfMainId.label}" id="c8" >
+              <af:outputText value="#{row.CtfMainId}" id="ot8">
+                
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="FacilityId" filterable="true" sortable="true"
+                       headerText="#{bindings.CtfMainVO.hints.FacilityId.label}" id="c10" rendered="false">
+              <af:outputText value="#{row.FacilityId}" id="ot11">
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfMainVO.hints.FacilityId.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column sortProperty="FacName" filterable="true" sortable="true"
+                       headerText="#{bindings.CtfMainVO.hints.FacName.label}" id="c5" filterFeatures="caseInsensitive"
+                       >
+              <af:outputText value="#{row.FacName}" id="ot7"/>
+            </af:column>
+            <af:column sortProperty="#{bindings.CtfMainVO.hints.FacCode.name}" sortable="true"
+                       headerText="#{bindings.CtfMainVO.hints.FacCode.label}" id="c7" filterable="true"
+                       filterFeatures="caseInsensitive" >
+              <af:outputText value="#{row.FacCode}" id="ot3"/>
+            </af:column>
+            <af:column headerText="#{bindings.CtfMainVO.hints.SupCode.label}" id="c12" sortable="true" filterable="true"
+                       sortProperty="#{bindings.CtfMainVO.hints.SupCode.name}" filterFeatures="caseInsensitive"
+                       >
+              <af:outputText value="#{row.SupCode}" shortDesc="#{bindings.CtfMainVO.hints.SupCode.tooltip}" id="ot25">
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfMainVO.hints.SupCode.format}"/>
+              </af:outputText>
+            </af:column>
+            <af:column headerText="#{bindings.CtfMainVO.hints.FacName1.label}" id="c13"
+                       sortProperty="#{bindings.CtfMainVO.hints.FacName1.name}" sortable="true" filterable="true"
+                       filterFeatures="caseInsensitive" >
+              <af:outputText value="#{row.FacName1}" shortDesc="#{bindings.CtfMainVO.hints.FacName1.tooltip}"
+                             id="ot26"/>
+            </af:column>
+            <af:column headerText="#{bindings.CtfMainVO.hints.PDate.label}" id="c4" sortable="true"
+                       sortProperty="PDate" rowHeader="true" >
+              <af:outputText value="#{row.PDate}" id="ot5">
+                <af:convertDateTime pattern="#{bindings.CtfMainVO.hints.PDate.format}"/>
+              </af:outputText>
+              <!--<f:facet name="filter">
+                <af:inputDate value="#{vs.filterCriteria.PDate}" id="id1">
+                  <af:convertDateTime pattern="#{bindings.CtfMainVO.hints.PDate.format}"/>
+                </af:inputDate>
+              </f:facet>-->
+            </af:column>
+            <af:column sortProperty="DeDate" filterable="true" sortable="true"
+                       headerText="#{bindings.CtfMainVO.hints.DeDate.label}" id="c9" >
+              <f:facet name="filter">
+                <af:inputDate value="#{vs.filterCriteria.DeDate}" id="id2" label=" "/>
+              </f:facet>
+<af:outputText value="#{row.DeDate}" id="ot1">
+                <af:convertDateTime pattern="#{bindings.CtfMainVO.hints.DeDate.format}"/>
+              </af:outputText>
+              
+            </af:column>
+            <af:column headerText="#{bindings.CtfMainVO.hints.LcDate.label}" id="c3" sortable="true" filterable="true"
+                       >
+              <af:outputText value="#{row.LcDate}" id="ot4">
+                <af:convertDateTime pattern="#{bindings.CtfMainVO.hints.LcDate.format}"/>
+              </af:outputText>
+              <!--<f:facet name="filter">
+                <af:inputDate value="#{vs.filterCriteria.LcDate}"
+                              id="id3">
+                  <af:convertDateTime pattern="#{bindings.CtfMainVO1.hints.LcDate.format}"/>
+                </af:inputDate>
+              </f:facet>-->
+            </af:column>
+            <af:column  filterable="true" sortable="true"
+                       headerText="#{bindings.CtfMainVO.hints.LcStaff.label}" id="c1" filterFeatures="caseInsensitive"
+                       sortProperty="LcStaff" >
+              <af:outputText value="#{row.LcStaff}" id="ot10"/>
+            </af:column>
+            <af:column sortProperty="CtfStatus" filterable="true" sortable="true"
+                       headerText="#{bindings.CtfMainVO.hints.CtfStatus.label}" id="c6" rendered="true" >
+              <af:outputText value="#{row.CtfStatus}" id="ot2"/>
+            </af:column>
+            <af:column sortProperty="CtfComments" filterable="true" sortable="true"
+                       headerText="#{bindings.CtfMainVO.hints.CtfComments.label}" id="c11" rendered="false">
+              <af:outputText value="#{row.CtfComments}" id="ot9"/>
+            </af:column>
+            <af:column sortProperty="FacilityId1" filterable="true" sortable="true"
+                       headerText="#{bindings.CtfMainVO.hints.FacilityId1.label}" id="c2" rendered="false">
+              <af:outputText value="#{row.FacilityId1}" id="ot6">
+                
+              </af:outputText>
+            </af:column>
+          </af:table>
+          <af:popup childCreation="deferred" autoCancel="disabled" id="p2" binding="#{MainItemsBean.deleteDataPopup}">
+            <af:dialog id="d2" type="none" inlineStyle="width:400pt;">
+              <f:facet name="buttonBar">
+                <af:button text="Cancel" id="b7" action="#{MainItemsBean.hideDeleteDataPopup}"/>
+                <af:button text="Ok " id="b8" action="#{MainItemsBean.deleteDataPopup}"/>
+              </f:facet>
+              <af:panelHeader text="Warning..." id="ph2" messageType="warning">
+                <f:facet name="context"/>
+                <f:facet name="menuBar"/>
+                <f:facet name="toolbar"/>
+                <f:facet name="legend"/>
+                <f:facet name="info"/>
+                <af:outputText value="Are You Sure Do you want to delete records for #{pageFlowScope.sFacName} for the date : #{pageFlowScope.sMonYear}" id="ot28"
+                               inlineStyle="font-weight:bold;font-size:11pt;"/>
+              </af:panelHeader>
+            </af:dialog>
+          </af:popup>
+          <af:popup childCreation="deferred" autoCancel="disabled" id="p1" binding="#{MainItemsBean.searchPopup}">
+            <af:dialog id="d1" type="none">
+              <f:facet name="buttonBar">
+                <af:button text="Search ..." id="b4" inlineStyle="font-size:12pt; font-weight:bold;"
+                           action="#{MainItemsBean.SearchCtfMain}" partialSubmit="false"
+                           icon="#{resource['images:search.png']}">
+                  <af:setActionListener from="#{bindings.facility.inputValue}" to="#{viewScope.pCode}"/>
+                </af:button>
+                <af:button text="Clear" id="b5" partialSubmit="false" rendered="false"/>
+              </f:facet>
+              <af:panelHeader text="Search ..." id="ph1" contentStyle="font-size:11pt; font-weight:bold;">
+                <f:facet name="context"/>
+                <f:facet name="menuBar"/>
+                <f:facet name="toolbar"/>
+                <f:facet name="legend"/>
+                <f:facet name="info"/>
+                <af:panelFormLayout id="pfl2" inlineStyle="font-size:11pt; font-weight:bold;" rows="1">
+                  <f:facet name="footer"/>
+                  <af:inputListOfValues id="facilityId_code" popupTitle="Search and Select: #{bindings.facility.hints.label}"
+                                        value="#{bindings.facility.inputValue}" label="Facility Code"
+                                        model="#{bindings.facility.listOfValuesModel}"
+                                        columns="#{bindings.facility.hints.displayWidth}"
+                                        shortDesc="#{bindings.facility.hints.tooltip}" autoSubmit="true"
+                                        contentStyle="font-size:12pt; font-weight:bold;"
+                                        labelStyle="font-size:12pt; font-weight:bold;" partialTriggers="sor1">
+                    <f:validator binding="#{bindings.facility.validator}"/>
+                  </af:inputListOfValues>
+                  <af:outputText value="#{bindings.fac_name.inputValue}" shortDesc="#{bindings.fac_name.hints.tooltip}"
+                                 id="ot27" inlineStyle="font-size:12pt; font-weight:bold;"
+                                 partialTriggers="facilityId_code"/>
+                </af:panelFormLayout>
+                <af:panelFormLayout id="pfl4" rows="1">
+                  <f:facet name="footer"/>
+                  <af:selectOneRadio label="Choose Date to Search ...." id="sor1"
+                                     contentStyle="font-weight:bold; font-size:12pt;"
+                                     labelStyle="font-weight:bold; font-size:12pt;" required="true"
+                                     value="#{viewScope.chooseDate}" autoSubmit="true" immediate="true">
+                    <af:selectItem label="Selected Date" value="1" id="si1"/>
+                    <af:selectItem label="Range Date" value="2" id="si2"/>
+                    <af:selectItem label="All" id="si3" value="3"/>
+                  </af:selectOneRadio>
+                </af:panelFormLayout>
+                <af:panelFormLayout id="pfl3" rows="1" visible="#{viewScope.chooseDate == 1}" partialTriggers="sor1">
+                  <f:facet name="footer"/>
+                  <af:inputDate label="Specify Date : " id="id1" value="#{viewScope.pD}" autoSubmit="true"
+                                contentStyle="font-weight:bold; font-size:12pt;"
+                                labelStyle="font-weight:bold; font-size:12pt;">
+                    <af:convertDateTime pattern="MM/yyyy" type="date"/>
+                  </af:inputDate>
+                </af:panelFormLayout>
+                <af:panelFormLayout id="pfl5" visible="#{viewScope.chooseDate == 2}" partialTriggers="sor1" rows="1">
+                  <f:facet name="footer"/>
+                  <af:inputDate label="Start : " id="id3" labelStyle="font-weight:bold; font-size:12pt;color:red;"
+                                contentStyle="font-weight:bold; font-size:12pt;" value="#{viewScope.startDate}"
+                                immediate="true" partialTriggers="sor1">
+                    <af:convertDateTime type="date" pattern="MM/yyyy"/>
+                  </af:inputDate>
+                  <af:inputDate label="END: " id="id4" contentStyle="font-weight:bold; font-size:12pt;"
+                                labelStyle="font-weight:bold; font-size:12pt;color:red;" value="#{viewScope.endDate}" immediate="true" partialTriggers="sor1">
+                    <af:convertDateTime type="date" pattern="MM/yyyy"/>
+                  </af:inputDate>
+                </af:panelFormLayout>
+              </af:panelHeader>
+            </af:dialog>
+          </af:popup>
+        </af:panelBox>
+      </af:panelGroupLayout>
+    </f:facet>
+  </af:panelStretchLayout>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:MainItemsBean-->
+</jsp:root>

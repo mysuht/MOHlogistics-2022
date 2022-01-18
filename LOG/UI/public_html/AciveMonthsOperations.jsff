@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:facelets="http://xmlns.oracle.com/jdev/webapp/facelets"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:messages id="m1"/>
+    <af:panelFormLayout id="pfl1">
+        <af:inputText value="#{bindings.AmId.inputValue}" label="#{bindings.AmId.hints.label}"
+                      required="#{bindings.AmId.hints.mandatory}" columns="#{bindings.AmId.hints.displayWidth}"
+                      maximumLength="#{bindings.AmId.hints.precision}" shortDesc="#{bindings.AmId.hints.tooltip}"
+                      id="it1" visible="false">
+            <f:validator binding="#{bindings.AmId.validator}"/>
+            <af:convertNumber groupingUsed="false" pattern="#{bindings.AmId.format}"/>
+        </af:inputText>
+        <af:selectOneChoice value="#{bindings.AmMonth.inputValue}" label="#{bindings.AmMonth.label}"
+                            required="#{bindings.AmMonth.hints.mandatory}" shortDesc="#{bindings.AmMonth.hints.tooltip}"
+                            id="soc1" binding="#{activemonthsbean.monthList}">
+            <f:selectItems value="#{bindings.AmMonth.items}" id="si1"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.AmYear.inputValue}" label="#{bindings.AmYear.label}"
+                            required="#{bindings.AmYear.hints.mandatory}" shortDesc="#{bindings.AmYear.hints.tooltip}"
+                            id="soc2" binding="#{activemonthsbean.yearList}">
+            <f:selectItems value="#{bindings.AmYear.items}" id="si2"/>
+        </af:selectOneChoice>
+    </af:panelFormLayout>
+    <af:spacer width="10" height="50" id="s1"/>
+    <af:commandButton actionListener="#{bindings.Commit.execute}" text="Save" disabled="#{!bindings.Commit.enabled}"
+                      id="cb1" action="#{activemonthsbean.saveAcitveMonth}"/>
+    <af:commandButton actionListener="#{bindings.Rollback.execute}" text="Cancel"
+                      disabled="#{!bindings.Rollback.enabled}" immediate="true" id="cb2" action="goBack">
+        <af:resetActionListener/>
+    </af:commandButton>
+</ui:composition>

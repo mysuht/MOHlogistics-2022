@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelFormLayout id="pfl1">
+    <af:menuBar id="mb1">
+      <af:inputText value="#{bindings.AdjTypeId.inputValue}"
+                    label="#{bindings.AdjTypeId.hints.label}"
+                    required="#{bindings.AdjTypeId.hints.mandatory}"
+                    columns="#{bindings.AdjTypeId.hints.displayWidth}"
+                    maximumLength="#{bindings.AdjTypeId.hints.precision}"
+                    shortDesc="#{bindings.AdjTypeId.hints.tooltip}" id="it5">
+        <f:validator binding="#{bindings.AdjTypeId.validator}"/>
+      </af:inputText>
+    </af:menuBar>
+    <af:menuBar id="mb2">
+      <af:inputText value="#{bindings.TypeName.inputValue}"
+                    label="#{bindings.TypeName.hints.label}"
+                    required="#{bindings.TypeName.hints.mandatory}"
+                    columns="#{bindings.TypeName.hints.displayWidth}"
+                    maximumLength="#{bindings.TypeName.hints.precision}"
+                    shortDesc="#{bindings.TypeName.hints.tooltip}" id="it4">
+        <f:validator binding="#{bindings.TypeName.validator}"/>
+      </af:inputText>
+    </af:menuBar>
+    <af:menuBar id="mb3">
+      <af:selectBooleanCheckbox value="#{bindings.AlwaysNegative1.inputValue}"
+                                label="#{bindings.AlwaysNegative1.label}"
+                                shortDesc="#{bindings.AlwaysNegative1.hints.tooltip}"
+                                id="sbc1"/>
+      <af:spacer width="10" height="10" id="s2"/>
+      <af:spacer width="10" height="10" id="s1"/>
+      <af:selectBooleanCheckbox value="#{bindings.UserCanEnter1.inputValue}"
+                                label="#{bindings.UserCanEnter1.label}"
+                                shortDesc="#{bindings.UserCanEnter1.hints.tooltip}"
+                                id="sbc2"/>
+    </af:menuBar>
+    <af:menuBar id="mb4">
+      <af:spacer width="10" height="10" id="s4"/>
+      <af:spacer width="10" height="10" id="s5"/>
+      <af:spacer width="10" height="10" id="s7"/>
+      <af:spacer width="10" height="10" id="s6"/>
+      <af:spacer width="10" height="10" id="s3"/>
+      <af:selectBooleanCheckbox value="#{bindings.AdjActive1.inputValue}"
+                                label="#{bindings.AdjActive1.label}"
+                                shortDesc="#{bindings.AdjActive1.hints.tooltip}"
+                                id="sbc3"/>
+    </af:menuBar>
+  </af:panelFormLayout>
+  <af:panelGroupLayout id="pgl1">
+    <af:commandButton actionListener="#{bindings.Commit.execute}" text="Save" id="cb1"
+                      action="back"/>
+    <af:commandButton actionListener="#{bindings.Rollback.execute}"
+                      text="Cancel"
+                      immediate="true" id="cb2" action="back">
+      <af:resetActionListener/>
+    </af:commandButton>
+  </af:panelGroupLayout>
+</jsp:root>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="moh.logistics.lib.reports.resources.CTFItems" table="CTF_ITEM" catalog="LOG5">
+        <id name="ctfItemId" type="java.lang.Integer">
+            <column name="CTF_ITEM_ID"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one name="ctfMainId" class="moh.logistics.lib.reports.resources.CTFMain" fetch="select">
+            <column name="CTF_MAIN_ID"/>
+            <!-- not-null="true" -->
+        </many-to-one>
+        <property name="openBal" type="java.lang.Integer">
+            <column name="OPEN_BAL" />
+        </property>
+        <property name="closingBal" type="java.lang.Integer">
+            <column name="CLOSING_BAL"  />
+        </property>
+        <property name="pdate" type="date">
+            <column name="P_Date"/>
+        </property>
+    </class>
+</hibernate-mapping>

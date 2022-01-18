@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="GrpGofVL"
+  Version="11.1.2.60.81"
+  EntityAssociation="model.Asso.GofFk2">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.VL.GrpGofVL_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="Groups"
+    Cardinality="1"
+    Source="true"
+    Owner="model.View.GroupsVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="Groups"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.View.GroupsVO.GrpId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="GroupOfFacilities1"
+    Cardinality="-1"
+    Owner="model.View.GroupOfFacilitiesVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="GroupOfFacilities1"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.View.GroupOfFacilitiesVO.GofGrpId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.modelBundle"/>
+  </ResourceBundle>
+</ViewLink>

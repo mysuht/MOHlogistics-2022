@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="groupTypePagePageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="GroupsVO" RangeSize="25" DataControl="LOGAMDataControl" id="GroupsVOIterator"/>
+    <searchRegion Binds="GroupsVOIterator" Criteria="" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="GroupsVOQuery"/>
+    <iterator Binds="GroupOfFacilitiesGroupsVO" RangeSize="25" DataControl="LOGAMDataControl"
+              id="GroupOfFacilitiesGroupsVOIterator"/>
+    <searchRegion Binds="GroupOfFacilitiesGroupsVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="GroupOfFacilitiesGroupsVOQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="GroupsVOIterator" id="GroupsVO">
+      <nodeDefinition DefName="model.View.GroupsVO" Name="GroupsVO0">
+        <AttrNames>
+          <Item Value="GrpId"/>
+          <Item Value="GrpDesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="GroupOfFacilitiesGroupsVOIterator" id="GroupOfFacilitiesGroupsVO">
+      <nodeDefinition DefName="model.View.GroupOfFacilitiesVO" Name="GroupOfFacilitiesGroupsVO0">
+        <AttrNames>
+          <Item Value="GofId"/>
+          <Item Value="GofFacilityId"/>
+          <Item Value="GofGrpId"/>
+          <Item Value="GrpDesc"/>
+          <Item Value="GrpId"/>
+          <Item Value="FacCode"/>
+          <Item Value="FacilityId"/>
+          <Item Value="FacName"/>
+          <Item Value="facTypeName"/>
+          <Item Value="Aa"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="GroupsVOIterator" id="GrpDesc">
+      <AttrNames>
+        <Item Value="GrpDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="LOGAMDataControl"/>
+    <action IterBinding="GroupsVOIterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="GroupOfFacilitiesGroupsVOIterator" id="CreateInsert1" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <listOfValues IterBinding="GroupOfFacilitiesGroupsVOIterator" StaticList="false" Uses="LOV_GofFacilityId"
+                  id="GofFacilityId"/>
+    <listOfValues IterBinding="GroupOfFacilitiesGroupsVOIterator" StaticList="false" Uses="LOV_GofGrpId" id="GofGrpId"/>
+    <attributeValues IterBinding="GroupOfFacilitiesGroupsVOIterator" id="GrpDesc1">
+      <AttrNames>
+        <Item Value="GrpDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="GroupOfFacilitiesGroupsVOIterator" id="GrpId">
+      <AttrNames>
+        <Item Value="GrpId"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="LOGAMDataControl"/>
+    <attributeValues IterBinding="GroupOfFacilitiesGroupsVOIterator" id="facTypeName">
+      <AttrNames>
+        <Item Value="facTypeName"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="GroupsVOIterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action IterBinding="GroupOfFacilitiesGroupsVOIterator" id="Delete1" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+    <action IterBinding="GroupsVOIterator" id="Execute" RequiresUpdateModel="true" Action="iteratorExecute"/>
+    <action IterBinding="GroupOfFacilitiesGroupsVOIterator" id="Execute1" RequiresUpdateModel="true"
+            Action="iteratorExecute"/>
+  </bindings>
+</pageDefinition>

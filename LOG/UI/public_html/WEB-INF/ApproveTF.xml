@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="ApproveTF">
+    <default-activity>ApproveCTF</default-activity>
+    <managed-bean id="__1">
+      <managed-bean-name>approvebean</managed-bean-name>
+      <managed-bean-class>ui.ApproveClass</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <view id="ApproveCTF">
+      <page>/ApproveCTF.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.60.81" id="ActiveMonthsBrowsePageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ActiveMonthsVO" RangeSize="25" DataControl="LOGAMDataControl" id="ActiveMonthsVOIterator"/>
+    <searchRegion Binds="ActiveMonthsVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="ActiveMonthsVOQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ActiveMonthsVOIterator" id="ActiveMonthsVO">
+      <nodeDefinition DefName="model.View.ActiveMonthsVO" Name="ActiveMonthsVO0">
+        <AttrNames>
+          <Item Value="AmId"/>
+          <Item Value="AmMonth"/>
+          <Item Value="AmYear"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="ActiveMonthsVOIterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="windows-1256" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="CtfMainTF">
+    <default-activity id="__1">exeEmptyMainCtfItems</default-activity>
+    <managed-bean id="__48">
+      <managed-bean-name>ctfitembean1</managed-bean-name>
+      <managed-bean-class>ui.MainItemsClass</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+<managed-bean id="__25">
+      <managed-bean-name>getDataBean</managed-bean-name>
+      <managed-bean-class>ui.getDataClass</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__26">
+      <managed-bean-name>MainItemsBean</managed-bean-name>
+      <managed-bean-class>ui.MainItemsClass</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <view id="CtfMainBrowse">
+      <page>/CtfMainBrowse.jsff</page>
+    </view>
+    <view id="CtfMainOperation">
+      <page>/CtfMainOperation.jsff</page>
+    </view>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome id="__2">
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="newCtfItem">
+      <page>/newCtfItem.jsff</page>
+    </view>
+    <view id="newItems">
+      <page>/newItems.jsff</page>
+    </view>
+    <view id="CRItems">
+      <page>/CRItems.jsff</page>
+    </view>
+    <method-call id="Execute">
+      <method>#{bindings.Execute.execute}</method>
+      <outcome>
+        <fixed-outcome>Execute</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="exeEmptyMainCtfItems">
+      <method>#{bindings.exeEmptyMainCtfItems.execute}</method>
+      <outcome>
+        <fixed-outcome>exeEmptyMainCtfItems</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="resetMainCtf">
+      <method>#{bindings.resetMainCtf.execute}</method>
+      <outcome>
+        <fixed-outcome>resetMainCtf</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="SetCurrentRowWithKeyValue">
+      <method>#{bindings.setCurrentRowWithKeyValue.execute}</method>
+      <outcome>
+        <fixed-outcome>setCurrentRowWithKeyValue</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__3">
+      <from-activity-id id="__4">CtfMainBrowse</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome id="__7">insert</from-outcome>
+        <to-activity-id id="__6">CreateInsert</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__8">
+        <from-outcome id="__10">update</from-outcome>
+        <to-activity-id id="__9">CtfMainOperation</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__21">
+        <from-outcome>goItem</from-outcome>
+        <to-activity-id>SetCurrentRowWithKeyValue</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__11">
+      <from-activity-id id="__12">CtfMainOperation</from-activity-id>
+      <control-flow-case id="__13">
+        <from-outcome id="__15">back</from-outcome>
+        <to-activity-id id="__14">CtfMainBrowse</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__24">
+        <from-outcome>cancel</from-outcome>
+        <to-activity-id>CtfMainBrowse</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__16">
+      <from-activity-id id="__17">CreateInsert</from-activity-id>
+      <control-flow-case id="__20">
+        <from-outcome id="__19">CreateInsert</from-outcome>
+        <to-activity-id id="__18">CtfMainOperation</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__44">
+      <from-activity-id>newCtfItem</from-activity-id>
+      <control-flow-case id="__45">
+        <from-outcome>okayyyyy</from-outcome>
+        <to-activity-id>CRItems</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__46">
+      <from-activity-id>newItems</from-activity-id>
+      <control-flow-case id="__47">
+        <from-outcome>backMain</from-outcome>
+        <to-activity-id>CtfMainBrowse</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__27">
+      <from-activity-id>exeEmptyMainCtfItems</from-activity-id>
+      <control-flow-case id="__28">
+        <from-outcome>exeEmptyMainCtfItems</from-outcome>
+        <to-activity-id>CtfMainBrowse</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__34">
+      <from-activity-id>resetMainCtf</from-activity-id>
+      <control-flow-case id="__35">
+        <from-outcome>resetMainCtf</from-outcome>
+        <to-activity-id>Execute</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__36">
+      <from-activity-id>Execute</from-activity-id>
+      <control-flow-case id="__37">
+        <from-outcome>Execute</from-outcome>
+        <to-activity-id>newItems</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__40">
+      <from-activity-id>SetCurrentRowWithKeyValue</from-activity-id>
+      <control-flow-case id="__41">
+        <from-outcome>setCurrentRowWithKeyValue</from-outcome>
+        <to-activity-id>Execute</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

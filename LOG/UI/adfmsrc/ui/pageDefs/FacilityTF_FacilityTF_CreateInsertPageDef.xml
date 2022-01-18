@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.56.60"
+                id="FacilityTF_FacilityTF_CreateInsertPageDef"
+                Package="ui.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="FacilityVO" RangeSize="25" DataControl="LOGAMDataControl"
+              id="FacilityVOIterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="FacilityVOIterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+  </bindings>
+</pageDefinition>

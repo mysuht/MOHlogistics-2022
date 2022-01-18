@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="windows-1256" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <url-view id="Reports">
+    <url>#{sessionScope.sReportURL}</url>
+  </url-view>
+  <view id="FirstNew">
+    <page>/FirstNew.jsf</page>
+  </view>
+  <view id="SecondNew">
+    <page>/SecondNew.jsf</page>
+  </view>
+  <view id="Login">
+    <page>/Login.jsf</page>
+  </view>
+  <view id="ThirdNew">
+    <page>/ThirdNew.jsf</page>
+  </view>
+  <view id="test">
+    <page>/test.jsf</page>
+  </view>
+  <control-flow-rule id="__1">
+    <from-activity-id id="__2">*</from-activity-id>
+    <control-flow-case id="__4">
+      <from-outcome id="__5">first</from-outcome>
+      <to-activity-id id="__3">FirstNew</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__6">
+      <from-outcome id="__8">second</from-outcome>
+      <to-activity-id id="__7">SecondNew</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__10">
+      <from-outcome id="__11">third</from-outcome>
+      <to-activity-id id="__9">ThirdNew</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__19">
+    <from-activity-id>Login</from-activity-id>
+    <control-flow-case id="__20">
+      <from-outcome>success</from-outcome>
+      <to-activity-id>FirstNew</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__21">
+      <from-outcome>fail</from-outcome>
+      <to-activity-id>Login</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <control-flow-rule id="__16">
+    <from-activity-id>ThirdNew</from-activity-id>
+    <control-flow-case id="__17">
+      <from-outcome>goReports</from-outcome>
+      <to-activity-id>Reports</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__15">
+    <managed-bean-name id="__13">launcher</managed-bean-name>
+    <managed-bean-class id="__12">ui.Launcher</managed-bean-class>
+    <managed-bean-scope id="__14">backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__18">
+    <managed-bean-name>loginbean</managed-bean-name>
+    <managed-bean-class>ui.LoginClass</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

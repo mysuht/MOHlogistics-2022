@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--<span class="hiddenSpellError" pre=""--><!DOCTYPE hibernate-configuration PUBLIC
+ 
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+ 
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <!--<property name="connection.url">jdbc:oracle:thin:@10.160.12.5:1521:ora10g</property>-->
+        <property name="connection.url">jdbc:oracle:thin:@localhost:1521:orcl</property>
+        <property name="connection.username">log5</property>
+        <property name="connection.password">log5</property>
+        <!-- <span class="hiddenSpellError" pre="">JDBC</span> connection pool (use the built-in) -->
+        <property name="connection.pool_size">4000</property>
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.OracleDialect</property>
+        <!-- Enable Hibernate's automatic session context management
+ 
+-->
+        <property name="current_session_context_class">thread</property>
+        <!-- Disable the second-level cache -->
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        <!-- Echo all executed SQL to <span class="hiddenSpellError" pre="to ">stdout</span> -->
+        <property name="show_sql">true</property>
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">validate</property>
+        <mapping resource="ctfMain.hbm.xml"/>
+        <mapping resource="ctfItem.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

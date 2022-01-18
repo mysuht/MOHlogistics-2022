@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="InitiateMonthTF">
+    <default-activity>ActiveMonthsBrowse</default-activity>
+    <managed-bean id="__8">
+      <managed-bean-name>activemonthsbean</managed-bean-name>
+      <managed-bean-class>ui.ActiveMonthsClass</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <view id="ActiveMonthsBrowse">
+      <page>/ActiveMonthsBrowse.jsff</page>
+    </view>
+    <view id="AciveMonthsOperations">
+      <page>/AciveMonthsOperations.jsff</page>
+    </view>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome>
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__1">
+      <from-activity-id>ActiveMonthsBrowse</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>goUpdate</from-outcome>
+        <to-activity-id>AciveMonthsOperations</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__3">
+        <from-outcome>goInsert</from-outcome>
+        <to-activity-id>CreateInsert</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__4">
+      <from-activity-id>CreateInsert</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>CreateInsert</from-outcome>
+        <to-activity-id>AciveMonthsOperations</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__6">
+      <from-activity-id>AciveMonthsOperations</from-activity-id>
+      <control-flow-case id="__7">
+        <from-outcome>goBack</from-outcome>
+        <to-activity-id>ActiveMonthsBrowse</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

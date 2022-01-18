@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="windows-1256" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="FacilityTF">
+    <default-activity id="__1">FacilityBrowse</default-activity>
+    <view id="FacilityBrowse">
+      <page>/FacilityBrowse.jsff</page>
+    </view>
+    <view id="FacilityOperation">
+      <page>/FacilityOperation.jsff</page>
+    </view>
+    <method-call id="CreateInsert">
+      <method>#{bindings.CreateInsert.execute}</method>
+      <outcome id="__2">
+        <fixed-outcome>CreateInsert</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__3">
+      <from-activity-id id="__4">FacilityBrowse</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome id="__7">insert</from-outcome>
+        <to-activity-id id="__6">CreateInsert</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__14">
+        <from-outcome id="__15">update</from-outcome>
+        <to-activity-id id="__13">FacilityOperation</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__8">
+      <from-activity-id id="__9">CreateInsert</from-activity-id>
+      <control-flow-case id="__12">
+        <from-outcome id="__10">CreateInsert</from-outcome>
+        <to-activity-id id="__11">FacilityOperation</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__16">
+      <from-activity-id id="__17">FacilityOperation</from-activity-id>
+      <control-flow-case id="__18">
+        <from-outcome id="__20">back</from-outcome>
+        <to-activity-id id="__19">FacilityBrowse</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

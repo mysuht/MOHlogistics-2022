@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.56.60" id="ProductOperationPageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ProductVO" RangeSize="25" DataControl="LOGAMDataControl"
+              id="ProductVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="ProductVOIterator" id="ProdId">
+      <AttrNames>
+        <Item Value="ProdId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProductVOIterator" id="ProName">
+      <AttrNames>
+        <Item Value="ProName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProductVOIterator" id="ProDose">
+      <AttrNames>
+        <Item Value="ProDose"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProductVOIterator" id="ProdCyp">
+      <AttrNames>
+        <Item Value="ProdCyp"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProductVOIterator" id="ProdShipQtyIn">
+      <AttrNames>
+        <Item Value="ProdShipQtyIn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProductVOIterator" id="ProdShipQtyWhse">
+      <AttrNames>
+        <Item Value="ProdShipQtyWhse"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProductVOIterator" id="ProdShipQtySdp">
+      <AttrNames>
+        <Item Value="ProdShipQtySdp"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProductVOIterator" id="PrCtrindex">
+      <AttrNames>
+        <Item Value="PrCtrindex"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="ProductVOIterator" id="ProdIsActive1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ProdIsActive"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="LOGAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="LOGAMDataControl"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.60.81" id="GofOperationsPageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="GroupOfFacilitiesVO" RangeSize="25" DataControl="LOGAMDataControl"
+              id="GroupOfFacilitiesVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="GroupOfFacilitiesVOIterator" id="GofId">
+      <AttrNames>
+        <Item Value="GofId"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false" IterBinding="GroupOfFacilitiesVOIterator" Uses="LOV_GofFacilityId"
+                  id="GofFacilityId"/>
+    <listOfValues StaticList="false" IterBinding="GroupOfFacilitiesVOIterator" Uses="LOV_GofGrpId" id="GofGrpId"/>
+    <attributeValues IterBinding="GroupOfFacilitiesVOIterator" id="GrpDesc">
+      <AttrNames>
+        <Item Value="GrpDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="GroupOfFacilitiesVOIterator" id="FacCode">
+      <AttrNames>
+        <Item Value="FacCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="GroupOfFacilitiesVOIterator" id="FacName">
+      <AttrNames>
+        <Item Value="FacName"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="LOGAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="LOGAMDataControl"/>
+  </bindings>
+</pageDefinition>

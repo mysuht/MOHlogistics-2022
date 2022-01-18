@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.60.81" id="GofBrowsePageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="GroupOfFacilitiesVO" RangeSize="25" DataControl="LOGAMDataControl"
+              id="GroupOfFacilitiesVOIterator"/>
+    <searchRegion Binds="GroupOfFacilitiesVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="GroupOfFacilitiesVOQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="GroupOfFacilitiesVOIterator" id="GroupOfFacilitiesVO">
+      <nodeDefinition DefName="model.View.GroupOfFacilitiesVO" Name="GroupOfFacilitiesVO0">
+        <AttrNames>
+          <Item Value="GofId"/>
+          <Item Value="GofFacilityId"/>
+          <Item Value="FacCode"/>
+          <Item Value="FacName"/>
+          <Item Value="GofGrpId"/>
+          <Item Value="GrpDesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="GroupOfFacilitiesVOIterator" id="Delete" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>

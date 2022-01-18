@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.60.81" id="QueryViewPageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <iterator Binds="DirectoratesLOV" RangeSize="25" DataControl="LOGAMDataControl" id="DirectoratesLOVIterator"/>
+    <iterator Binds="CentersLOVDirectoratesLOV" RangeSize="25" DataControl="LOGAMDataControl"
+              id="CentersLOVDirectoratesLOVIterator"/>
+    <searchRegion Binds="CentersLOVDirectoratesLOVIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="CentersLOVDirectoratesLOVQuery"/>
+    <variableIterator id="variables">
+      <variableUsage DataControl="LOGAMDataControl" Binds="CentersLOVDirectoratesLOV.variablesMap.p_year"
+                     Name="ExecuteWithParams_p_year" IsQueriable="false"/>
+      <variableUsage DataControl="LOGAMDataControl" Binds="CentersLOVDirectoratesLOV.variablesMap.p_month"
+                     Name="ExecuteWithParams_p_month" IsQueriable="false"/>
+    </variableIterator>
+  </executables>
+  <bindings>
+    <list IterBinding="DirectoratesLOVIterator" ListOperMode="navigation" ListIter="DirectoratesLOVIterator"
+          id="DirectoratesLOV" DTSupportsMRU="true" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="FacName"/>
+      </AttrNames>
+    </list>
+    <tree IterBinding="CentersLOVDirectoratesLOVIterator" id="CentersLOVDirectoratesLOV">
+      <nodeDefinition DefName="model.LOV.CentersLOV" Name="CentersLOVDirectoratesLOV0">
+        <AttrNames>
+          <Item Value="Enterd"/>
+          <Item Value="Approved"/>
+          <Item Value="FacCode"/>
+          <Item Value="FacName"/>
+          <Item Value="FacCity"/>
+          <Item Value="FacAddress1"/>
+          <Item Value="FacAddress2"/>
+          <Item Value="FacPhone"/>
+          <Item Value="FacRescode"/>
+          <Item Value="FacilityId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="CentersLOVDirectoratesLOVIterator" id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="p_year" NDValue="${bindings.ExecuteWithParams_p_year}" NDType="java.lang.String"/>
+      <NamedData NDName="p_month" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams_p_month}"/>
+    </action>
+    <list IterBinding="variables" id="p_year" DTSupportsMRU="true" SelectItemValueMode="ListObject" StaticList="true">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_p_year"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1980"/>
+        <Item Value="1981"/>
+        <Item Value="1982"/>
+        <Item Value="1983"/>
+        <Item Value="1984"/>
+        <Item Value="1985"/>
+        <Item Value="1986"/>
+        <Item Value="1987"/>
+        <Item Value="1988"/>
+        <Item Value="1989"/>
+        <Item Value="1990"/>
+        <Item Value="1991"/>
+        <Item Value="1992"/>
+        <Item Value="1993"/>
+        <Item Value="1994"/>
+        <Item Value="1995"/>
+        <Item Value="1996"/>
+        <Item Value="1997"/>
+        <Item Value="1998"/>
+        <Item Value="1999"/>
+        <Item Value="2000"/>
+        <Item Value="2001"/>
+        <Item Value="2002"/>
+        <Item Value="2003"/>
+        <Item Value="2004"/>
+        <Item Value="2005"/>
+        <Item Value="2006"/>
+        <Item Value="2007"/>
+        <Item Value="2008"/>
+        <Item Value="2009"/>
+        <Item Value="2010"/>
+        <Item Value="2011"/>
+        <Item Value="2012"/>
+        <Item Value="2013"/>
+        <Item Value="2014"/>
+        <Item Value="2015"/>
+        <Item Value="2016"/>
+        <Item Value="2017"/>
+        <Item Value="2018"/>
+        <Item Value="2019"/>
+        <Item Value="2020"/>
+      </ValueList>
+    </list>
+    <list IterBinding="variables" id="p_month" DTSupportsMRU="true" SelectItemValueMode="ListObject" StaticList="true">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_p_month"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="01"/>
+        <Item Value="02"/>
+        <Item Value="03"/>
+        <Item Value="04"/>
+        <Item Value="05"/>
+        <Item Value="06"/>
+        <Item Value="07"/>
+        <Item Value="08"/>
+        <Item Value="09"/>
+        <Item Value="10"/>
+        <Item Value="11"/>
+        <Item Value="12"/>
+      </ValueList>
+    </list>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="Active">
+      <AttrNames>
+        <Item Value="Active"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="DistributionRole">
+      <AttrNames>
+        <Item Value="DistributionRole"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="FacAddress1">
+      <AttrNames>
+        <Item Value="FacAddress1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="FacAddress2">
+      <AttrNames>
+        <Item Value="FacAddress2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="FacCity">
+      <AttrNames>
+        <Item Value="FacCity"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="FacCode">
+      <AttrNames>
+        <Item Value="FacCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="FacContact">
+      <AttrNames>
+        <Item Value="FacContact"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="FacFax">
+      <AttrNames>
+        <Item Value="FacFax"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="FacName">
+      <AttrNames>
+        <Item Value="FacName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="FacPhone">
+      <AttrNames>
+        <Item Value="FacPhone"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="FacRescode">
+      <AttrNames>
+        <Item Value="FacRescode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="FacState">
+      <AttrNames>
+        <Item Value="FacState"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="FacTypeId">
+      <AttrNames>
+        <Item Value="FacTypeId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="FacilityId">
+      <AttrNames>
+        <Item Value="FacilityId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="FieldDispense">
+      <AttrNames>
+        <Item Value="FieldDispense"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="HighestLv">
+      <AttrNames>
+        <Item Value="HighestLv"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="MaxMos">
+      <AttrNames>
+        <Item Value="MaxMos"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="MinMos">
+      <AttrNames>
+        <Item Value="MinMos"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="SupCode">
+      <AttrNames>
+        <Item Value="SupCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DirectoratesLOVIterator" id="Warehouse">
+      <AttrNames>
+        <Item Value="Warehouse"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

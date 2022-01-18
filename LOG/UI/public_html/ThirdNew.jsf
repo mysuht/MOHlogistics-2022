@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="ThirdNew.jsf" id="d1">
+        <af:form id="f1">
+            <af:pageTemplate viewId="/oracle/ui/pattern/dynamicShell/dynamicTabShell.jspx" value="#{bindings.ptb1}"
+                             id="pt1">
+                <f:facet name="copyright"/>
+                <f:facet name="about"/>
+                <f:facet name="navigation">
+                    <af:decorativeBox id="db1">
+                        <f:facet name="center">
+                            <af:panelList id="pl1">
+                                <af:link text="**** Logistics Reports ****" id="l1" targetFrame="_blank"
+                                         partialSubmit="true" useWindow="true"
+                                         inlineStyle="font-size:12px; font-weight:bold;"
+                                         destination="#{backingBeanScope.launcher.openRep}"/>
+                                <af:link text="**** Logistics Reports ****" id="l2" targetFrame="_blank"
+                                         partialSubmit="true" useWindow="true"
+                                         inlineStyle="font-size:12px; font-weight:bold;" action="goReports"
+                                         rendered="false">
+                                    <af:setActionListener from="#{'/rep/main.jsp'}" to="#{sessionScope.sReportURL}"/>
+                                </af:link>
+                                <af:commandLink text="Facilities" id="cl1" action="goReports" rendered="false">
+                                    <af:setActionListener from="#{'/rep/facilityresults.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Products" id="cl2" action="goReports" rendered="false">
+                                    <af:setActionListener from="#{'/rep/productresults.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Facility Types" id="cl3" action="goReports" rendered="false">
+                                    <af:setActionListener from="#{'/rep/productresults.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Adjustment Types" id="cl4" action="goReports" rendered="false">
+                                    <af:setActionListener from="#{'/rep/adjtyperesults.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Monthly Report" id="cl5" action="goReports" rendered="false">
+                                    <af:setActionListener from="#{'/rep/monthlyreportparam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Non Reporting Facilities" id="cl6" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/nonRepFacParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Adjustments Summary" id="cl7" action="goReports" rendered="false">
+                                    <af:setActionListener from="#{'/rep/adjSummaryParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Program Adjustments Summary" id="cl8" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/progAdjSummaryParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Aggregate Stock Movement - By Level" id="cl9" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/aggStockMovByLevelRepParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Aggregate Stock Movement Report" id="cl10" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/aggStockMovRepParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="CYP Report" id="cl11" action="goReports" rendered="false">
+                                    <af:setActionListener from="#{'/rep/cypRepParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Facility Stock Movement Report" id="cl12" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/facStockMovRepParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Supply Status Error Report" id="cl13" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/suppStatusErrorRep.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Dispensed To user Report" id="cl14" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/dispensedToUserRepParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Facility Dispensed To user Report" id="cl15" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/facilityDispensedToUserRepParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Facility Product Dispensing Report" id="cl16" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/facilityProductDispensedRepParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Program Dispensed To User Report" id="cl17" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/progDispensedToUserRepParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Service Statistics Report" id="cl18" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/serviceStatisticsReportParam22.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Facility Service Statistics Report" id="cl19" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/facilityServiceStatisticsRepParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Program Service Statistics Report" id="cl20" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/programServiceStatisticsRepParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Stocked Out Facilities" id="cl21" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/stockedOutFacilitiesParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Stocked Out Facilities (Products) Report" id="cl22"
+                                                action="goReports" rendered="false">
+                                    <af:setActionListener from="#{'/rep/stockedOutFacilitiesProductsParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Over Stocked Facilities" id="cl23" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/overStockedFacilityParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Below Emergency Order Point" id="cl24" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/belowEmergencyOrderPointParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Data Entry Error Report" id="cl25" action="goReports"
+                                                rendered="false">
+                                    <af:setActionListener from="#{'/rep/dataEntryErrorReportParam.jsp'}"
+                                                          to="#{sessionScope.sReportURL}"/>
+                                </af:commandLink>
+                                <af:commandLink text="Graphs" id="l3"
+                                         actionListener="#{backingBeanScope.launcher.launchReportGraphsTF}"/>
+                            </af:panelList>
+                        </f:facet>
+                        <f:facet name="top">
+                            <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                                <af:outputText value="********************" id="ot1"/>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:decorativeBox>
+                </f:facet>
+                <f:facet name="globalLinks"/>
+                <f:facet name="status"/>
+                <f:facet name="globalToolbar"/>
+                <f:facet name="globalSearch"/>
+                <f:facet name="globalTabs">
+                    <af:navigationPane id="np1">
+                        <af:commandNavigationItem text="Lookup" id="cni1" action="first"
+                                                  rendered="#{sessionScope.sType}"/>
+                        <af:commandNavigationItem text="CTF" id="cni2" action="second"/>
+                        <af:commandNavigationItem text="Reports" id="cni3" selected="true"/>
+                    </af:navigationPane>
+                </f:facet>
+                <f:facet name="welcome"/>
+                <f:facet name="innerToolbar"/>
+                <f:attribute name="navSplitterPosition" value="300"/>
+            </af:pageTemplate>
+        </af:form>
+    </af:document>
+</f:view>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelFormLayout id="pfl1">
+    <af:inputText value="#{bindings.GrpId.inputValue}" label="#{bindings.GrpId.hints.label}"
+                  required="#{bindings.GrpId.hints.mandatory}" columns="#{bindings.GrpId.hints.displayWidth}"
+                  maximumLength="#{bindings.GrpId.hints.precision}" shortDesc="#{bindings.GrpId.hints.tooltip}"
+                  id="it1">
+      <f:validator binding="#{bindings.GrpId.validator}"/>
+      <af:convertNumber groupingUsed="false" pattern="#{bindings.GrpId.format}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.GrpDesc.inputValue}" label="#{bindings.GrpDesc.hints.label}"
+                  required="#{bindings.GrpDesc.hints.mandatory}" columns="#{bindings.GrpDesc.hints.displayWidth}"
+                  maximumLength="#{bindings.GrpDesc.hints.precision}" shortDesc="#{bindings.GrpDesc.hints.tooltip}"
+                  id="it2">
+      <f:validator binding="#{bindings.GrpDesc.validator}"/>
+    </af:inputText>
+    <f:facet name="footer">
+      <af:group id="g1">
+        <af:panelGroupLayout id="pgl1">
+          <af:commandButton actionListener="#{bindings.Commit.execute}" text="Save"
+                            disabled="#{!bindings.Commit.enabled}" id="cb1" action="back"/>
+          <af:commandButton actionListener="#{bindings.Rollback.execute}" text="Cancel"
+                            disabled="#{!bindings.Rollback.enabled}" immediate="true" id="cb2" action="back">
+            <af:resetActionListener/>
+          </af:commandButton>
+        </af:panelGroupLayout>
+      </af:group>
+    </f:facet>
+  </af:panelFormLayout>
+</ui:composition>

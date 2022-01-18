@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="GroupsLOV"
+  Version="11.1.2.60.81"
+  SelectList="GroupsEO.GRP_DESC, 
+       GroupsEO.GRP_ID"
+  FromList="LOG3.GROUPS GroupsEO"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.LOV.GroupsLOV_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <EntityUsage
+    Name="GroupsEO"
+    Entity="model.Entity.GroupsEO"
+    ReadOnly="true"
+    DeleteParticipant="false"/>
+  <ViewAttribute
+    Name="GrpDesc"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="GrpDesc"
+    EntityUsage="GroupsEO"
+    AliasName="GRP_DESC"/>
+  <ViewAttribute
+    Name="GrpId"
+    IsUpdateable="while_insert"
+    PrecisionRule="true"
+    EntityAttrName="GrpId"
+    EntityUsage="GroupsEO"
+    AliasName="GRP_ID"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.modelBundle"/>
+  </ResourceBundle>
+</ViewObject>

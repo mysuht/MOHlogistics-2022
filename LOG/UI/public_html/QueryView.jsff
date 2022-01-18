@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="141">
+    <f:facet name="first">
+      <af:panelGroupLayout layout="scroll" id="pgl1">
+        <af:selectOneChoice value="#{bindings.p_year.inputValue}" label="#{bindings.p_year.label}"
+                            required="#{bindings.p_year.hints.mandatory}" shortDesc="#{bindings.p_year.hints.tooltip}"
+                            id="soc1" binding="#{querybean.year}">
+          <f:selectItems value="#{bindings.p_year.items}" id="si1"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.p_month.inputValue}" label="#{bindings.p_month.label}"
+                            required="#{bindings.p_month.hints.mandatory}" shortDesc="#{bindings.p_month.hints.tooltip}"
+                            id="soc2" binding="#{querybean.month}">
+          <f:selectItems value="#{bindings.p_month.items}" id="si2"/>
+        </af:selectOneChoice>
+        <af:selectOneChoice value="#{bindings.DirectoratesLOV.inputValue}" label="#{bindings.DirectoratesLOV.label}"
+                            required="#{bindings.DirectoratesLOV.hints.mandatory}"
+                            shortDesc="#{bindings.DirectoratesLOV.hints.tooltip}" id="soc3" binding="#{querybean.fac}"
+                            autoSubmit="true">
+          <f:selectItems value="#{bindings.DirectoratesLOV.items}" id="si3"/>
+        </af:selectOneChoice>
+        <af:commandButton actionListener="#{bindings.ExecuteWithParams.execute}" text="Search"
+                          disabled="#{!bindings.ExecuteWithParams.enabled}" id="cb2" action="#{querybean.getStats}"/>
+        <af:spacer width="10" height="10" id="s1"/>
+        <af:outputText id="ot31" inlineStyle="font-size:medium;" binding="#{querybean.statsmsg}"/>
+        <af:outputText id="ot32" inlineStyle="font-size:medium;" binding="#{querybean.statsmsg1}"/>
+        <af:panelFormLayout id="pfl1" rendered="false">
+          <af:panelLabelAndMessage label="#{bindings.Active.hints.label}" id="plam1">
+            <af:outputText value="#{bindings.Active.inputValue}" id="ot11"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.DistributionRole.hints.label}" id="plam2">
+            <af:outputText value="#{bindings.DistributionRole.inputValue}" id="ot12">
+              <af:convertNumber groupingUsed="false" pattern="#{bindings.DistributionRole.format}"/>
+            </af:outputText>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacAddress1.hints.label}" id="plam3">
+            <af:outputText value="#{bindings.FacAddress1.inputValue}" id="ot13"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacAddress2.hints.label}" id="plam4">
+            <af:outputText value="#{bindings.FacAddress2.inputValue}" id="ot14"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacCity.hints.label}" id="plam5">
+            <af:outputText value="#{bindings.FacCity.inputValue}" id="ot15"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacCode.hints.label}" id="plam6">
+            <af:outputText value="#{bindings.FacCode.inputValue}" id="ot16"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacContact.hints.label}" id="plam7">
+            <af:outputText value="#{bindings.FacContact.inputValue}" id="ot17"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacFax.hints.label}" id="plam8">
+            <af:outputText value="#{bindings.FacFax.inputValue}" id="ot18"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacName.hints.label}" id="plam9">
+            <af:outputText value="#{bindings.FacName.inputValue}" id="ot19"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacPhone.hints.label}" id="plam10">
+            <af:outputText value="#{bindings.FacPhone.inputValue}" id="ot20"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacRescode.hints.label}" id="plam11">
+            <af:outputText value="#{bindings.FacRescode.inputValue}" id="ot21"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacState.hints.label}" id="plam12">
+            <af:outputText value="#{bindings.FacState.inputValue}" id="ot22"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacTypeId.hints.label}" id="plam13">
+            <af:outputText value="#{bindings.FacTypeId.inputValue}" id="ot23">
+              <af:convertNumber groupingUsed="false" pattern="#{bindings.FacTypeId.format}"/>
+            </af:outputText>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FacilityId.hints.label}" id="plam14">
+            <af:outputText value="#{bindings.FacilityId.inputValue}" id="ot24" binding="#{querybean.facid}">
+              <af:convertNumber groupingUsed="false" pattern="#{bindings.FacilityId.format}"/>
+            </af:outputText>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.FieldDispense.hints.label}" id="plam15">
+            <af:outputText value="#{bindings.FieldDispense.inputValue}" id="ot25"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.HighestLv.hints.label}" id="plam16">
+            <af:outputText value="#{bindings.HighestLv.inputValue}" id="ot26"/>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.MaxMos.hints.label}" id="plam17">
+            <af:outputText value="#{bindings.MaxMos.inputValue}" id="ot27">
+              <af:convertNumber groupingUsed="false" pattern="#{bindings.MaxMos.format}"/>
+            </af:outputText>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.MinMos.hints.label}" id="plam18">
+            <af:outputText value="#{bindings.MinMos.inputValue}" id="ot28">
+              <af:convertNumber groupingUsed="false" pattern="#{bindings.MinMos.format}"/>
+            </af:outputText>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.SupCode.hints.label}" id="plam19">
+            <af:outputText value="#{bindings.SupCode.inputValue}" id="ot29">
+              <af:convertNumber groupingUsed="false" pattern="#{bindings.SupCode.format}"/>
+            </af:outputText>
+          </af:panelLabelAndMessage>
+          <af:panelLabelAndMessage label="#{bindings.Warehouse.hints.label}" id="plam20">
+            <af:outputText value="#{bindings.Warehouse.inputValue}" id="ot30"/>
+          </af:panelLabelAndMessage>
+        </af:panelFormLayout>
+      </af:panelGroupLayout>
+    </f:facet>
+    <f:facet name="second">
+      <af:table value="#{bindings.CentersLOVDirectoratesLOV.collectionModel}" var="row"
+                rows="#{bindings.CentersLOVDirectoratesLOV.rangeSize}"
+                emptyText="#{bindings.CentersLOVDirectoratesLOV.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.CentersLOVDirectoratesLOV.rangeSize}" rowBandingInterval="0"
+                filterModel="#{bindings.CentersLOVDirectoratesLOVQuery.queryDescriptor}"
+                queryListener="#{bindings.CentersLOVDirectoratesLOVQuery.processQuery}" filterVisible="true"
+                varStatus="vs" selectedRowKeys="#{bindings.CentersLOVDirectoratesLOV.collectionModel.selectedRow}"
+                selectionListener="#{bindings.CentersLOVDirectoratesLOV.collectionModel.makeCurrent}"
+                rowSelection="single" id="t1" partialTriggers="::cb2">
+        <af:column sortProperty="#{bindings.CentersLOVDirectoratesLOV.hints.Enterd.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.CentersLOVDirectoratesLOV.hints.Enterd.label}" id="c1"
+                   width="105">
+          <af:outputText value="#{row.Enterd}" id="ot1"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CentersLOVDirectoratesLOV.hints.Approved.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.CentersLOVDirectoratesLOV.hints.Approved.label}" id="c2"
+                   width="105">
+          <af:outputText value="#{row.Approved}" id="ot2"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CentersLOVDirectoratesLOV.hints.FacCode.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.CentersLOVDirectoratesLOV.hints.FacCode.label}" id="c3"
+                   width="2">
+          <af:outputText value="#{row.FacCode}" id="ot3"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CentersLOVDirectoratesLOV.hints.FacName.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.CentersLOVDirectoratesLOV.hints.FacName.label}" id="c4"
+                   width="208">
+          <af:outputText value="#{row.FacName}" id="ot4"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CentersLOVDirectoratesLOV.hints.FacilityId.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.CentersLOVDirectoratesLOV.hints.FacilityId.label}" id="c10"
+                   width="105">
+          <af:outputText value="#{row.FacilityId}" id="ot10">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.CentersLOVDirectoratesLOV.hints.FacilityId.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.CentersLOVDirectoratesLOV.hints.FacCity.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.CentersLOVDirectoratesLOV.hints.FacCity.label}" id="c5"
+                   width="105">
+          <af:outputText value="#{row.FacCity}" id="ot5"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CentersLOVDirectoratesLOV.hints.FacAddress1.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.CentersLOVDirectoratesLOV.hints.FacAddress1.label}" id="c6"
+                   width="105">
+          <af:outputText value="#{row.FacAddress1}" id="ot6"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CentersLOVDirectoratesLOV.hints.FacAddress2.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.CentersLOVDirectoratesLOV.hints.FacAddress2.label}" id="c7"
+                   width="105">
+          <af:outputText value="#{row.FacAddress2}" id="ot7"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CentersLOVDirectoratesLOV.hints.FacPhone.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.CentersLOVDirectoratesLOV.hints.FacPhone.label}" id="c8"
+                   width="105">
+          <af:outputText value="#{row.FacPhone}" id="ot8"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CentersLOVDirectoratesLOV.hints.FacRescode.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.CentersLOVDirectoratesLOV.hints.FacRescode.label}" id="c9"
+                   width="105">
+          <af:outputText value="#{row.FacRescode}" id="ot9"/>
+        </af:column>
+      </af:table>
+    </f:facet>
+  </af:panelSplitter>
+</ui:composition>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <af:panelBox id="pb1">
+    <f:facet name="toolbar">
+      <af:toolbar id="t2">
+        <af:commandButton text="Add" id="cb1" action="insert"/>
+        <af:commandButton text="Modify" id="cb2" action="update"/>
+        <af:commandButton actionListener="#{bindings.Delete.execute}"
+                          text="Delete" disabled="#{!bindings.Delete.enabled}"
+                          id="cb3" partialTriggers="t1"/>
+      </af:toolbar>
+    </f:facet>
+    <af:table value="#{bindings.FacTypeVO.collectionModel}" var="row"
+              rows="#{bindings.FacTypeVO.rangeSize}"
+              emptyText="#{bindings.FacTypeVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.FacTypeVO.rangeSize}" rowBandingInterval="0"
+              filterModel="#{bindings.FacTypeVOQuery.queryDescriptor}"
+              queryListener="#{bindings.FacTypeVOQuery.processQuery}"
+              filterVisible="true" varStatus="vs"
+              selectedRowKeys="#{bindings.FacTypeVO.collectionModel.selectedRow}"
+              selectionListener="#{bindings.FacTypeVO.collectionModel.makeCurrent}"
+              rowSelection="single" id="t1" width="100%">
+      <af:column sortProperty="FacTypeId" filterable="true" sortable="true"
+                 headerText="#{bindings.FacTypeVO.hints.FacTypeId.label}"
+                 id="c3">
+        <af:outputText value="#{row.FacTypeId}" id="ot2"/>
+      </af:column>
+      <af:column sortProperty="FacName" filterable="true" sortable="true"
+                 headerText="#{bindings.FacTypeVO.hints.FacName.label}" id="c1" filterFeatures="caseInsensitive">
+        <af:outputText value="#{row.FacName}" id="ot1"/>
+      </af:column>
+      <af:column sortProperty="TypeHierarchy" filterable="true" sortable="true"
+                 headerText="#{bindings.FacTypeVO.hints.TypeHierarchy.label}"
+                 id="c2">
+        <af:outputText value="#{row.TypeHierarchy}" id="ot3"/>
+      </af:column>
+    </af:table>
+  </af:panelBox>
+</jsp:root>

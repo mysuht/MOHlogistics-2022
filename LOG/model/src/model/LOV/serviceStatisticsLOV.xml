@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="windows-1256" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="serviceStatisticsLOV"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.LOV.serviceStatisticsLOV_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="y"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="2012"/>
+  <Variable
+    Name="prod"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="4"/>
+  <Variable
+    Name="periodType"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="hy"/>
+  <Variable
+    Name="type"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="0"/>
+  <Variable
+    Name="q"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="1"/>
+  <Variable
+    Name="fac"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="firstFacility"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="m"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="01"/>
+  <Variable
+    Name="h"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="1"/>
+  <Variable
+    Name="fm"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="01"/>
+  <Variable
+    Name="fy"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="2000"/>
+  <Variable
+    Name="tm"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="01"/>
+  <Variable
+    Name="ty"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="2000"/>
+  <SQLQuery><![CDATA[-------------------------------------------------------------                
+------------------- All Facilities --------------------------                
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                            
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ft.type_hierarchy=3                              
+and ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y  and ci.prod_id= :prod                             
+and 'ann' = :periodType and                          
+'0' = :type                          
+group by to_char(cm.p_date,'mm/yyyy')                         
+union                         
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                            
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ft.type_hierarchy=3                              
+and ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y                        
+and to_char(cm.p_date,'Q')= :q and ci.prod_id= :prod                             
+and 'qua' = :periodType and                          
+'0' = :type                        
+group by to_char(cm.p_date,'mm/yyyy')                       
+union                       
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                            
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ft.type_hierarchy=3                              
+and ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y                        
+and to_char(cm.p_date,'Q') in (1,2) and ci.prod_id= :prod                             
+and 'hy' = :periodType and                         
+'1' = :h and                      
+'0' = :type                        
+group by to_char(cm.p_date,'mm/yyyy')                     
+union                     
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                           
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ft.type_hierarchy=3                              
+and ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y                        
+and to_char(cm.p_date,'Q') in (3,4) and ci.prod_id= :prod                             
+and 'hy' = :periodType and                         
+'2' = :h and                      
+'0' = :type                        
+group by to_char(cm.p_date,'mm/yyyy')                    
+union                     
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                           
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ft.type_hierarchy=3                              
+and ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y                        
+and to_char(cm.p_date,'mm')= :m and ci.prod_id= :prod                             
+and 'mon' = :periodType and                         
+'0' = :type                        
+group by to_char(cm.p_date,'mm/yyyy')                  
+union                  
+                   
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                        
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ft.type_hierarchy=3                              
+and ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_date(to_char(cm.p_date,'mm/yyyy'),'mm/yyyy') between to_date(:fm ||'/'||:fy,'mm/yyyy') and to_date(:tm||'/'||:ty,'mm/yyyy')                
+and ci.prod_id= :prod                             
+and 'u' = :periodType and                         
+'0' = :type                        
+group by to_char(cm.p_date,'mm/yyyy')                
+------------------------------------------------------------------------                
+----------------------- Now for Centers --------------------------------                
+union                
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                          
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ft.type_hierarchy=3                              
+and ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y  and ci.prod_id= :prod                             
+and 'ann' = :periodType and                          
+'0' <> :type                   
+and cm.facility_id in  ( select regexp_substr               
+(:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                
+and              
+(select  type_hierarchy from fac_type ft, facility ff where                 
+ft.fac_type_id = ff.fac_type_id                 
+and                 
+ff.facility_id = :firstFacility                      
+) = 3                   
+group by to_char(cm.p_date,'mm/yyyy')                
+              
+                
+union                         
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                           
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ft.type_hierarchy=3                              
+and ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y                        
+and to_char(cm.p_date,'Q')= :q and ci.prod_id= :prod                             
+and 'qua' = :periodType and                          
+'0' <> :type                   
+and cm.facility_id in  ( select regexp_substr               
+(:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                
+and              
+(select  type_hierarchy from fac_type ft, facility ff where                 
+ft.fac_type_id = ff.fac_type_id                 
+and                 
+ff.facility_id = :firstFacility                      
+) = 3                            
+group by to_char(cm.p_date,'mm/yyyy')                       
+union                       
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                           
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ft.type_hierarchy=3                              
+and ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y                        
+and to_char(cm.p_date,'Q') in (1,2) and ci.prod_id= :prod                             
+and 'hy' = :periodType and                         
+'1' = :h and                      
+'0' <> :type                   
+and cm.facility_id in  ( select regexp_substr               
+(:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                
+and              
+(select  type_hierarchy from fac_type ft, facility ff where                 
+ft.fac_type_id = ff.fac_type_id                 
+and                 
+ff.facility_id = :firstFacility                      
+) = 3                              
+group by to_char(cm.p_date,'mm/yyyy')                     
+union                     
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                           
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ft.type_hierarchy=3                              
+and ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y                        
+and to_char(cm.p_date,'Q') in (3,4) and ci.prod_id= :prod                             
+and 'hy' = :periodType and                         
+'2' = :h and                      
+'0' <> :type                  
+and cm.facility_id in  ( select regexp_substr              
+(:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )               
+and             
+(select  type_hierarchy from fac_type ft, facility ff where                
+ft.fac_type_id = ff.fac_type_id                
+and                
+ff.facility_id = :firstFacility                     
+) = 3                               
+group by to_char(cm.p_date,'mm/yyyy')                    
+union                     
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                           
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ft.type_hierarchy=3                              
+and ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y                        
+and to_char(cm.p_date,'mm')= :m and ci.prod_id= :prod                             
+and 'mon' = :periodType and                         
+'0' <> :type                  
+and cm.facility_id in  ( select regexp_substr              
+(:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )               
+and             
+(select  type_hierarchy from fac_type ft, facility ff where                
+ft.fac_type_id = ff.fac_type_id                
+and                
+ff.facility_id = :firstFacility                     
+) = 3                              
+group by to_char(cm.p_date,'mm/yyyy')                  
+union                  
+                   
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                          
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ft.type_hierarchy=3                              
+and ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_date(to_char(cm.p_date,'mm/yyyy'),'mm/yyyy') between to_date(:fm ||'/'||:fy,'mm/yyyy') and to_date(:tm||'/'||:ty,'mm/yyyy')                
+and ci.prod_id= :prod                             
+and 'u' = :periodType and                         
+'0' <> :type                  
+and cm.facility_id in  ( select regexp_substr              
+(:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )               
+and             
+(select  type_hierarchy from fac_type ft, facility ff where                
+ft.fac_type_id = ff.fac_type_id                
+and                
+ff.facility_id = :firstFacility                     
+) = 3                            
+group by to_char(cm.p_date,'mm/yyyy')           
+--------------------------------------------------------------------------           
+----------------------------- Directorates ------------------------------           
+--------------------------------------------------------------------           
+union           
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                       
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+                           
+ ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y  and ci.prod_id= :prod                             
+and 'ann' = :periodType                         
+and F.SUP_CODE in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                                  
+AND (select distinct type_hierarchy from fac_type ft, facility ff where             
+ft.fac_type_id = ff.fac_type_id             
+and             
+ff.facility_id = :firstFacility                  
+) <> 3               
+and '0' <> :type                                     
+group by to_char(cm.p_date,'mm/yyyy')                         
+union            
+       
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                          
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+  ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y                        
+and to_char(cm.p_date,'Q')= :q and ci.prod_id= :prod                             
+and 'qua' = :periodType and                          
+'0' <> :type        
+and F.SUP_CODE in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                                
+AND (select distinct type_hierarchy from fac_type ft, facility ff where           
+ft.fac_type_id = ff.fac_type_id           
+and           
+ff.facility_id = :firstFacility                
+) <> 3             
+                   
+group by to_char(cm.p_date,'mm/yyyy')                       
+union       
+      
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                          
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+  ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y                        
+and to_char(cm.p_date,'Q') in (1,2) and ci.prod_id= :prod                             
+and 'hy' = :periodType and                         
+'1' = :h and                      
+'0' <> :type                        
+and F.SUP_CODE in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                               
+AND (select distinct type_hierarchy from fac_type ft, facility ff where          
+ft.fac_type_id = ff.fac_type_id          
+and          
+ff.facility_id = :firstFacility               
+) <> 3            
+                  
+group by to_char(cm.p_date,'mm/yyyy')                     
+union        
+      
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                          
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y                        
+and to_char(cm.p_date,'Q') in (3,4) and ci.prod_id= :prod                             
+and 'hy' = :periodType and                         
+'2' = :h and                      
+'0' <> :type        
+and F.SUP_CODE in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                               
+AND (select distinct type_hierarchy from fac_type ft, facility ff where          
+ft.fac_type_id = ff.fac_type_id          
+and          
+ff.facility_id = :firstFacility               
+) <> 3            
+                  
+group by to_char(cm.p_date,'mm/yyyy')                    
+union          
+      
+      
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                          
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_char(cm.p_date,'yyyy')= :y                        
+and to_char(cm.p_date,'mm')= :m and ci.prod_id= :prod                             
+and 'mon' = :periodType and                         
+'0' <> :type                        
+and F.SUP_CODE in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                               
+AND (select distinct type_hierarchy from fac_type ft, facility ff where          
+ft.fac_type_id = ff.fac_type_id          
+and          
+ff.facility_id = :firstFacility               
+) <> 3            
+                  
+group by to_char(cm.p_date,'mm/yyyy')                  
+union                  
+                   
+select  to_char(cm.p_date,'mm/yyyy') dispensed_date, nvl(sum(ci.new_visits),0) new_users, nvl(sum(ci.cont_visits),0) cont_users                         
+from facility f, ctf_item ci , ctf_main cm, fac_type ft                             
+ where                             
+ ci.ctf_main_id=cm.ctf_main_id(+) and cm.facility_id=f.facility_id(+) and f.fac_type_id=ft.fac_type_id(+)                               
+and to_date(to_char(cm.p_date,'mm/yyyy'),'mm/yyyy') between to_date(:fm ||'/'||:fy,'mm/yyyy') and to_date(:tm||'/'||:ty,'mm/yyyy')                
+and ci.prod_id= :prod                             
+and 'u' = :periodType and                         
+'0' <> :type                        
+and F.SUP_CODE in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                               
+AND (select distinct type_hierarchy from fac_type ft, facility ff where          
+ft.fac_type_id = ff.fac_type_id          
+and          
+ff.facility_id = :firstFacility               
+) <> 3            
+                  
+group by to_char(cm.p_date,'mm/yyyy') 
+order by 1]]></SQLQuery>
+  <ViewAttribute
+    Name="DispensedDate"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DISPENSED_DATE"
+    Expression="DISPENSED_DATE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NewUsers"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="NEW_USERS"
+    Expression="NEW_USERS"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="model.LOV.serviceStatisticsLOV.NewUsers_FMT_FORMATTER"/>
+        <FMT_FORMAT
+          ResId="model.LOV.serviceStatisticsLOV.NewUsers_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ContUsers"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="CONT_USERS"
+    Expression="CONT_USERS"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="model.LOV.serviceStatisticsLOV.ContUsers_FMT_FORMATTER"/>
+        <FMT_FORMAT
+          ResId="model.LOV.serviceStatisticsLOV.ContUsers_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="DispensedDate"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.modelBundle"/>
+  </ResourceBundle>
+</ViewObject>

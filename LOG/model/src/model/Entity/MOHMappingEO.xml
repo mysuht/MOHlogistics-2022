@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MOHMappingEO"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="MOH_MAPPING"
+  AliasName="MOHMappingEO"
+  BindingStyle="OracleName">
+  <Attribute
+    Name="MohCode"
+    Precision="8"
+    ColumnName="MOH_CODE"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MOH_MAPPING"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="8"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LogCode"
+    Precision="8"
+    ColumnName="LOG_CODE"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MOH_MAPPING"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="8"/>
+    </DesignTime>
+  </Attribute>
+  <AccessorAttribute
+    Name="Facility"
+    Association="model.Asso.FacilityMOHMappingASSO"
+    AssociationEnd="model.Asso.FacilityMOHMappingASSO.Facility"
+    AssociationOtherEnd="model.Asso.FacilityMOHMappingASSO.MOHMapping"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="MohmappingeoPrimaryKey"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="MOHMAPPINGEO_PRIMARY_KEY"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.Entity.MOHMappingEO.MohCode"/>
+      <Item Value="model.Entity.MOHMappingEO.LogCode"/>
+    </AttrArray>
+  </Key>
+</Entity>

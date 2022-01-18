@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+   <session-factory>
+      <!-- Database Connection Settings -->
+      <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>    
+      <property name="hibernate.connection.datasource">java:comp/env/jdbc/LOGConnDS</property>
+      <property name="show_sql">true</property>
+       
+      <!-- SQL Dialect -->
+      <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+       <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        <property name="hbm2ddl.auto">validate</property>
+      <!-- Specifying Session Context -->
+      
+      <!-- <property name="hibernate.current_session_context_class">thread</property> -->
+       
+      <!-- Mapping With Model Class Containing Annotations -->
+      <!--<mapping class="jo.gov.moh.contraceptives.model.entities.Facility" />-->
+      <mapping resource="jo/gov/moh/contraceptives/model/beans/facility.hbm.xml" />
+   </session-factory>
+</hibernate-configuration>

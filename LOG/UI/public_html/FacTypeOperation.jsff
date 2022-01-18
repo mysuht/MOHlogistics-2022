@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <af:panelFormLayout id="pfl1">
+    <af:inputText value="#{bindings.FacTypeId.inputValue}"
+                  label="#{bindings.FacTypeId.hints.label}"
+                  required="#{bindings.FacTypeId.hints.mandatory}"
+                  columns="#{bindings.FacTypeId.hints.displayWidth}"
+                  maximumLength="#{bindings.FacTypeId.hints.precision}"
+                  shortDesc="#{bindings.FacTypeId.hints.tooltip}" id="it2">
+      <f:validator binding="#{bindings.FacTypeId.validator}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.FacName.inputValue}"
+                  label="#{bindings.FacName.hints.label}"
+                  required="#{bindings.FacName.hints.mandatory}"
+                  columns="#{bindings.FacName.hints.displayWidth}"
+                  maximumLength="#{bindings.FacName.hints.precision}"
+                  shortDesc="#{bindings.FacName.hints.tooltip}" id="it1">
+      <f:validator binding="#{bindings.FacName.validator}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.TypeHierarchy.inputValue}"
+                  label="#{bindings.TypeHierarchy.hints.label}"
+                  required="#{bindings.TypeHierarchy.hints.mandatory}"
+                  columns="#{bindings.TypeHierarchy.hints.displayWidth}"
+                  maximumLength="#{bindings.TypeHierarchy.hints.precision}"
+                  shortDesc="#{bindings.TypeHierarchy.hints.tooltip}" id="it3">
+      <f:validator binding="#{bindings.TypeHierarchy.validator}"/>
+    </af:inputText>
+  </af:panelFormLayout>
+  <af:panelGroupLayout id="pgl1">
+    <af:commandButton actionListener="#{bindings.Commit.execute}" text="Save"
+                      id="cb1" action="back"/>
+    <af:commandButton actionListener="#{bindings.Rollback.execute}"
+                      text="Cancel" immediate="true" id="cb2" action="back">
+      <af:resetActionListener/>
+    </af:commandButton>
+  </af:panelGroupLayout>
+</jsp:root>

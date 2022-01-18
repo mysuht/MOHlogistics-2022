@@ -1,0 +1,305 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelBox text="PanelBox1" id="pb1">
+    <f:facet name="toolbar">
+      <af:toolbar id="t1">
+        <af:commandButton actionListener="#{bindings.Commit.execute}" text="Commit" id="cb1" action="backMain"/>
+        <af:commandButton actionListener="#{bindings.Rollback.execute}" text="Rollback" immediate="true" id="cb2"
+                          action="backMain">
+          <af:resetActionListener/>
+        </af:commandButton>
+      </af:toolbar>
+    </f:facet>
+    <af:table value="#{bindings.CtfItemCtfMainOverreteVO.collectionModel}" var="row"
+              rows="#{bindings.CtfItemCtfMainOverreteVO.rangeSize}"
+              emptyText="#{bindings.CtfItemCtfMainOverreteVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.CtfItemCtfMainOverreteVO.rangeSize}" rowBandingInterval="0"
+              filterModel="#{bindings.CtfItemCtfMainOverreteVOQuery.queryDescriptor}"
+              queryListener="#{bindings.CtfItemCtfMainOverreteVOQuery.processQuery}" filterVisible="true" varStatus="vs"
+              selectedRowKeys="#{bindings.CtfItemCtfMainOverreteVO.collectionModel.selectedRow}"
+              selectionListener="#{bindings.CtfItemCtfMainOverreteVO.collectionModel.makeCurrent}" rowSelection="single"
+              id="t2">
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfItemId.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfItemId.label}" id="c6">
+        <af:inputText value="#{row.bindings.CtfItemId.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfItemId.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfItemId.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfItemId.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfItemId.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfItemId.tooltip}" id="it6">
+          <f:validator binding="#{row.bindings.CtfItemId.validator}"/>
+          <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfItemId.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfMainId.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfMainId.label}" id="c7">
+        <af:inputText value="#{row.bindings.CtfMainId.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfMainId.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfMainId.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfMainId.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfMainId.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfMainId.tooltip}" id="it7">
+          <f:validator binding="#{row.bindings.CtfMainId.validator}"/>
+          <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.CtfMainId.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.PDate.name}" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.PDate.label}" id="c17">
+        <f:facet name="filter">
+          <af:inputDate value="#{vs.filterCriteria.PDate}" id="id1">
+            <af:convertDateTime pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.PDate.format}"/>
+          </af:inputDate>
+        </f:facet>
+        <af:inputDate value="#{row.bindings.PDate.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.PDate.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.PDate.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.PDate.displayWidth}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.PDate.tooltip}" id="id2">
+          <f:validator binding="#{row.bindings.PDate.validator}"/>
+          <af:convertDateTime pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.PDate.format}"/>
+        </af:inputDate>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId.name}" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId.label}" id="c18">
+        <af:inputText value="#{row.bindings.ProdId.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId.tooltip}" id="it17">
+          <f:validator binding="#{row.bindings.ProdId.validator}"/>
+          <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.ProName.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.ProName.label}" id="c22">
+        <af:inputText value="#{row.bindings.ProName.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.ProName.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.ProName.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.ProName.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.ProName.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.ProName.tooltip}" id="it21">
+          <f:validator binding="#{row.bindings.ProName.validator}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.OpenBal.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.OpenBal.label}" id="c16">
+        <af:inputText value="#{row.bindings.OpenBal.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.OpenBal.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.OpenBal.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.OpenBal.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.OpenBal.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.OpenBal.tooltip}" id="it16">
+          <f:validator binding="#{row.bindings.OpenBal.validator}"/>
+          <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.OpenBal.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.Receipts.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.Receipts.label}" id="c21">
+        <af:inputText value="#{row.bindings.Receipts.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.Receipts.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.Receipts.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.Receipts.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.Receipts.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.Receipts.tooltip}" id="it20">
+          <f:validator binding="#{row.bindings.Receipts.validator}"/>
+          <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.Receipts.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.Issues.name}" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.Issues.label}" id="c14">
+        <af:inputText value="#{row.bindings.Issues.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.Issues.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.Issues.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.Issues.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.Issues.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.Issues.tooltip}" id="it14">
+          <f:validator binding="#{row.bindings.Issues.validator}"/>
+          <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.Issues.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.AdjTypeId.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.AdjTypeId.label}" id="c1">
+        <af:inputText value="#{row.bindings.AdjTypeId.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.AdjTypeId.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.AdjTypeId.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.AdjTypeId.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.AdjTypeId.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.AdjTypeId.tooltip}" id="it1">
+          <f:validator binding="#{row.bindings.AdjTypeId.validator}"/>
+          <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.AdjTypeId.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.Adjustments.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.Adjustments.label}" id="c2">
+        <af:inputText value="#{row.bindings.Adjustments.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.Adjustments.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.Adjustments.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.Adjustments.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.Adjustments.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.Adjustments.tooltip}" id="it2">
+          <f:validator binding="#{row.bindings.Adjustments.validator}"/>
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.Adjustments.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.ClosingBal.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.ClosingBal.label}" id="c4">
+        <af:inputText value="#{row.bindings.ClosingBal.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.ClosingBal.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.ClosingBal.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.ClosingBal.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.ClosingBal.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.ClosingBal.tooltip}" id="it4">
+          <f:validator binding="#{row.bindings.ClosingBal.validator}"/>
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.ClosingBal.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.AvgMnthlyCons.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.AvgMnthlyCons.label}" id="c3">
+        <af:inputText value="#{row.bindings.AvgMnthlyCons.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.AvgMnthlyCons.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.AvgMnthlyCons.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.AvgMnthlyCons.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.AvgMnthlyCons.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.AvgMnthlyCons.tooltip}" id="it3">
+          <f:validator binding="#{row.bindings.AvgMnthlyCons.validator}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyReceived.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyReceived.label}" id="c19">
+        <af:inputText value="#{row.bindings.QtyReceived.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyReceived.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyReceived.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyReceived.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyReceived.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyReceived.tooltip}" id="it18">
+          <f:validator binding="#{row.bindings.QtyReceived.validator}"/>
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyReceived.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyRequired.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyRequired.label}" id="c20">
+        <af:inputText value="#{row.bindings.QtyRequired.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyRequired.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyRequired.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyRequired.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyRequired.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyRequired.tooltip}" id="it19">
+          <f:validator binding="#{row.bindings.QtyRequired.validator}"/>
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.QtyRequired.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.NewVisits.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.NewVisits.label}" id="c15">
+        <af:inputText value="#{row.bindings.NewVisits.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.NewVisits.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.NewVisits.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.NewVisits.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.NewVisits.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.NewVisits.tooltip}" id="it15">
+          <f:validator binding="#{row.bindings.NewVisits.validator}"/>
+          <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.NewVisits.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.ContVisits.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.ContVisits.label}" id="c5">
+        <af:inputText value="#{row.bindings.ContVisits.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.ContVisits.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.ContVisits.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.ContVisits.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.ContVisits.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.ContVisits.tooltip}" id="it5">
+          <f:validator binding="#{row.bindings.ContVisits.validator}"/>
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.ContVisits.format}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.DeStat.name}" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.DeStat.label}" id="c8" rendered="false">
+        <af:inputText value="#{row.bindings.DeStat.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.DeStat.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.DeStat.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.DeStat.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.DeStat.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.DeStat.tooltip}" id="it8">
+          <f:validator binding="#{row.bindings.DeStat.validator}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrAmc.name}" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrAmc.label}" id="c9" rendered="false">
+        <af:inputText value="#{row.bindings.ErrAmc.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrAmc.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrAmc.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrAmc.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrAmc.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrAmc.tooltip}" id="it9">
+          <f:validator binding="#{row.bindings.ErrAmc.validator}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrCb.name}" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrCb.label}" id="c10" rendered="false">
+        <af:inputText value="#{row.bindings.ErrCb.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrCb.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrCb.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrCb.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrCb.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrCb.tooltip}" id="it10">
+          <f:validator binding="#{row.bindings.ErrCb.validator}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrOb.name}" filterable="true" sortable="true"
+                 headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrOb.label}" id="c11" rendered="false">
+        <af:inputText value="#{row.bindings.ErrOb.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrOb.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrOb.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrOb.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrOb.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrOb.tooltip}" id="it11">
+          <f:validator binding="#{row.bindings.ErrOb.validator}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrQtyRcvd.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrQtyRcvd.label}" id="c12"
+                 rendered="false">
+        <af:inputText value="#{row.bindings.ErrQtyRcvd.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrQtyRcvd.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrQtyRcvd.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrQtyRcvd.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrQtyRcvd.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrQtyRcvd.tooltip}" id="it12">
+          <f:validator binding="#{row.bindings.ErrQtyRcvd.validator}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrQtyRqrd.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrQtyRqrd.label}" id="c13"
+                 rendered="false">
+        <af:inputText value="#{row.bindings.ErrQtyRqrd.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrQtyRqrd.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrQtyRqrd.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrQtyRqrd.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrQtyRqrd.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.ErrQtyRqrd.tooltip}" id="it13">
+          <f:validator binding="#{row.bindings.ErrQtyRqrd.validator}"/>
+        </af:inputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId1.name}" filterable="true"
+                 sortable="true" headerText="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId1.label}" id="c23"
+                 rendered="false">
+        <af:inputText value="#{row.bindings.ProdId1.inputValue}"
+                      label="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId1.label}"
+                      required="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId1.mandatory}"
+                      columns="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId1.displayWidth}"
+                      maximumLength="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId1.precision}"
+                      shortDesc="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId1.tooltip}" id="it22">
+          <f:validator binding="#{row.bindings.ProdId1.validator}"/>
+          <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainOverreteVO.hints.ProdId1.format}"/>
+        </af:inputText>
+      </af:column>
+    </af:table>
+  </af:panelBox>
+</jsp:root>

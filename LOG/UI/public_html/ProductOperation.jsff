@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelFormLayout id="pfl1">
+    <af:inputText value="#{bindings.ProdId.inputValue}"
+                  label="#{bindings.ProdId.hints.label}"
+                  required="#{bindings.ProdId.hints.mandatory}"
+                  columns="#{bindings.ProdId.hints.displayWidth}"
+                  maximumLength="#{bindings.ProdId.hints.precision}"
+                  shortDesc="#{bindings.ProdId.hints.tooltip}" id="it6">
+      <f:validator binding="#{bindings.ProdId.validator}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.ProName.inputValue}"
+                  label="#{bindings.ProName.hints.label}"
+                  required="#{bindings.ProName.hints.mandatory}"
+                  columns="#{bindings.ProName.hints.displayWidth}"
+                  maximumLength="#{bindings.ProName.hints.precision}"
+                  shortDesc="#{bindings.ProName.hints.tooltip}" id="it9">
+      <f:validator binding="#{bindings.ProName.validator}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.ProDose.inputValue}"
+                  label="#{bindings.ProDose.hints.label}"
+                  required="#{bindings.ProDose.hints.mandatory}"
+                  columns="#{bindings.ProDose.hints.displayWidth}"
+                  maximumLength="#{bindings.ProDose.hints.precision}"
+                  shortDesc="#{bindings.ProDose.hints.tooltip}" id="it5">
+      <f:validator binding="#{bindings.ProDose.validator}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.ProdCyp.inputValue}"
+                  label="#{bindings.ProdCyp.hints.label}"
+                  required="#{bindings.ProdCyp.hints.mandatory}"
+                  columns="#{bindings.ProdCyp.hints.displayWidth}"
+                  maximumLength="#{bindings.ProdCyp.hints.precision}"
+                  shortDesc="#{bindings.ProdCyp.hints.tooltip}" id="it1">
+      <f:validator binding="#{bindings.ProdCyp.validator}"/>
+      <af:convertNumber groupingUsed="false"
+                        pattern="#{bindings.ProdCyp.format}"/>
+    </af:inputText>
+    <af:selectBooleanCheckbox value="#{bindings.ProdIsActive1.inputValue}"
+                              label="#{bindings.ProdIsActive1.label}"
+                              shortDesc="#{bindings.ProdIsActive1.hints.tooltip}"
+                              id="sbc1"/>
+    <af:inputText value="#{bindings.ProdShipQtyIn.inputValue}"
+                  label="#{bindings.ProdShipQtyIn.hints.label}"
+                  required="#{bindings.ProdShipQtyIn.hints.mandatory}"
+                  columns="#{bindings.ProdShipQtyIn.hints.displayWidth}"
+                  maximumLength="#{bindings.ProdShipQtyIn.hints.precision}"
+                  shortDesc="#{bindings.ProdShipQtyIn.hints.tooltip}" id="it2">
+      <f:validator binding="#{bindings.ProdShipQtyIn.validator}"/>
+      <af:convertNumber groupingUsed="false"
+                        pattern="#{bindings.ProdShipQtyIn.format}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.ProdShipQtyWhse.inputValue}"
+                  label="#{bindings.ProdShipQtyWhse.hints.label}"
+                  required="#{bindings.ProdShipQtyWhse.hints.mandatory}"
+                  columns="#{bindings.ProdShipQtyWhse.hints.displayWidth}"
+                  maximumLength="#{bindings.ProdShipQtyWhse.hints.precision}"
+                  shortDesc="#{bindings.ProdShipQtyWhse.hints.tooltip}"
+                  id="it4">
+      <f:validator binding="#{bindings.ProdShipQtyWhse.validator}"/>
+      <af:convertNumber groupingUsed="false"
+                        pattern="#{bindings.ProdShipQtyWhse.format}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.ProdShipQtySdp.inputValue}"
+                  label="#{bindings.ProdShipQtySdp.hints.label}"
+                  required="#{bindings.ProdShipQtySdp.hints.mandatory}"
+                  columns="#{bindings.ProdShipQtySdp.hints.displayWidth}"
+                  maximumLength="#{bindings.ProdShipQtySdp.hints.precision}"
+                  shortDesc="#{bindings.ProdShipQtySdp.hints.tooltip}" id="it3">
+      <f:validator binding="#{bindings.ProdShipQtySdp.validator}"/>
+      <af:convertNumber groupingUsed="false"
+                        pattern="#{bindings.ProdShipQtySdp.format}"/>
+    </af:inputText>
+    <af:inputText value="#{bindings.PrCtrindex.inputValue}"
+                  label="#{bindings.PrCtrindex.hints.label}"
+                  required="#{bindings.PrCtrindex.hints.mandatory}"
+                  columns="#{bindings.PrCtrindex.hints.displayWidth}"
+                  maximumLength="#{bindings.PrCtrindex.hints.precision}"
+                  shortDesc="#{bindings.PrCtrindex.hints.tooltip}" id="it7" rendered="false">
+      <f:validator binding="#{bindings.PrCtrindex.validator}"/>
+      <af:convertNumber groupingUsed="false"
+                        pattern="#{bindings.PrCtrindex.format}"/>
+    </af:inputText>
+  </af:panelFormLayout>
+  <af:panelGroupLayout id="pgl1">
+    <af:commandButton actionListener="#{bindings.Commit.execute}" text="Save" id="cb1"
+                      action="back"/>
+    <af:commandButton actionListener="#{bindings.Rollback.execute}"
+                      text="Cancel"
+                      immediate="true" id="cb2" action="back">
+      <af:resetActionListener/>
+    </af:commandButton>
+  </af:panelGroupLayout>
+</jsp:root>

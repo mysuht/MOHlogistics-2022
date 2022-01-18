@@ -1,0 +1,489 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@ page contentType="text/html;charset=windows-1256"
+         import="java.util.* ,moh.logistics.lib.reports.code.FacilityTemplate ,com.logistics.lib.report.FacilityProductDispensedReport ,moh.logistics.lib.reports.code.LogisticsReportsClass, java.sql.*, java.text.*" %>
+
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1256"/>
+        <link href="resources/css/logCss.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript">
+        function exportToExcel(){
+    intable = document.getElementById("dvData");
+    this.table = intable.cloneNode(true);
+    var cform = document.createElement("form");
+    cform.style.display = "none";
+    cform.setAttribute("method","POST");
+    cform.setAttribute("action","exporttoexcel.jsp");
+    cform.setAttribute("name","ExcelForm");
+    cform.setAttribute("id","ExcelForm");
+    cform.setAttribute("enctype","MULTIPART/FORM-DATA");
+    cform.encoding="multipart/form-data";
+    var ta = document.createElement("textarea");
+    ta.name = "ExcelTable";
+    var tabletext = this.table.outerHTML;
+    ta.defaultValue = tabletext;
+    ta.value = tabletext;
+    cform.appendChild(ta);
+    intable.parentNode.appendChild(cform);
+    cform.submit();
+    //clean up
+    ta.defaultValue = null;
+    ta = null;
+    tabletext = null;
+    this.table = null;
+}
+//        $("#btnExport").click(function(e) {
+//	    window.open('data:application/vnd.ms-excel,' + $('#dvDatda').html());
+//	    e.preventDefault();
+//	});?
+//function write_to_excel() 
+//{
+//    str="";
+//    var myTable = document.getElementById('myTable');
+//    var rows = myTable.getElementsByTagName('tr');
+//    var rowCount = myTable.rows.length;
+//    var colCount = myTable.getElementsByTagName("tr")[0].getElementsByTagName("th").length; 
+//
+//    var ExcelApp = new ActiveXObject("Excel.Application");
+//    var ExcelWorkbook = ExcelApp.Workbooks.Add();
+//    var ExcelSheet = ExcelWorkbook.ActiveSheet;//new ActiveXObject("Excel.Sheet"); 
+//    //ExcelSheet.Application.Visible = true;
+//    ExcelApp.Visible = true;
+//
+//        ExcelSheet.Range("A1", "Z1").Font.Bold = true;
+//    ExcelSheet.Range("A1", "Z1").Font.ColorIndex = 23;     
+
+//Format table headers
+//    for(var i=0; i<1; i++) 
+//    {   
+//        for(var j=0; j<colCount-2; j++) 
+//        {           
+//            str= myTable.getElementsByTagName("tr")[i].getElementsByTagName("th")[j].innerHTML;
+//            ExcelSheet.Cells(i+1,j+1).Value = str;
+//        }
+//        ExcelSheet.Range("A1", "Z1").EntireColumn.AutoFit();
+//    }
+//    for(var i=1; i<rowCount; i++) 
+//    {
+//        for(var k=0; k<colCount-2; k++) 
+//        {
+//            str= rows[i].getElementsByTagName('td')[k].innerHTML;
+//            ExcelSheet.Cells(i+1,k+1).Value = myTable.rows[i].cells[k].innerText;
+//        }
+//        ExcelSheet.Range("A"+i, "Z"+i).WrapText = true;
+//        ExcelSheet.Range("A"+1, "Z"+i).EntireColumn.AutoFit();
+//    }
+//
+//    //ExcelSheet.SaveAs("C:\\TEST.XLS");
+//    //ExcelSheet.Application.Quit();
+//
+//    return; 
+//}        
+        
+//        function TableToExcel()  
+//{  
+//<%@ page import="java.io.PrintWriter" %>  
+
+//contentType="text/html;charset=windows-1256" 
+//var strCopy = document.getElementById("filename").innerHTML;  
+//window.clipboardData.setData("Text", strCopy);  
+//var objExcel = new ActiveXObject ("Excel.Application");  
+//objExcel.visible = true;  
+//  
+//var objWorkbook = objExcel.Workbooks.Add;  
+//var objWorksheet = objWorkbook.Worksheets(1);  
+//objWorksheet.Paste;  
+//}  
+//        Response.AddHeader("Content-Disposition", "attachment;filename=download.xls");
+//        $("#btnExport").click(function(e) {
+//	    window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#filename').html()));
+//	    e.preventDefault();
+//
+//	});?
+//var newFileName = new Array();
+//function save_file_as()
+//{
+//var fileName = prompt("Save File As", "");
+//var index = 1;
+//savedFile = "D:\\" + fileName + ".xls";
+//
+//alert(savedFile)
+//
+//nameField = document.getElementById("filename");
+//idx = nameField.value;
+//alert(idx)
+//idx = savedFile;
+//
+//alert("new idx: " + idx)
+//newFileName[index] = idx;
+//alert("newFileName: " + newFileName[1])
+//
+//return savedFile
+//
+//}
+//function write_to_excel(savedFile)
+//{
+//
+//alert(savedFile)
+//
+//
+//str="";
+//
+//var mytable = document.getElementsByTagName("table")[0];
+//var value = "";//mytable.getAttribute(attributeName);
+//alert(value.valueOf());
+////alert("table = " + mytable)
+//var row_Count = mytable.rows.length;//;
+//alert("row_Count = " + row_Count);
+//var col_Count = mytable.getElementsByTagName("tr")[0].getElementsByTagName("td").length;
+//alert("col_Count = " + col_Count);
+//
+//var ExcelApp = new ActiveXObject("Excel.Application");
+//var ExcelSheet = new ActiveXObject("Excel.Sheet");
+//ExcelSheet.Application.Visible = false;
+//
+//for(var i=0; i < row_Count ; i++)
+//{
+//for(var j=0; j < col_Count; j++)
+//{
+//str= mytable.getElementsByTagName("tr")[i].getElementsByTagName("td")[j].innerHTML;
+////alert(str)
+//ExcelSheet.ActiveSheet.Cells(i+1,j+1).Value = str;
+//}
+//}
+//ExcelSheet.SaveAs(savedFile);
+//
+//return savedFile
+//
+//} 
+//        
+        </script>
+    </head>
+    <body>
+    <form>
+    <%
+    int sum = 0;
+    
+    String dir[];
+    DecimalFormat df = new DecimalFormat("###,###.#");
+    String qra = "";
+    String fY = "";
+    String tY = "";
+    String fM = "";
+    String tM = "";
+    String hq = "";
+    int qr = request.getParameter("p_quart")==null?null:Integer.parseInt(request.getParameter("p_quart")) ;
+    String quart = "";
+    String dat = request.getParameter("dat");
+    if(dat.equals("q")){
+    quart = request.getParameter("p_quart");
+    }if(dat.equals("m")){
+    quart = request.getParameter("p_mon");
+    }if(dat.equals("u")){
+    fY = request.getParameter("p_fyear");
+    tY = request.getParameter("p_tyear");
+    fM = request.getParameter("p_fmon");
+    tM= request.getParameter("p_tmon");
+    }if(dat.equals("hq")){
+    hq = request.getParameter("p_hq");
+    }
+    String type = request.getParameter("p_dir");
+    String year = request.getParameter("p_year");
+    //if(!type.equals("0")){
+    
+    //}
+    String prod[] = request.getParameterValues("p_prod");
+    
+    LogisticsReportsClass db = new LogisticsReportsClass();
+    ResultSet rs = db.getProgDisToUserRep(quart+"", year,dat,fY,tY, fM, tM, hq);
+    switch(qr){
+    case 1: qra = "1st";
+    break;
+    case 2: qra="2nd";
+    break;
+    case 3: qra="3rd";
+    break;
+    case 4: qra="4th";
+    break;
+    }
+    
+    %>
+    
+    
+    <div class="main_div" style="width:100%; clear:both" >
+    <div class="dLeft">
+    Jordan Contraceptive Logistics System <br/>
+    MOH Familiy Planning Program
+    </div>
+     <div class="dCenter">
+    Facility Product Dispensed Report <br/>
+     Report Period:
+    <%
+    if(quart.equals("0")){
+    out.println("Annual ,"+year+"<br/>");
+    }else{
+    if(dat.equals("m")){
+    out.println(quart+", "+year+"<br/>" );
+    
+    }if(dat.equals("q")){
+    out.println(quart+" Quarter, "+year+"<br/>" );
+    
+    }
+    if(dat.equals("hq")){
+    out.println(hq+"Half Year, "+year+"<br/>" );
+    
+    }
+    
+    if(dat.equals("u")){
+    out.println(fM+"/"+fY+"   -   "+tM+"/"+tY +"<br/>");
+    
+    }
+    
+    }
+    
+    
+    %>
+    <%
+    ResultSet rs11 = db.getFacTypesMainName(type);
+    rs11.next();
+    
+    if(type.equals("0")){
+    out.println("All Facility Types.");
+    }if(!type.equals("0") && Integer.parseInt(type) <100){
+    out.println(rs11.getString(2));
+    }
+    if(!type.equals("0") && Integer.parseInt(type) > 100){
+    out.println(db.getGroupName((Integer.parseInt(type)-100)+""));
+    }
+    %>
+     
+   
+   
+    <br/>
+  
+    
+    </div>
+     <div class="dRight">
+    Run Date: <%=  db.getDate() %> <br/>
+    Run Time: <%= db.getTime() %>
+    </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <% //all_fac
+    
+    if(true){
+    int totality = 0;
+    int dirNo=0;
+    dir = request.getParameterValues("p_cen");
+    ResultSet rsCnt = db.getDirectoratesD();
+   
+    String product = "";
+    String productN = "";
+    for(int p=0; p<prod.length;p++){
+    if(p == 0){
+    product = prod[p];
+    productN = db.getProdName(prod[p]);
+    }else{
+    product += ",  "+prod[p];
+     productN += ",  "+db.getProdName(prod[p]);
+    }
+}
+int rloop = 0;
+List<FacilityTemplate> directorateList = 
+FacilityProductDispensedReport.getDirectoratesList(dir);
+    // while(rsCnt.next()){
+    for(FacilityTemplate directorate: directorateList){
+        if( (directorate.getFacilityId()+"").equals("498"))
+        continue;
+        List<FacilityTemplate> facilityList =
+        //FacilityProductDispensedReport.FacilityProductDispensedList(directorate.getFacilityId()+"", quart+"", year, dat, prod , fY, tY, fM, tM, hq, dir);
+        FacilityProductDispensedReport.getFacilityDispensedRepAllIntersect(quart, year, prod,dat,fY,tY, fM, tM,type, hq, directorate.getFacilityId()+"", dir);
+        if(facilityList.size() == 0 ) continue;
+    %>
+    <br/>
+    <br/>
+    <br/>
+     <% if(rloop!=0){ %>
+  <div class="ba" style="clear:both"> 
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <div style="clear:both; font-weight:bold; text-align: center;" align="center">&nbsp;</div>
+    <br/>
+     <div style="clear:both; font-weight:bold; text-align: center;" align="center">&nbsp;</div>
+    <br/>
+    <div style="clear:both; font-weight:bold; text-align: center;" align="center">&nbsp;
+   <div style="float:left;width:200pt;">
+   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   
+  </div>
+   <div style="float:left; width:400pt; text-align:right">
+    &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   </div>
+<div style="width:200pt;clear:both;float:left">
+   &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</div>
+<div style="float:left; width:200pt; text-align:right">
+        &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   </div>  
+   <div style="float:left; width:200pt; text-align:right">
+    &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   </div>  
+   
+   
+    <div style="float:left;width:200pt;">
+   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   
+  </div>
+   <div style="float:left; width:400pt; text-align:right">
+    &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   </div>
+<div style="width:200pt;clear:both;float:left">
+   &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</div>
+<div style="float:left; width:200pt; text-align:right">
+        &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   </div>  
+   <div style="float:left; width:200pt; text-align:right">
+    &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   </div>  
+   
+   
+   
+    </div>
+    
+ <br/>
+<%}%>
+<br/>
+    <div style="clear:both; font-weight:bold;">
+    <div style="clear:both; font-weight:bold;" >
+   Contraceptives &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= productN %> <br/>
+    Supplying Facility: <%= db.getDirCode(directorate.getFacilityId()+"") %> &nbsp;&nbsp;&nbsp;&nbsp; <%= db.getDirNameX(directorate.getFacilityId()+"") %>
+    </div>
+<br/>
+<table border="1" cellpadding="2" cellspacing="3" style="clear:both" >
+<tr class="col_titles">
+<td align="center">Facility Code </td>
+
+<td align="center">
+Facility Name
+</td>
+</tr>
+<%
+//String main = db.getFacProdDispensedRepMain(quart+"", year, product, directorate.getFacilityId()+"",dat,fY,tY, fM, tM,type, hq,prod.length);
+
+
+ dirNo=0;
+ int rrloop = 0;
+//while(rs1.next()){
+for(FacilityTemplate facility: facilityList){
+%>
+
+
+ <% if(rrloop!=0 && rrloop%20 == 0){ %>
+ </table>
+ <br/>
+  <div class="ba" style="clear:both"> 
+    </div>
+    <br/>
+    
+    <div style="clear:both; font-weight:bold; text-align: center;" align="center">
+   <div style="float:left;width:200pt;">
+   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   
+  </div>
+   <div style="float:left; width:400pt; text-align:right">
+    &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   </div>
+<div style="width:200pt;clear:both;float:left">
+   &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</div>
+<div style="float:left; width:200pt; text-align:right">
+        &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   </div>  
+   <div style="float:left; width:200pt; text-align:right">
+    &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   </div>  
+   
+   
+    <div style="float:left;width:200pt;">
+   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   
+  </div>
+   <div style="float:left; width:400pt; text-align:right">
+    &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   </div>
+<div style="width:200pt;clear:both;float:left">
+   &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</div>
+<div style="float:left; width:200pt; text-align:right">
+        &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   </div>  
+   <div style="float:left; width:200pt; text-align:right">
+    &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+   </div>  
+   
+   
+   
+    </div>
+ <br/>
+ <div style="clear:both; font-weight:bold;" >
+   Contraceptives &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= productN %> <br/>
+    Supplying Facility: <%= db.getDirCode(directorate.getFacilityId()+"") %> &nbsp;&nbsp;&nbsp;&nbsp; <%= db.getDirNameX(directorate.getFacilityId()+"") %>
+    </div>
+
+<table border="1" cellpadding="2" cellspacing="3" style="clear:both" >
+<tr class="col_titles">
+<td align="center">Facility Code </td>
+
+<td align="center">
+Facility Name
+</td>
+</tr>
+<%}rrloop++;%>
+
+
+<tr class="row_titles">
+<td align="center">
+<%= facility.getFacCode()%>
+</td>
+
+<td align="center">
+<%= facility.getFacilityName() %>
+</td>
+</tr>
+
+
+<%dirNo++;
+}%>
+</table>
+</div>
+<div class="ba">
+<h4>
+Total No. of Facilities: <%= dirNo %>
+<% totality += dirNo; 
+%>
+</h4>
+</div>
+
+<%
+
+
+
+}
+
+//} %>
+<br/><br/><br/><br/>
+<h3 align="left"> Total for whole Country:  <%= totality%> </h3>
+<br/>
+<%
+}// All Types 
+db.s();
+%>
+</form>
+</body>
+</html>

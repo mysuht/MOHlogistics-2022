@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.60.81" id="ApproveCTFPageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CtfMainOpenVO" RangeSize="25" DataControl="LOGAMDataControl" id="CtfMainOpenVOIterator"/>
+    <searchRegion Binds="CtfMainOpenVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="CtfMainOpenVOQuery"/>
+    <iterator Binds="CtfItemVOCtfMainOpenVO" RangeSize="25" DataControl="LOGAMDataControl"
+              id="CtfItemVOCtfMainOpenVOIterator"/>
+    <searchRegion Binds="CtfItemVOCtfMainOpenVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="CtfItemVOCtfMainOpenVOQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CtfMainOpenVOIterator" id="CtfMainOpenVO">
+      <nodeDefinition DefName="model.View.CtfMainOpen" Name="CtfMainOpenVO0">
+        <AttrNames>
+          <Item Value="CtfMainId"/>
+          <Item Value="FacilityId"/>
+          <Item Value="FacName"/>
+          <Item Value="PDate"/>
+          <Item Value="DeDate"/>
+          <Item Value="DeStaff"/>
+          <Item Value="LcDate"/>
+          <Item Value="LcStaff"/>
+          <Item Value="CtfComments"/>
+          <Item Value="CtfStage"/>
+          <Item Value="CtfStatus"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CtfItemVOCtfMainOpenVOIterator" id="CtfItemVOCtfMainOpenVO">
+      <nodeDefinition DefName="model.View.CtfItemVO" Name="CtfItemVOCtfMainOpenVO0">
+        <AttrNames>
+          <Item Value="CtfItemId"/>
+          <Item Value="CtfMainId"/>
+          <Item Value="ProName"/>
+          <Item Value="OpenBal"/>
+          <Item Value="Receipts"/>
+          <Item Value="Issues"/>
+          <Item Value="Adjustments"/>
+          <Item Value="AdjTypeId"/>
+          <Item Value="ClosingBal"/>
+          <Item Value="DeStat"/>
+          <Item Value="NewVisits"/>
+          <Item Value="ContVisits"/>
+          <Item Value="ErrAmc"/>
+          <Item Value="AvgMnthlyCons"/>
+          <Item Value="QtyRequired"/>
+          <Item Value="QtyReceived"/>
+          <Item Value="TypeName"/>
+          <Item Value="ProDose"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CtfMainOpenVOIterator" id="CtfComments">
+      <AttrNames>
+        <Item Value="CtfComments"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainOpenVOIterator" id="CtfMainId">
+      <AttrNames>
+        <Item Value="CtfMainId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainOpenVOIterator" id="CtfStage">
+      <AttrNames>
+        <Item Value="CtfStage"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainOpenVOIterator" id="CtfStatus">
+      <AttrNames>
+        <Item Value="CtfStatus"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainOpenVOIterator" id="DeDate">
+      <AttrNames>
+        <Item Value="DeDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainOpenVOIterator" id="DeStaff">
+      <AttrNames>
+        <Item Value="DeStaff"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainOpenVOIterator" id="FacilityId">
+      <AttrNames>
+        <Item Value="FacilityId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainOpenVOIterator" id="LcDate">
+      <AttrNames>
+        <Item Value="LcDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainOpenVOIterator" id="LcStaff">
+      <AttrNames>
+        <Item Value="LcStaff"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainOpenVOIterator" id="PDate">
+      <AttrNames>
+        <Item Value="PDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainOpenVOIterator" id="FacName">
+      <AttrNames>
+        <Item Value="FacName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainOpenVOIterator" id="FacilityId1">
+      <AttrNames>
+        <Item Value="FacilityId1"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="CtfMainOpenVOIterator" id="Execute" RequiresUpdateModel="true" Action="iteratorExecute"/>
+  </bindings>
+</pageDefinition>

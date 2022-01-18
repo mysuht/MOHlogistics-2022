@@ -1,0 +1,297 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:facelets="http://xmlns.oracle.com/jdev/webapp/facelets"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:messages id="m1"/>
+    <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="178" dimensionsFrom="children">
+        <f:facet name="first">
+            <af:panelBox text="CTF Main" id="pb1">
+                <f:facet name="toolbar">
+                    <af:toolbar id="t3">
+                        <af:commandButton text="Approve" id="cb1" action="#{approvebean.approveCtf}"/>
+                        <af:commandButton actionListener="#{bindings.Execute.execute}" text="Refresh"
+                                          disabled="#{!bindings.Execute.enabled}" id="cb2" rendered="true"/>
+                    </af:toolbar>
+                </f:facet>
+                <af:table value="#{bindings.CtfMainOpenVO.collectionModel}" var="row"
+                          rows="#{bindings.CtfMainOpenVO.rangeSize}"
+                          emptyText="#{bindings.CtfMainOpenVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.CtfMainOpenVO.rangeSize}" rowBandingInterval="0"
+                          filterModel="#{bindings.CtfMainOpenVOQuery.queryDescriptor}"
+                          queryListener="#{bindings.CtfMainOpenVOQuery.processQuery}" filterVisible="true"
+                          varStatus="vs" selectedRowKeys="#{bindings.CtfMainOpenVO.collectionModel.selectedRow}"
+                          selectionListener="#{bindings.CtfMainOpenVO.collectionModel.makeCurrent}"
+                          rowSelection="single" id="t1" width="100%" partialTriggers="::t1 ::cb2">
+                    <af:column sortProperty="#{bindings.CtfMainOpenVO.hints.CtfMainId.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfMainOpenVO.hints.CtfMainId.label}" id="c1">
+                        <af:outputText value="#{row.CtfMainId}" id="ot1">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.CtfMainOpenVO.hints.CtfMainId.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfMainOpenVO.hints.FacilityId.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfMainOpenVO.hints.FacilityId.label}" id="c2">
+                        <af:outputText value="#{row.FacilityId}" id="ot2">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.CtfMainOpenVO.hints.FacilityId.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfMainOpenVO.hints.FacName.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfMainOpenVO.hints.FacName.label}" id="c3">
+                        <af:outputText value="#{row.FacName}" id="ot3"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfMainOpenVO.hints.PDate.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfMainOpenVO.hints.PDate.label}" id="c4">
+                        <f:facet name="filter">
+                            <af:inputDate value="#{vs.filterCriteria.PDate}" id="id1">
+                                <af:convertDateTime pattern="#{bindings.CtfMainOpenVO.hints.PDate.format}"/>
+                            </af:inputDate>
+                        </f:facet>
+                        <af:outputText value="#{row.PDate}" id="ot4">
+                            <af:convertDateTime pattern="#{bindings.CtfMainOpenVO.hints.PDate.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfMainOpenVO.hints.DeDate.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfMainOpenVO.hints.DeDate.label}" id="c5">
+                        <f:facet name="filter">
+                            <af:inputDate value="#{vs.filterCriteria.DeDate}" id="id2">
+                                <af:convertDateTime pattern="#{bindings.CtfMainOpenVO.hints.DeDate.format}"/>
+                            </af:inputDate>
+                        </f:facet>
+                        <af:outputText value="#{row.DeDate}" id="ot5">
+                            <af:convertDateTime pattern="#{bindings.CtfMainOpenVO.hints.DeDate.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfMainOpenVO.hints.DeStaff.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfMainOpenVO.hints.DeStaff.label}" id="c6">
+                        <af:outputText value="#{row.DeStaff}" id="ot6"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfMainOpenVO.hints.LcDate.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfMainOpenVO.hints.LcDate.label}" id="c7">
+                        <f:facet name="filter">
+                            <af:inputDate value="#{vs.filterCriteria.LcDate}" id="id3">
+                                <af:convertDateTime pattern="#{bindings.CtfMainOpenVO.hints.LcDate.format}"/>
+                            </af:inputDate>
+                        </f:facet>
+                        <af:outputText value="#{row.LcDate}" id="ot7">
+                            <af:convertDateTime pattern="#{bindings.CtfMainOpenVO.hints.LcDate.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfMainOpenVO.hints.LcStaff.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfMainOpenVO.hints.LcStaff.label}" id="c8">
+                        <af:outputText value="#{row.LcStaff}" id="ot8"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfMainOpenVO.hints.CtfComments.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfMainOpenVO.hints.CtfComments.label}" id="c9">
+                        <af:outputText value="#{row.CtfComments}" id="ot9"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfMainOpenVO.hints.CtfStage.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfMainOpenVO.hints.CtfStage.label}" id="c10">
+                        <af:outputText value="#{row.CtfStage}" id="ot10"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfMainOpenVO.hints.CtfStatus.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfMainOpenVO.hints.CtfStatus.label}" id="c11">
+                        <af:outputText value="#{row.CtfStatus}" id="ot11"/>
+                    </af:column>
+                </af:table>
+                <af:panelFormLayout id="pfl1" partialTriggers="t1" rendered="false">
+                    <af:panelLabelAndMessage label="#{bindings.CtfComments.hints.label}" id="plam1">
+                        <af:outputText value="#{bindings.CtfComments.inputValue}" id="ot29"/>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.CtfMainId.hints.label}" id="plam2">
+                        <af:outputText value="#{bindings.CtfMainId.inputValue}" id="ot30"
+                                       binding="#{approvebean.ctfMainIdText}">
+                            <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfMainId.format}"/>
+                        </af:outputText>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.CtfStage.hints.label}" id="plam3">
+                        <af:outputText value="#{bindings.CtfStage.inputValue}" id="ot31"/>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.CtfStatus.hints.label}" id="plam4">
+                        <af:outputText value="#{bindings.CtfStatus.inputValue}" id="ot32"/>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.DeDate.hints.label}" id="plam5">
+                        <af:outputText value="#{bindings.DeDate.inputValue}" id="ot33">
+                            <af:convertDateTime pattern="#{bindings.DeDate.format}"/>
+                        </af:outputText>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.DeStaff.hints.label}" id="plam6">
+                        <af:outputText value="#{bindings.DeStaff.inputValue}" id="ot34"/>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.FacilityId.hints.label}" id="plam7">
+                        <af:outputText value="#{bindings.FacilityId.inputValue}" id="ot35">
+                            <af:convertNumber groupingUsed="false" pattern="#{bindings.FacilityId.format}"/>
+                        </af:outputText>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.LcDate.hints.label}" id="plam8">
+                        <af:outputText value="#{bindings.LcDate.inputValue}" id="ot36">
+                            <af:convertDateTime pattern="#{bindings.LcDate.format}"/>
+                        </af:outputText>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.LcStaff.hints.label}" id="plam9">
+                        <af:outputText value="#{bindings.LcStaff.inputValue}" id="ot37"/>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.PDate.hints.label}" id="plam10">
+                        <af:outputText value="#{bindings.PDate.inputValue}" id="ot38">
+                            <af:convertDateTime pattern="#{bindings.PDate.format}"/>
+                        </af:outputText>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.FacName.hints.label}" id="plam11">
+                        <af:outputText value="#{bindings.FacName.inputValue}" id="ot39"/>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.FacilityId1.hints.label}" id="plam12">
+                        <af:outputText value="#{bindings.FacilityId1.inputValue}" id="ot40">
+                            <af:convertNumber groupingUsed="false" pattern="#{bindings.FacilityId1.format}"/>
+                        </af:outputText>
+                    </af:panelLabelAndMessage>
+                </af:panelFormLayout>
+            </af:panelBox>
+        </f:facet>
+        <f:facet name="second">
+            <af:panelBox text="CTF Items" id="pb2">
+                <f:facet name="toolbar"/>
+                <af:table value="#{bindings.CtfItemVOCtfMainOpenVO.collectionModel}" var="row"
+                          rows="#{bindings.CtfItemVOCtfMainOpenVO.rangeSize}"
+                          emptyText="#{bindings.CtfItemVOCtfMainOpenVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                          fetchSize="#{bindings.CtfItemVOCtfMainOpenVO.rangeSize}" rowBandingInterval="0"
+                          filterModel="#{bindings.CtfItemVOCtfMainOpenVOQuery.queryDescriptor}"
+                          queryListener="#{bindings.CtfItemVOCtfMainOpenVOQuery.processQuery}" filterVisible="true"
+                          varStatus="vs"
+                          selectedRowKeys="#{bindings.CtfItemVOCtfMainOpenVO.collectionModel.selectedRow}"
+                          selectionListener="#{bindings.CtfItemVOCtfMainOpenVO.collectionModel.makeCurrent}"
+                          rowSelection="single" id="t2" partialTriggers="::t1" width="100%">
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.CtfItemId.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.CtfItemId.label}"
+                               id="c12" rendered="false">
+                        <af:outputText value="#{row.CtfItemId}" id="ot12">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.CtfItemVOCtfMainOpenVO.hints.CtfItemId.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.CtfMainId.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.CtfMainId.label}"
+                               id="c13">
+                        <af:outputText value="#{row.CtfMainId}" id="ot13">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.CtfItemVOCtfMainOpenVO.hints.CtfMainId.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.ProName.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.ProName.label}"
+                               id="c14">
+                        <af:outputText value="#{row.ProName}" id="ot14"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.ProDose.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.ProDose.label}"
+                               id="c29">
+                        <af:outputText value="#{row.ProDose}" id="ot28"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.OpenBal.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.OpenBal.label}"
+                               id="c15">
+                        <af:outputText value="#{row.OpenBal}" id="ot15">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.CtfItemVOCtfMainOpenVO.hints.OpenBal.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.Receipts.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.Receipts.label}"
+                               id="c16">
+                        <af:outputText value="#{row.Receipts}" id="ot16">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.CtfItemVOCtfMainOpenVO.hints.Receipts.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.Issues.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.Issues.label}"
+                               id="c17">
+                        <af:outputText value="#{row.Issues}" id="ot17">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.CtfItemVOCtfMainOpenVO.hints.Issues.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.Adjustments.name}"
+                               filterable="true" sortable="true"
+                               headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.Adjustments.label}" id="c18">
+                        <af:outputText value="#{row.Adjustments}" id="ot18">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.CtfItemVOCtfMainOpenVO.hints.Adjustments.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.TypeName.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.TypeName.label}"
+                               id="c28">
+                        <af:outputText value="#{row.TypeName}" id="ot27"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.AdjTypeId.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.AdjTypeId.label}"
+                               id="c19">
+                        <af:selectOneChoice value="#{row.bindings.AdjTypeId.inputValue}"
+                                            label="#{row.bindings.AdjTypeId.label}"
+                                            required="#{bindings.CtfItemVOCtfMainOpenVO.hints.AdjTypeId.mandatory}"
+                                            shortDesc="#{bindings.CtfItemVOCtfMainOpenVO.hints.AdjTypeId.tooltip}"
+                                            readOnly="true" id="soc1">
+                            <f:selectItems value="#{row.bindings.AdjTypeId.items}" id="si1"/>
+                        </af:selectOneChoice>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.ClosingBal.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.ClosingBal.label}"
+                               id="c20">
+                        <af:outputText value="#{row.ClosingBal}" id="ot19">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.CtfItemVOCtfMainOpenVO.hints.ClosingBal.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.AvgMnthlyCons.name}"
+                               filterable="true" sortable="true"
+                               headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.AvgMnthlyCons.label}" id="c25">
+                        <af:outputText value="#{row.AvgMnthlyCons}" id="ot24"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.QtyRequired.name}"
+                               filterable="true" sortable="true"
+                               headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.QtyRequired.label}" id="c26">
+                        <af:outputText value="#{row.QtyRequired}" id="ot25">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.CtfItemVOCtfMainOpenVO.hints.QtyRequired.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.QtyReceived.name}"
+                               filterable="true" sortable="true"
+                               headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.QtyReceived.label}" id="c27">
+                        <af:outputText value="#{row.QtyReceived}" id="ot26">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.CtfItemVOCtfMainOpenVO.hints.QtyReceived.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.NewVisits.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.NewVisits.label}"
+                               id="c22">
+                        <af:outputText value="#{row.NewVisits}" id="ot21">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.CtfItemVOCtfMainOpenVO.hints.NewVisits.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.ContVisits.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.ContVisits.label}"
+                               id="c23">
+                        <af:outputText value="#{row.ContVisits}" id="ot22">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.CtfItemVOCtfMainOpenVO.hints.ContVisits.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.ErrAmc.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.ErrAmc.label}"
+                               id="c24">
+                        <af:outputText value="#{row.ErrAmc}" id="ot23"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CtfItemVOCtfMainOpenVO.hints.DeStat.name}" filterable="true"
+                               sortable="true" headerText="#{bindings.CtfItemVOCtfMainOpenVO.hints.DeStat.label}"
+                               id="c21">
+                        <af:outputText value="#{row.DeStat}" id="ot20"/>
+                    </af:column>
+                </af:table>
+            </af:panelBox>
+        </f:facet>
+    </af:panelSplitter>
+</ui:composition>

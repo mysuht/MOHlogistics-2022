@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="windows-1256" ?>
+<!DOCTYPE Association SYSTEM "jbo_03_01.dtd">
+<!---->
+<Association
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="FkFacilitySuplierAsso"
+  Version="11.1.1.56.60">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <AssociationEnd
+    Name="SupCodeFacility"
+    Cardinality="1"
+    Source="true"
+    Owner="model.Entity.FacilityEO"
+    LockLevel="NONE">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="SupCodeFacility"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.Entity.FacilityEO.FacilityId"/>
+    </AttrArray>
+  </AssociationEnd>
+  <AssociationEnd
+    Name="Facility"
+    Cardinality="-1"
+    Owner="model.Entity.FacilityEO">
+    <DesignTime>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="Facility"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.Entity.FacilityEO.SupCode"/>
+    </AttrArray>
+  </AssociationEnd>
+</Association>

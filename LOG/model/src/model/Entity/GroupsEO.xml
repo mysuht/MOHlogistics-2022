@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="GroupsEO"
+  Version="12.1.2.66.68"
+  DBObjectType="TABLE"
+  DBObjectName="GROUPS"
+  AliasName="GroupsEO"
+  BindingStyle="OracleName"
+  InheritPersonalization="merge">
+  <Attribute
+    Name="GrpId"
+    Precision="7"
+    Scale="0"
+    ColumnName="GRP_ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.DBSequence"
+    ColumnType="NUMBER"
+    TableName="GROUPS"
+    PrimaryKey="true"
+    IsUpdateable="while_insert"
+    DefaultValue="@0"
+    Domain="oracle.jbo.domain.DBSequence"
+    RetrievedOnInsert="true"/>
+  <Attribute
+    Name="GrpDesc"
+    Precision="300"
+    ColumnName="GRP_DESC"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="GROUPS">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="300"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="20"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Attribute>
+  <AccessorAttribute
+    Name="GroupOfFacilities"
+    Association="model.Asso.GofFk2"
+    AssociationEnd="model.Asso.GofFk2.GroupOfFacilities"
+    AssociationOtherEnd="model.Asso.GofFk2.Groups"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <Key
+    Name="GrpPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="GRP_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.Entity.GroupsEO.GrpId"/>
+    </AttrArray>
+  </Key>
+</Entity>

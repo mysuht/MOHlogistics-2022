@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="GroupOfFacilitiesEO"
+  Version="12.1.2.66.68"
+  DBObjectType="TABLE"
+  DBObjectName="GROUP_OF_FACILITIES"
+  AliasName="GroupOfFacilitiesEO"
+  BindingStyle="OracleName"
+  InheritPersonalization="merge">
+  <Attribute
+    Name="GofId"
+    Precision="7"
+    Scale="0"
+    ColumnName="GOF_ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.DBSequence"
+    ColumnType="NUMBER"
+    TableName="GROUP_OF_FACILITIES"
+    PrimaryKey="true"
+    IsUpdateable="false"
+    DefaultValue="@0"
+    Domain="oracle.jbo.domain.DBSequence"
+    RetrievedOnInsert="true"/>
+  <Attribute
+    Name="GofFacilityId"
+    Precision="7"
+    Scale="0"
+    ColumnName="GOF_FACILITY_ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="GROUP_OF_FACILITIES"/>
+  <Attribute
+    Name="GofGrpId"
+    Precision="7"
+    Scale="0"
+    ColumnName="GOF_GRP_ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="GROUP_OF_FACILITIES"/>
+  <AccessorAttribute
+    Name="Groups"
+    Association="model.Asso.GofFk2"
+    AssociationEnd="model.Asso.GofFk2.Groups"
+    AssociationOtherEnd="model.Asso.GofFk2.GroupOfFacilities"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="Facility"
+    Association="model.Asso.FacGofASSO"
+    AssociationEnd="model.Asso.FacGofASSO.Facility"
+    AssociationOtherEnd="model.Asso.FacGofASSO.GroupOfFacilities"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="GofPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="GOF_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.Entity.GroupOfFacilitiesEO.GofId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="GofFk1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="FAC_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="GOF_FK1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.Entity.GroupOfFacilitiesEO.GofFacilityId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="GofFk2">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="GRP_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="GOF_FK2"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.Entity.GroupOfFacilitiesEO.GofGrpId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="fk_GroupOfFacilitiesEO">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="GRP_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="FK_GROUP_OF_FACILITIES_EO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.Entity.GroupOfFacilitiesEO.GofGrpId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="fk_GroupOfFacilitiesEO1">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="FACILITY_PK"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="FK_GROUP_OF_FACILITIES_EO1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.Entity.GroupOfFacilitiesEO.GofFacilityId"/>
+    </AttrArray>
+  </Key>
+</Entity>

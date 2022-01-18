@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68"
+                id="CtfMainTF_CtfMainTF_exeEmptyMainCtfItemsPageDef" Package="ui.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="exeEmptyMainCtfItems" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="exeEmptyMainCtfItems" IsViewObjectMethod="false" DataControl="LOGAMDataControl"
+                  InstanceName="data.LOGAMDataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

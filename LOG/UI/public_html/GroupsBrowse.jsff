@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelBox text="Groups" id="pb1">
+    <f:facet name="toolbar">
+      <af:toolbar id="t2">
+        <af:commandButton text="Add" id="cb1" action="insert"/>
+        <af:commandButton text="Modify" id="cb2" action="update"/>
+        <af:commandButton actionListener="#{bindings.Delete.execute}" text="Delete"
+                          disabled="#{!bindings.Delete.enabled}" id="cb3"/>
+      </af:toolbar>
+    </f:facet>
+    <af:table value="#{bindings.GroupsVO.collectionModel}" var="row" rows="#{bindings.GroupsVO.rangeSize}"
+              emptyText="#{bindings.GroupsVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.GroupsVO.rangeSize}" rowBandingInterval="0"
+              filterModel="#{bindings.GroupsVOQuery.queryDescriptor}"
+              queryListener="#{bindings.GroupsVOQuery.processQuery}" filterVisible="true" varStatus="vs"
+              selectedRowKeys="#{bindings.GroupsVO.collectionModel.selectedRow}"
+              selectionListener="#{bindings.GroupsVO.collectionModel.makeCurrent}" rowSelection="single" id="t1"
+              width="100%" partialTriggers="::cb3">
+      <af:column sortProperty="#{bindings.GroupsVO.hints.GrpId.name}" filterable="true" sortable="true"
+                 headerText="#{bindings.GroupsVO.hints.GrpId.label}" id="c1">
+        <af:outputText value="#{row.GrpId}" id="ot1">
+          <af:convertNumber groupingUsed="false" pattern="#{bindings.GroupsVO.hints.GrpId.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="#{bindings.GroupsVO.hints.GrpDesc.name}" filterable="true" sortable="true"
+                 headerText="#{bindings.GroupsVO.hints.GrpDesc.label}" id="c2">
+        <af:outputText value="#{row.GrpDesc}" id="ot2"/>
+      </af:column>
+    </af:table>
+  </af:panelBox>
+</ui:composition>

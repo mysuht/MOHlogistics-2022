@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.56.60" id="FacilityBrowsePageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="FacilityVO" RangeSize="25" DataControl="LOGAMDataControl"
+              id="FacilityVOIterator"/>
+    <searchRegion Binds="FacilityVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="FacilityVOQuery"/>
+  </executables>
+  <bindings>
+    <action IterBinding="FacilityVOIterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="FacilityVOIterator" id="FacilityVO">
+      <nodeDefinition DefName="model.View.FacilityVO" Name="FacilityVO0">
+        <AttrNames>
+          <Item Value="FacilityId"/>
+          <Item Value="FacCode"/>
+          <Item Value="FacName"/>
+          <Item Value="FacTypeId"/>
+          <Item Value="SupCode"/>
+          <Item Value="FacContact"/>
+          <Item Value="FacAddress1"/>
+          <Item Value="FacAddress2"/>
+          <Item Value="FacCity"/>
+          <Item Value="FacState"/>
+          <Item Value="FacRescode"/>
+          <Item Value="FacPhone"/>
+          <Item Value="FacFax"/>
+          <Item Value="FieldDispense"/>
+          <Item Value="MaxMos"/>
+          <Item Value="MinMos"/>
+          <Item Value="Active"/>
+          <Item Value="Warehouse"/>
+          <Item Value="HighestLv"/>
+          <Item Value="DistributionRole"/>
+          <Item Value="FacName1"/>
+          <Item Value="FacTypeId1"/>
+          <Item Value="FacName3"/>
+          <Item Value="Islocked"/>
+          <Item Value="LockEndDate"/>
+          <Item Value="LockStartDate"/>
+          <Item Value="mohCode"/>
+          <Item Value="MohLname"/>
+          <Item Value="MohType"/>
+          <Item Value="MohTypeCode"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

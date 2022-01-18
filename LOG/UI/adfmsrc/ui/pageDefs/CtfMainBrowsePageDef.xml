@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.56.60" id="CtfMainBrowsePageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <iterator Binds="CtfMainVO" RangeSize="30" DataControl="LOGAMDataControl"
+              id="CtfMainVOIterator"/>
+    <searchRegion Binds="CtfMainVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="CtfMainVOQuery"/>
+    <iterator Binds="ParamsLOV1" RangeSize="25" DataControl="LOGAMDataControl" id="ParamsLOV1Iterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="CtfMainVOIterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="CtfMainVOIterator" id="CtfMainVO">
+      <nodeDefinition DefName="model.View.CtfMainVO" Name="CtfMainVO0">
+        <AttrNames>
+          <Item Value="CtfMainId"/>
+          <Item Value="FacilityId"/>
+          <Item Value="FacName"/>
+          <Item Value="FacCode"/>
+          <Item Value="SupCode"/>
+          <Item Value="FacName1"/>
+          <Item Value="PDate"/>
+          <Item Value="DeDate"/>
+          <Item Value="LcDate"/>
+          <Item Value="LcStaff"/>
+          <Item Value="CtfStatus"/>
+          <Item Value="CtfComments"/>
+          <Item Value="FacilityId1"/>
+          
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CtfMainVOIterator" id="CtfMainVO1">
+      <nodeDefinition DefName="model.View.CtfMainVO" Name="CtfMainVO10">
+        <AttrNames>
+          <Item Value="LcDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CtfMainVOIterator" id="CtfMainId">
+      <AttrNames>
+        <Item Value="CtfMainId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="FacilityId">
+      <AttrNames>
+        <Item Value="FacilityId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="PDate">
+      <AttrNames>
+        <Item Value="PDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="DeDate">
+      <AttrNames>
+        <Item Value="DeDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="DeStaff">
+      <AttrNames>
+        <Item Value="DeStaff"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="LcDate">
+      <AttrNames>
+        <Item Value="LcDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="LcStaff">
+      <AttrNames>
+        <Item Value="LcStaff"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="CtfStatus">
+      <AttrNames>
+        <Item Value="CtfStatus"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="CtfComments">
+      <AttrNames>
+        <Item Value="CtfComments"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="FacName">
+      <AttrNames>
+        <Item Value="FacName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="FacilityId1">
+      <AttrNames>
+        <Item Value="FacilityId1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="FacCode">
+      <AttrNames>
+        <Item Value="FacCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfMainVOIterator" id="FacTypeId">
+      <AttrNames>
+        <Item Value="FacTypeId"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="ParamsLOV1Iterator" StaticList="false" Uses="LOV_facility" id="facility"/>
+    <attributeValues IterBinding="ParamsLOV1Iterator" id="fac_name">
+      <AttrNames>
+        <Item Value="fac_name"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="ClearSearchMainItems" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="ClearSearchMainItems" IsViewObjectMethod="false" DataControl="LOGAMDataControl"
+                  InstanceName="data.LOGAMDataControl.dataProvider"/>
+    <methodAction id="SearchMainItems" RequiresUpdateModel="true" Action="invokeMethod" MethodName="SearchMainItems"
+                  IsViewObjectMethod="false" DataControl="LOGAMDataControl"
+                  InstanceName="data.LOGAMDataControl.dataProvider">
+      <NamedData NDName="code" NDValue="#{viewScope.pCode}" NDType="java.lang.String"/>
+      <NamedData NDName="date" NDValue="#{viewScope.pD}" NDType="oracle.jbo.domain.Date"/>
+      <NamedData NDName="chooseDate" NDValue="#{viewScope.chooseDate}" NDType="java.lang.String"/>
+      <NamedData NDName="startDate" NDValue="#{viewScope.startDate}" NDType="oracle.jbo.domain.Date"/>
+      <NamedData NDName="endDate" NDValue="#{viewScope.endDate}" NDType="oracle.jbo.domain.Date"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.60.81"
+                id="GofTF_GofTF_CreateInsertPageDef" Package="ui.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="GroupOfFacilitiesVO" RangeSize="25" DataControl="LOGAMDataControl"
+              id="GroupOfFacilitiesVOIterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="GroupOfFacilitiesVOIterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+  </bindings>
+</pageDefinition>

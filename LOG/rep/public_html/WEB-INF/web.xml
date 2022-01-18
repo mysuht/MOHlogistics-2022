@@ -1,0 +1,58 @@
+<?xml version = '1.0' encoding = 'windows-1256'?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+    <resource-ref>
+        <description>JNDI Datasource</description>
+        <res-ref-name>jdbc/LOGConnDS</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+    <filter>
+        <filter-name>JpsFilter</filter-name>
+        <filter-class>oracle.security.jps.ee.http.JpsFilter</filter-class>
+        <init-param>
+            <param-name>enable.anonymous</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>JpsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>processRep</servlet-name>
+        <servlet-class>servlets.processRep</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>filterCenters</servlet-name>
+        <servlet-class>servlets.filterCenters</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getData</servlet-name>
+        <servlet-class>servlets.getData</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>rep.TestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>processRep</servlet-name>
+        <url-pattern>/processrep</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>filterCenters</servlet-name>
+        <url-pattern>/filtercenters</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getData</servlet-name>
+        <url-pattern>/getdata</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+</web-app>

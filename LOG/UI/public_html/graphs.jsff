@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+  <af:panelStretchLayout id="psl1" dimensionsFrom="parent" startWidth="70px" endWidth="70px">
+    <f:facet name="center">
+      <af:decorativeBox id="db1">
+        <f:facet name="center">
+          <af:panelGroupLayout id="pgl10" layout="scroll">
+            <af:panelHeader text="Report Parameters" id="ph1" messageType="info">
+              <f:facet name="context">
+                <af:panelGroupLayout id="pgl9" layout="horizontal">
+                  <af:spacer width="50" height="10" id="s10"/>
+                  <af:selectOneChoice value="#{bindings.graphName.inputValue}" label="Graph Name"
+                                      required="#{bindings.graphName.hints.mandatory}"
+                                      shortDesc="#{bindings.graphName.hints.tooltip}" id="soc11"
+                                      labelStyle="font-weight:bold; color:black; font-size:12pt;"
+                                      contentStyle="font-weight:bold; " autoSubmit="true"
+                                      valueChangeListener="#{repBean.graphNameVLC}" binding="#{repBean.graphName}">
+                    <f:selectItems value="#{bindings.graphName.items}" id="si13"/>
+                    <f:validator binding="#{bindings.graphName.validator}"/>
+                  </af:selectOneChoice>
+                </af:panelGroupLayout>
+              </f:facet>
+              <f:facet name="menuBar"/>
+              <f:facet name="toolbar"/>
+              <f:facet name="legend"/>
+              <f:facet name="info"/>
+              <af:panelGroupLayout id="pgl1">
+                <af:panelGroupLayout id="pgl2" layout="horizontal">
+                  <af:selectOneChoice value="#{bindings.type.inputValue}" label="Type:  "
+                                      required="#{bindings.type.hints.mandatory}"
+                                      shortDesc="#{bindings.type.hints.tooltip}" id="soc1"
+                                      valueChangeListener="#{repBean.typeVLC}" binding="#{repBean.facType}"
+                                      autoSubmit="true" labelStyle="font-weight:bold; ">
+                    <f:selectItems value="#{bindings.type.items}" id="si1"/>
+                    <f:validator binding="#{bindings.type.validator}"/>
+                  </af:selectOneChoice>
+                  <af:spacer width="10" height="10" id="s1"/>
+                  <af:selectManyChoice value="#{bindings.repFacilityTypeParam1.inputValue}" label="Facilities:  "
+                                       id="smc1" partialTriggers="::soc1" binding="#{repBean.facilitiesOfType}"
+                                       labelStyle="font-weight:bold;" autoSubmit="true">
+                    <f:selectItems value="#{bindings.repFacilityTypeParam1.items}" id="si2"/>
+                    <f:validator binding="#{bindings.repFacilityTypeParam1.validator}"/>
+                  </af:selectManyChoice>
+                </af:panelGroupLayout>
+                <af:spacer width="10" height="10" id="s2"/>
+                <af:panelGroupLayout id="pgl7" layout="horizontal" valign="top">
+                  <af:panelGroupLayout id="pgl3">
+                    <af:selectOneRadio value="#{bindings.periodType.inputValue}" label="Period: " required="true"
+                                       shortDesc="The Period Type: " id="sor1" layout="vertical" autoSubmit="true"
+                                       labelStyle="font-weight:bold;" contentStyle="font-weight:bold;"
+                                       binding="#{repBean.periodType}">
+                      <f:selectItems value="#{bindings.periodType.items}" id="si3"/>
+                      <f:validator binding="#{bindings.periodType.validator}"/>
+                    </af:selectOneRadio>
+                  </af:panelGroupLayout>
+                  <af:spacer width="30" height="10" id="s9"/>
+                  <af:panelGroupLayout id="pgl4" valign="top" layout="vertical">
+                    <af:panelGroupLayout id="pgl8">
+                      <af:panelGroupLayout id="pgl5" layout="horizontal">
+                        <af:selectOneChoice value="#{bindings.Month.inputValue}" label="#{bindings.Month.label}"
+                                            required="#{bindings.Month.hints.mandatory}"
+                                            shortDesc="#{bindings.Month.hints.tooltip}" id="soc2"
+                                            partialTriggers="::sor1"
+                                            visible="#{bindings.periodType.inputValue == 'mon'}"
+                                            labelStyle="font-weight:bold;" autoSubmit="true" binding="#{repBean.cm}">
+                          <f:selectItems value="#{bindings.Month.items}" id="si4"/>
+                          <f:validator binding="#{bindings.Month.validator}"/>
+                        </af:selectOneChoice>
+                        <af:selectOneChoice value="#{bindings.quarter.inputValue}" label="#{bindings.quarter.label}"
+                                            required="#{bindings.quarter.hints.mandatory}"
+                                            shortDesc="#{bindings.quarter.hints.tooltip}" id="soc8"
+                                            visible="#{bindings.periodType.inputValue == 'qua'}"
+                                            partialTriggers="::sor1" labelStyle="font-weight:bold;" autoSubmit="true"
+                                            binding="#{repBean.cq}">
+                          <f:selectItems value="#{bindings.quarter.items}" id="si10"/>
+                          <f:validator binding="#{bindings.quarter.validator}"/>
+                        </af:selectOneChoice>
+                        <af:selectOneChoice value="#{bindings.half.inputValue}" label="Halfs"
+                                            required="#{bindings.half.hints.mandatory}"
+                                            shortDesc="#{bindings.half.hints.tooltip}" id="soc9"
+                                            visible="#{bindings.periodType.inputValue == 'hy'}" partialTriggers="::sor1"
+                                            labelStyle="font-weight:bold;" autoSubmit="true" binding="#{repBean.ch}">
+                          <f:selectItems value="#{bindings.half.items}" id="si11"/>
+                          <f:validator binding="#{bindings.half.validator}"/>
+                        </af:selectOneChoice>
+                        <af:spacer width="10" height="10" id="s4" visible="#{bindings.periodType.inputValue != 'u' }"
+                                   partialTriggers="::sor1"/>
+                        <af:selectOneChoice value="#{bindings.Year.inputValue}" label="#{bindings.Year.label}"
+                                            required="#{bindings.Year.hints.mandatory}"
+                                            shortDesc="#{bindings.Year.hints.tooltip}" id="soc3"
+                                            partialTriggers="::sor1"
+                                            visible="#{bindings.periodType.inputValue == 'mon' || bindings.periodType.inputValue == 'ann' || bindings.periodType.inputValue == 'hy' || bindings.periodType.inputValue == 'qua'}"
+                                            labelStyle="font-weight:bold;" autoSubmit="true" binding="#{repBean.cy}">
+                          <f:selectItems value="#{bindings.Year.items}" id="si5"/>
+                          <f:validator binding="#{bindings.Year.validator}"/>
+                        </af:selectOneChoice>
+                      </af:panelGroupLayout>
+                      <af:spacer width="10" height="10" id="s5" visible="#{bindings.periodType.inputValue != 'u' }"
+                                 partialTriggers="::sor1"/>
+                      <af:panelGroupLayout id="pgl6" layout="horizontal" valign="top">
+                        <af:selectOneChoice value="#{bindings.fm.inputValue}" label="Month: "
+                                            required="#{bindings.fm.hints.mandatory}"
+                                            shortDesc="#{bindings.fm.hints.tooltip}" id="soc4" partialTriggers="::sor1"
+                                            visible="#{bindings.periodType.inputValue == 'u'}"
+                                            labelStyle="font-weight:bold;" autoSubmit="true" binding="#{repBean.cfm}">
+                          <f:selectItems value="#{bindings.fm.items}" id="si6"/>
+                          <f:validator binding="#{bindings.fm.validator}"/>
+                        </af:selectOneChoice>
+                        <af:selectOneChoice value="#{bindings.fy.inputValue}" label="Year: "
+                                            required="#{bindings.fy.hints.mandatory}"
+                                            shortDesc="#{bindings.fy.hints.tooltip}" id="soc5" partialTriggers="::sor1"
+                                            visible="#{bindings.periodType.inputValue == 'u'}"
+                                            labelStyle="font-weight:bold;" autoSubmit="true" binding="#{repBean.cfy}">
+                          <f:selectItems value="#{bindings.fy.items}" id="si7"/>
+                          <f:validator binding="#{bindings.fy.validator}"/>
+                        </af:selectOneChoice>
+                        <af:spacer width="10" height="10" id="s6"/>
+                        <af:outputText value=" - " id="ot1" inlineStyle="font-weight:bold;"
+                                       visible="#{bindings.periodType.inputValue == 'u'}" partialTriggers="::sor1"/>
+                        <af:spacer width="10" height="10" id="s7"/>
+                        <af:selectOneChoice value="#{bindings.tm.inputValue}" label="Month: "
+                                            required="#{bindings.tm.hints.mandatory}"
+                                            shortDesc="#{bindings.tm.hints.tooltip}" id="soc6" partialTriggers="::sor1"
+                                            visible="#{bindings.periodType.inputValue == 'u'}"
+                                            labelStyle="font-weight:bold;" autoSubmit="true" binding="#{repBean.ctm}">
+                          <f:selectItems value="#{bindings.tm.items}" id="si8"/>
+                          <f:validator binding="#{bindings.tm.validator}"/>
+                        </af:selectOneChoice>
+                        <af:selectOneChoice value="#{bindings.ty.inputValue}" label="Year: "
+                                            required="#{bindings.ty.hints.mandatory}"
+                                            shortDesc="#{bindings.ty.hints.tooltip}" id="soc7" partialTriggers="::sor1"
+                                            visible="#{bindings.periodType.inputValue == 'u'}"
+                                            labelStyle="font-weight:bold;" autoSubmit="true" binding="#{repBean.cty}">
+                          <f:selectItems value="#{bindings.ty.items}" id="si9"/>
+                          <f:validator binding="#{bindings.ty.validator}"/>
+                        </af:selectOneChoice>
+                      </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                    <af:spacer width="10" height="10" id="s8"/>
+                    <af:selectOneChoice value="#{bindings.product.inputValue}" label="#{bindings.product.label}"
+                                        required="true" shortDesc="#{bindings.product.hints.tooltip}" id="soc10"
+                                        autoSubmit="true" binding="#{repBean.cprod}" labelStyle="font-weight:bold;">
+                      <f:selectItems value="#{bindings.product.items}" id="si12"/>
+                      <f:validator binding="#{bindings.product.validator}"/>
+                    </af:selectOneChoice>
+                  </af:panelGroupLayout>
+                </af:panelGroupLayout>
+                <af:spacer width="10" height="10" id="s3"/>
+              </af:panelGroupLayout>
+              <af:button actionListener="#{bindings.ExecuteWithParams.execute}" text="ExecuteWithParams"
+                         disabled="#{!bindings.ExecuteWithParams.enabled}" id="b1" visible="false"/>
+              <af:button text=" View Graph " id="b2" action="#{repBean.callReport}" partialSubmit="false"
+                         inlineStyle="font-weight:bold;"/>
+              <af:spacer width="10" height="10" id="s11"/>
+              <af:button text="Export Graph" id="b6" inlineStyle="font-weight:bold;" action="#{repBean.exportGraph}"
+                         partialSubmit="false" disabled="#{sessionScope.pressed == false}"/>
+              <af:button actionListener="#{bindings.ExecuteWithParams1.execute}" text="ExecuteWithParams1"
+                         disabled="#{!bindings.ExecuteWithParams1.enabled}" id="b3" visible="false"/>
+              <af:button actionListener="#{bindings.ExecuteWithParams2.execute}" text="ExecuteWithParams2"
+                         disabled="#{!bindings.ExecuteWithParams2.enabled}" id="b4" visible="false"/>
+              <af:button actionListener="#{bindings.ExecuteWithParams3.execute}" text="ExecuteWithParams3"
+                         disabled="#{!bindings.ExecuteWithParams3.enabled}" id="b5" visible="false"/>
+            </af:panelHeader>
+            <af:spacer width="10" height="10" id="s12"/>
+            <af:panelBox text="CYP - Graph" id="pb1" type="flow" visible="#{bindings.graphName.inputValue == '1'}"
+                         partialTriggers="::soc11" rendered="true">
+              <f:facet name="toolbar"/>
+              <dvt:lineGraph id="graph1" value="#{bindings.cypVO1.graphModel}" subType="LINE_VERT_ABS"
+                             shortDesc="CYP Graph" inlineStyle="width:990px;" animationOnDisplay="auto"
+                             binding="#{repBean.cypGraph}" partialTriggers="::b2">
+                <dvt:background>
+                  <dvt:specialEffects/>
+                </dvt:background>
+                <dvt:graphPlotArea/>
+                <dvt:seriesSet defaultMarkerShape="MS_SQUARE" defaultMarkerType="MT_LINE" markerDisplayed="true"
+                               defaultLineWidth="3">
+                  <dvt:series markerShape="MS_SQUARE" markerType="MT_LINE" color="#005252" lineWidth="3"
+                              borderColor="#006300" borderTransparent="false" pieSliceExplode="0">
+                    <dvt:specialEffects id="specialEffects1" gradientDirection="GD_RIGHT">
+                      <dvt:gradientStopStyle id="gradientStopStyle2"/>
+                    </dvt:specialEffects>
+                  </dvt:series>
+                </dvt:seriesSet>
+                <dvt:o1Axis/>
+                <dvt:y1Axis axisMinAutoScaled="false" axisMinValue="0.0"/>
+                <dvt:legendArea automaticPlacement="AP_NEVER"/>
+                <dvt:attributeFormat name="Cyp" id="af1">
+                  <af:convertNumber pattern="###,###" groupingUsed="false"/>
+                </dvt:attributeFormat>
+                <dvt:markerText id="markerText1" rendered="true" markerTextPlace="MTP_CUSTOM">
+                  <dvt:y1Format autoPrecision="off" scaling="none">
+                    <af:convertNumber type="number" pattern="###,###.##"/>
+                  </dvt:y1Format>
+                  <dvt:graphFont id="graphFont3" bold="true" size="13"/>
+                </dvt:markerText>
+                <dvt:y1MajorTick id="y1MajorTick1"/>
+                <dvt:y1TickLabel id="y1TickLabel1" scaling="none" autoPrecision="off">
+                  <dvt:graphFont id="graphFont2" size="11"/>
+                  <af:convertNumber type="number" pattern="###,###"/>
+                </dvt:y1TickLabel>
+                <dvt:o1TickLabel id="o1TickLabel1" tickLabelSkipFirst="0">
+                  <dvt:graphFont id="graphFont1"/>
+                </dvt:o1TickLabel>
+                <dvt:o1MajorTick id="o1MajorTick1"/>
+                <dvt:graphTitle text="#{sessionScope.gtitle}" horizontalAlignment="CENTER"/>
+              </dvt:lineGraph>
+            </af:panelBox>
+            <af:panelBox text="Dispensed To User - Graph" id="pb2" visible="#{bindings.graphName.inputValue == '2'}"
+                         partialTriggers="::soc11" type="flow" rendered="true">
+              <f:facet name="toolbar"/>
+              <dvt:lineGraph id="graph2" value="#{bindings.dispensedToUserLOV1.graphModel}" subType="LINE_VERT_ABS"
+                             shortDesc="Dispensed To User Graph" inlineStyle="width:990px;"
+                             binding="#{repBean.dispensedGraph}" partialTriggers="::b2">
+                <dvt:background>
+                  <dvt:specialEffects/>
+                </dvt:background>
+                <dvt:graphPlotArea/>
+                <dvt:seriesSet defaultMarkerShape="MS_SQUARE" markerDisplayed="true" defaultMarkerType="MT_LINE">
+                  <dvt:series markerType="MT_LINE" markerShape="MS_SQUARE" color="#006363" lineWidth="3">
+                    <dvt:specialEffects id="specialEffects2">
+                      <dvt:gradientStopStyle id="gradientStopStyle1"/>
+                    </dvt:specialEffects>
+                  </dvt:series>
+                </dvt:seriesSet>
+                <dvt:o1Axis/>
+                <dvt:y1Axis/>
+                <dvt:legendArea automaticPlacement="AP_NEVER"/>
+                <dvt:attributeFormat name="Dispensed" id="af2">
+                  <af:convertNumber pattern="###,###.###" type="number"/>
+                </dvt:attributeFormat>
+                <dvt:markerText id="markerText2" rendered="true" markerTextPlace="MTP_UNDER_MARKER">
+                  <dvt:y1Format autoPrecision="off" scaling="none">
+                    <af:convertNumber type="number" pattern="###,###" integerOnly="true"/>
+                  </dvt:y1Format>
+                  <dvt:graphFont id="graphFont4" size="14" bold="true"/>
+                </dvt:markerText>
+                <dvt:y1TickLabel id="y1TickLabel2" autoPrecision="off" scaling="none">
+                  <af:convertNumber type="number" pattern="###,###" integerOnly="true" groupingUsed="false"/>
+                </dvt:y1TickLabel>
+                <dvt:y1MajorTick id="y1MajorTick2"/>
+                <dvt:o1TickLabel id="o1TickLabel2"/>
+                <dvt:graphTitle text="#{sessionScope.gtitle}" horizontalAlignment="CENTER"/>
+              </dvt:lineGraph>
+            </af:panelBox>
+            <af:panelBox text="Service Statistics Graph" id="pb3" visible="#{bindings.graphName.inputValue == '3'}"
+                         partialTriggers="::soc11" rendered="true" type="flow">
+              <f:facet name="toolbar"/>
+              <dvt:comboGraph id="graph3" value="#{bindings.serviceStatisticsLOV1.graphModel}"
+                              subType="COMBINATION_VERT_ABS_2Y" shortDesc="Service Statistics Graph"
+                              inlineStyle="width:990px;" binding="#{repBean.servicesStatisticsGraph}"
+                              partialTriggers="::b2">
+                <dvt:background>
+                  <dvt:specialEffects/>
+                </dvt:background>
+                <dvt:graphPlotArea/>
+                <dvt:seriesSet defaultMarkerType="MT_LINE" markerDisplayed="true">
+                  <dvt:series assignedToY2="false" color="#ff0000" markerType="MT_LINE" markerShape="MS_SQUARE"
+                              lineWidth="3">
+                    <dvt:specialEffects id="specialEffects3"/>
+                  </dvt:series>
+                  <dvt:series assignedToY2="false" markerShape="MS_TRIANGLE_UP" color="#005252" lineWidth="3"/>
+                  
+                </dvt:seriesSet>
+                <dvt:o1Axis/>
+                <dvt:y1Axis rendered="true"/>
+                <dvt:y2Axis rendered="false"/>
+                <dvt:legendArea automaticPlacement="AP_NEVER"/>
+                <dvt:attributeFormat name="NewUsers" id="af3">
+                  <af:convertNumber pattern="###,###" type="number"/>
+                </dvt:attributeFormat>
+                <dvt:attributeFormat name="ContUsers" id="af4">
+                  <af:convertNumber pattern="###,###" type="number"/>
+                </dvt:attributeFormat>
+                <dvt:markerText id="markerText3" rendered="true">
+                  <dvt:y1Format autoPrecision="off" scaling="none">
+                    <af:convertNumber type="number" pattern="###,###"/>
+                  </dvt:y1Format>
+                  <dvt:y2Format autoPrecision="off" scaling="none">
+                    <af:convertNumber type="number" pattern="###,###"/>
+                  </dvt:y2Format>
+                  <dvt:graphFont id="graphFont5" size="14" bold="true"/>
+                </dvt:markerText>
+                <dvt:y1TickLabel id="y1TickLabel3" scaling="none" autoPrecision="off">
+                  <af:convertNumber type="number" pattern="###,###"/>
+                </dvt:y1TickLabel>
+                <dvt:graphTitle text="#{sessionScope.gtitle}" horizontalAlignment="CENTER"/>
+              </dvt:comboGraph>
+            </af:panelBox>
+          </af:panelGroupLayout>
+        </f:facet>
+      </af:decorativeBox>
+    </f:facet>
+  </af:panelStretchLayout>
+</ui:composition>

@@ -1,0 +1,383 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelSplitter id="ps3" orientation="vertical" inlineStyle="width:100%;" splitterPosition="103" disabled="true"
+                    dimensionsFrom="parent">
+    <f:facet name="first">
+      <af:panelSplitter id="ps2" orientation="vertical" inlineStyle="width:100%; height:207px;" splitterPosition="29"
+                        disabled="true">
+        <f:facet name="first">
+          <af:outputText value="Monthly Report" id="ot1" inlineStyle="text-align:center; font-size:x-large;"/>
+        </f:facet>
+        <f:facet name="second">
+          <af:panelGroupLayout id="pgl7">
+            <af:panelSplitter id="ps1" inlineStyle="height:159px; font-weight:bold;" splitterPosition="827"
+                              disabled="true" styleClass="AFStretchWidth">
+              <f:facet name="first">
+                <af:panelFormLayout id="pfl1" inlineStyle="font-weight:bold; font-size:12pt;">
+                  <f:facet name="footer"/>
+                  <af:inputText label="Facility Code :  " id="it15" readOnly="true" value="#{sessionScope.sFacCode}"
+                                partialTriggers="cb6 cb7" contentStyle="font-weight:bold; font-size:12pt;"
+                                labelStyle="font-weight:bold; font-size:12pt;"
+                                inlineStyle="font-weight:bold; font-size:12pt;"/>
+                  <af:inputText label="Facility Name :   " id="it16" value="#{sessionScope.sFacName}" readOnly="true"
+                                partialTriggers="cb6 cb7" contentStyle="font-weight:bold; font-size:12pt;"
+                                labelStyle="font-weight:bold; font-size:12pt;"
+                                inlineStyle="font-weight:bold; font-size:12pt;"/>
+                  <af:inputText label="Facility Type :  " id="it17" value="#{sessionScope.sTypeDesc}" readOnly="true"
+                                partialTriggers="cb6 cb7" contentStyle="font-weight:bold; font-size:12pt;"
+                                labelStyle="font-weight:bold; font-size:12pt;"
+                                inlineStyle="font-weight:bold; font-size:12pt;"/>
+                  <af:inputText label="Month/Year :  " id="it18" value="#{sessionScope.sMonYear}" readOnly="true"
+                                partialTriggers="cb6 cb7" contentStyle="font-weight:bold; font-size:12pt;"
+                                labelStyle="font-weight:bold; font-size:12pt;"
+                                inlineStyle="font-weight:bold; font-size:12pt;"/>
+                </af:panelFormLayout>
+              </f:facet>
+              <f:facet name="second">
+                <af:panelFormLayout id="pfl2" inlineStyle="font-weight:bold; font-size:12pt;">
+                  <f:facet name="footer"/>
+                  <af:inputText label="Run Date :  " id="it19" value="#{sessionScope.sSysDate}" readOnly="true"
+                                partialTriggers="cb6 cb7" contentStyle="font-weight:bold; font-size:12pt;"
+                                labelStyle="font-weight:bold; font-size:12pt;"
+                                inlineStyle="font-weight:bold; font-size:12pt;"/>
+                  <af:inputText label="Entered By :  " id="it20" value="#{sessionScope.sEnteredBy}" readOnly="true"
+                                partialTriggers="cb6 cb7" contentStyle="font-weight:bold; font-size:12pt;"
+                                labelStyle="font-weight:bold; font-size:12pt;"
+                                inlineStyle="font-weight:bold; font-size:12pt;"/>
+                  <af:inputText label="Last Changed By :  " id="it21" value="#{sessionScope.sChangeBy}" readOnly="true"
+                                partialTriggers="cb6 cb7" contentStyle="font-weight:bold; font-size:12pt;"
+                                labelStyle="font-weight:bold; font-size:12pt;"
+                                inlineStyle="font-weight:bold; font-size:12pt;"/>
+                </af:panelFormLayout>
+              </f:facet>
+            </af:panelSplitter>
+          </af:panelGroupLayout>
+        </f:facet>
+      </af:panelSplitter>
+    </f:facet>
+    <f:facet name="second">
+      <af:panelGroupLayout id="pgl3">
+        <af:panelBox text="#{sessionScope.sComplCode}" id="pb1" inlineStyle="height:379px;">
+          <f:facet name="toolbar">
+            <af:group id="g1">
+              <af:toolbar id="t2">
+                <af:commandButton actionListener="#{bindings.Commit.execute}" text="Save" id="cb1" action="backMain"/>
+                <af:commandButton actionListener="#{bindings.Rollback.execute}" text="Cancel" immediate="true" id="cb2"
+                                  action="backMain">
+                  <af:resetActionListener/>
+                </af:commandButton>
+                <af:commandButton actionListener="#{bindings.Execute.execute}" text="Execute"
+                                  disabled="#{!bindings.Execute.enabled}" id="cb26"/>
+                <af:commandButton text="Commit" id="cb25" actionListener="#{bindings.Commit.execute}"/>
+                <af:commandButton text="Get Last Balance" id="cb3" action="#{ctfitembean1.getLastBalance}"/>
+                <af:commandButton text="Calculate Values" id="cb4" action="#{ctfitembean1.calculateValues}"/>
+                <af:commandButton text="commandButton 3" id="cb5" action="#{ctfitembean1.forImad}" rendered="false"/>
+                <af:spacer width="40" height="10" id="s1"/>
+                <af:commandButton actionListener="#{bindings.Next.execute}" text="Next Month" partialSubmit="true"
+                                  id="cb6" action="#{ctfitembean1.nextMonth}"/>
+                <af:commandButton actionListener="#{bindings.setCurrentRowWithKeyValue.execute}"
+                                  text="setCurrentRowWithKeyValue"
+                                  disabled="#{!bindings.setCurrentRowWithKeyValue.enabled}" id="cb9" rendered="false"/>
+                <af:commandButton actionListener="#{bindings.Previous.execute}" text="Previous Month"
+                                  partialSubmit="true" id="cb7" action="#{ctfitembean1.previousMonth}"/>
+              </af:toolbar>
+              <af:commandButton text="commandButton 5" id="cb28">
+                <af:showPopupBehavior popupId="p7" triggerType="click"/>
+              </af:commandButton>
+            </af:group>
+          </f:facet>
+          <af:table value="#{bindings.CtfItemCtfMainVO.collectionModel}" var="row"
+                    rows="#{bindings.CtfItemCtfMainVO.rangeSize}"
+                    emptyText="#{bindings.CtfItemCtfMainVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                    fetchSize="#{bindings.CtfItemCtfMainVO.rangeSize}" rowBandingInterval="0"
+                    filterModel="#{bindings.CtfItemCtfMainVOQuery.queryDescriptor}"
+                    queryListener="#{bindings.CtfItemCtfMainVOQuery.processQuery}" filterVisible="true" varStatus="vs"
+                    selectedRowKeys="#{bindings.CtfItemCtfMainVO.collectionModel.selectedRow}"
+                    selectionListener="#{bindings.CtfItemCtfMainVO.collectionModel.makeCurrent}" rowSelection="single"
+                    id="t1" width="100%" inlineStyle="height:327px;" partialTriggers="::cb26">
+            <af:column sortProperty="#{bindings.CtfItemCtfMainVO.hints.CtfItemId.name}" filterable="true"
+                       sortable="true" headerText="#{bindings.CtfItemCtfMainVO.hints.CtfItemId.label}" id="c1"
+                       rendered="false">
+              <af:inputText value="#{row.bindings.CtfItemId.inputValue}"
+                            label="#{bindings.CtfItemCtfMainVO.hints.CtfItemId.label}"
+                            required="#{bindings.CtfItemCtfMainVO.hints.CtfItemId.mandatory}"
+                            columns="#{bindings.CtfItemCtfMainVO.hints.CtfItemId.displayWidth}"
+                            maximumLength="#{bindings.CtfItemCtfMainVO.hints.CtfItemId.precision}"
+                            shortDesc="#{bindings.CtfItemCtfMainVO.hints.CtfItemId.tooltip}" id="it1">
+                <f:validator binding="#{row.bindings.CtfItemId.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainVO.hints.CtfItemId.format}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.CtfItemCtfMainVO.hints.CtfMainId.name}" filterable="true"
+                       sortable="true" headerText="#{bindings.CtfItemCtfMainVO.hints.CtfMainId.label}" id="c2"
+                       rendered="false">
+              <af:inputText value="#{row.bindings.CtfMainId.inputValue}"
+                            label="#{bindings.CtfItemCtfMainVO.hints.CtfMainId.label}"
+                            required="#{bindings.CtfItemCtfMainVO.hints.CtfMainId.mandatory}"
+                            columns="#{bindings.CtfItemCtfMainVO.hints.CtfMainId.displayWidth}"
+                            maximumLength="#{bindings.CtfItemCtfMainVO.hints.CtfMainId.precision}"
+                            shortDesc="#{bindings.CtfItemCtfMainVO.hints.CtfMainId.tooltip}" id="it2">
+                <f:validator binding="#{row.bindings.CtfMainId.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainVO.hints.CtfMainId.format}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.CtfItemCtfMainVO.hints.ProdId.name}" filterable="true" sortable="true"
+                       headerText="#{bindings.CtfItemCtfMainVO.hints.ProdId.label}" id="c3" frozen="false">
+              <af:inputListOfValues id="prodIdId"
+                                    popupTitle="Search and Select: #{bindings.CtfItemCtfMainVO.hints.ProdId.label}"
+                                    value="#{row.bindings.ProdId.inputValue}"
+                                    model="#{row.bindings.ProdId.listOfValuesModel}"
+                                    required="#{bindings.CtfItemCtfMainVO.hints.ProdId.mandatory}"
+                                    columns="#{bindings.CtfItemCtfMainVO.hints.ProdId.displayWidth}"
+                                    shortDesc="#{bindings.CtfItemCtfMainVO.hints.ProdId.tooltip}" readOnly="true">
+                <f:validator binding="#{row.bindings.ProdId.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainVO.hints.ProdId.format}"/>
+              </af:inputListOfValues>
+            </af:column>
+            <af:column sortProperty="#{bindings.CtfItemCtfMainVO.hints.ProName.name}" filterable="true" sortable="true"
+                       headerText="#{bindings.CtfItemCtfMainVO.hints.ProName.label}" id="c4">
+              <af:inputText value="#{row.bindings.ProName.inputValue}"
+                            label="#{bindings.CtfItemCtfMainVO.hints.ProName.label}"
+                            required="#{bindings.CtfItemCtfMainVO.hints.ProName.mandatory}"
+                            columns="#{bindings.CtfItemCtfMainVO.hints.ProName.displayWidth}"
+                            maximumLength="#{bindings.CtfItemCtfMainVO.hints.ProName.precision}"
+                            shortDesc="#{bindings.CtfItemCtfMainVO.hints.ProName.tooltip}" id="it3" readOnly="true">
+                <f:validator binding="#{row.bindings.ProName.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column headerText="#{bindings.CtfItemCtfMainVO.hints.ProDose.label}" id="c16" sortable="true"
+                       filterable="true">
+              <af:inputText value="#{row.bindings.ProDose.inputValue}"
+                            label="#{bindings.CtfItemCtfMainVO.hints.ProDose.label}"
+                            required="#{bindings.CtfItemCtfMainVO.hints.ProDose.mandatory}"
+                            columns="#{bindings.CtfItemCtfMainVO.hints.ProDose.displayWidth}"
+                            maximumLength="#{bindings.CtfItemCtfMainVO.hints.ProDose.precision}"
+                            shortDesc="#{bindings.CtfItemCtfMainVO.hints.ProDose.tooltip}" id="it14">
+                <f:validator binding="#{row.bindings.ProDose.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.CtfItemCtfMainVO.hints.OpenBal.name}" filterable="true" sortable="true"
+                       headerText="#{bindings.CtfItemCtfMainVO.hints.OpenBal.label}" id="c5">
+              <af:inputText value="#{row.bindings.OpenBal.inputValue}"
+                            label="#{bindings.CtfItemCtfMainVO.hints.OpenBal.label}"
+                            required="#{bindings.CtfItemCtfMainVO.hints.OpenBal.mandatory}"
+                            columns="#{bindings.CtfItemCtfMainVO.hints.OpenBal.displayWidth}"
+                            maximumLength="#{bindings.CtfItemCtfMainVO.hints.OpenBal.precision}"
+                            shortDesc="#{bindings.CtfItemCtfMainVO.hints.OpenBal.tooltip}" id="it4"
+                            valueChangeListener="#{ctfitembean1.openBalVCL}" autoSubmit="true">
+                <f:validator binding="#{row.bindings.OpenBal.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainVO.hints.OpenBal.format}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.CtfItemCtfMainVO.hints.Receipts.name}" filterable="true" sortable="true"
+                       headerText="#{bindings.CtfItemCtfMainVO.hints.Receipts.label}" id="c6">
+              <af:inputText value="#{row.bindings.Receipts.inputValue}"
+                            label="#{bindings.CtfItemCtfMainVO.hints.Receipts.label}"
+                            required="#{bindings.CtfItemCtfMainVO.hints.Receipts.mandatory}"
+                            columns="#{bindings.CtfItemCtfMainVO.hints.Receipts.displayWidth}"
+                            maximumLength="#{bindings.CtfItemCtfMainVO.hints.Receipts.precision}"
+                            shortDesc="#{bindings.CtfItemCtfMainVO.hints.Receipts.tooltip}" id="it5"
+                            valueChangeListener="#{ctfitembean1.receiptVCL}" autoSubmit="true">
+                <f:validator binding="#{row.bindings.Receipts.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainVO.hints.Receipts.format}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.CtfItemCtfMainVO.hints.Issues.name}" filterable="true" sortable="true"
+                       headerText="#{bindings.CtfItemCtfMainVO.hints.Issues.label}" id="c7">
+              <af:inputText value="#{row.bindings.Issues.inputValue}"
+                            label="#{bindings.CtfItemCtfMainVO.hints.Issues.label}"
+                            required="#{bindings.CtfItemCtfMainVO.hints.Issues.mandatory}"
+                            columns="#{bindings.CtfItemCtfMainVO.hints.Issues.displayWidth}"
+                            maximumLength="#{bindings.CtfItemCtfMainVO.hints.Issues.precision}"
+                            shortDesc="#{bindings.CtfItemCtfMainVO.hints.Issues.tooltip}" id="it6">
+                <f:validator binding="#{row.bindings.Issues.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainVO.hints.Issues.format}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.CtfItemCtfMainVO.hints.Adjustments.name}" filterable="true"
+                       sortable="true" headerText="#{bindings.CtfItemCtfMainVO.hints.Adjustments.label}" id="c9">
+              <af:inputText value="#{row.bindings.Adjustments.inputValue}"
+                            label="#{bindings.CtfItemCtfMainVO.hints.Adjustments.label}"
+                            required="#{bindings.CtfItemCtfMainVO.hints.Adjustments.mandatory}"
+                            columns="#{bindings.CtfItemCtfMainVO.hints.Adjustments.displayWidth}"
+                            maximumLength="#{bindings.CtfItemCtfMainVO.hints.Adjustments.precision}"
+                            shortDesc="#{bindings.CtfItemCtfMainVO.hints.Adjustments.tooltip}" id="it7"
+                            autoSubmit="true" valueChangeListener="#{ctfitembean1.adjustmentsVCL}">
+                <f:validator binding="#{row.bindings.Adjustments.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainVO.hints.Adjustments.format}"/>
+              </af:inputText>
+            </af:column>
+            <af:column headerText="#{bindings.CtfItemCtfMainVO.hints.AdjTypeId.label}" id="c18">
+              <af:selectOneChoice value="#{row.bindings.AdjTypeId.inputValue}" label="#{row.bindings.AdjTypeId.label}"
+                                  required="#{bindings.CtfItemCtfMainVO.hints.AdjTypeId.mandatory}"
+                                  shortDesc="#{bindings.CtfItemCtfMainVO.hints.AdjTypeId.tooltip}" id="soc1"
+                                  autoSubmit="true">
+                <f:selectItems value="#{row.bindings.AdjTypeId.items}" id="si1"/>
+              </af:selectOneChoice>
+            </af:column>
+            <af:column sortProperty="#{bindings.CtfItemCtfMainVO.hints.ClosingBal.name}" filterable="true"
+                       sortable="true" headerText="#{bindings.CtfItemCtfMainVO.hints.ClosingBal.label}" id="c13">
+              <af:inputText value="#{row.bindings.ClosingBal.inputValue}"
+                            label="#{bindings.CtfItemCtfMainVO.hints.ClosingBal.label}"
+                            required="#{bindings.CtfItemCtfMainVO.hints.ClosingBal.mandatory}"
+                            columns="#{bindings.CtfItemCtfMainVO.hints.ClosingBal.displayWidth}"
+                            maximumLength="#{bindings.CtfItemCtfMainVO.hints.ClosingBal.precision}"
+                            shortDesc="#{bindings.CtfItemCtfMainVO.hints.ClosingBal.tooltip}" id="it11"
+                            valueChangeListener="#{ctfitembean1.closingBalVCL}" autoSubmit="true">
+                <f:validator binding="#{row.bindings.ClosingBal.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainVO.hints.ClosingBal.format}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.CtfItemCtfMainVO.hints.AvgMnthlyCons.name}" filterable="true"
+                       sortable="true" headerText="#{bindings.CtfItemCtfMainVO.hints.AvgMnthlyCons.label}" id="c10">
+              <af:inputText value="#{row.bindings.AvgMnthlyCons.inputValue}"
+                            label="#{bindings.CtfItemCtfMainVO.hints.AvgMnthlyCons.label}"
+                            required="#{bindings.CtfItemCtfMainVO.hints.AvgMnthlyCons.mandatory}"
+                            columns="#{bindings.CtfItemCtfMainVO.hints.AvgMnthlyCons.displayWidth}"
+                            maximumLength="#{bindings.CtfItemCtfMainVO.hints.AvgMnthlyCons.precision}"
+                            shortDesc="#{bindings.CtfItemCtfMainVO.hints.AvgMnthlyCons.tooltip}" id="it8"
+                            autoSubmit="true" valueChangeListener="#{ctfitembean1.avgMonConsVCL}">
+                <f:validator binding="#{row.bindings.AvgMnthlyCons.validator}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.CtfItemCtfMainVO.hints.QtyRequired.name}" filterable="true"
+                       sortable="true" headerText="#{bindings.CtfItemCtfMainVO.hints.QtyRequired.label}" id="c11">
+              <af:inputText value="#{row.bindings.QtyRequired.inputValue}"
+                            label="#{bindings.CtfItemCtfMainVO.hints.QtyRequired.label}"
+                            required="#{bindings.CtfItemCtfMainVO.hints.QtyRequired.mandatory}"
+                            columns="#{bindings.CtfItemCtfMainVO.hints.QtyRequired.displayWidth}"
+                            maximumLength="#{bindings.CtfItemCtfMainVO.hints.QtyRequired.precision}"
+                            shortDesc="#{bindings.CtfItemCtfMainVO.hints.QtyRequired.tooltip}" id="it9"
+                            autoSubmit="true" valueChangeListener="#{ctfitembean1.qtyReqVCL}">
+                <f:validator binding="#{row.bindings.QtyRequired.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainVO.hints.QtyRequired.format}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.CtfItemCtfMainVO.hints.QtyReceived.name}" filterable="true"
+                       sortable="true" headerText="#{bindings.CtfItemCtfMainVO.hints.QtyReceived.label}" id="c12">
+              <af:inputText value="#{row.bindings.QtyReceived.inputValue}"
+                            label="#{bindings.CtfItemCtfMainVO.hints.QtyReceived.label}"
+                            required="#{bindings.CtfItemCtfMainVO.hints.QtyReceived.mandatory}"
+                            columns="#{bindings.CtfItemCtfMainVO.hints.QtyReceived.displayWidth}"
+                            maximumLength="#{bindings.CtfItemCtfMainVO.hints.QtyReceived.precision}"
+                            shortDesc="#{bindings.CtfItemCtfMainVO.hints.QtyReceived.tooltip}" id="it10">
+                <f:validator binding="#{row.bindings.QtyReceived.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainVO.hints.QtyReceived.format}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.CtfItemCtfMainVO.hints.NewVisits.name}" filterable="true"
+                       sortable="true" headerText="#{bindings.CtfItemCtfMainVO.hints.NewVisits.label}" id="c14">
+              <af:inputText value="#{row.bindings.NewVisits.inputValue}"
+                            label="#{bindings.CtfItemCtfMainVO.hints.NewVisits.label}"
+                            required="#{bindings.CtfItemCtfMainVO.hints.NewVisits.mandatory}"
+                            columns="#{bindings.CtfItemCtfMainVO.hints.NewVisits.displayWidth}"
+                            maximumLength="#{bindings.CtfItemCtfMainVO.hints.NewVisits.precision}"
+                            shortDesc="#{bindings.CtfItemCtfMainVO.hints.NewVisits.tooltip}" id="it12">
+                <f:validator binding="#{row.bindings.NewVisits.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainVO.hints.NewVisits.format}"/>
+              </af:inputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.CtfItemCtfMainVO.hints.ContVisits.name}" filterable="true"
+                       sortable="true" headerText="#{bindings.CtfItemCtfMainVO.hints.ContVisits.label}" id="c15">
+              <af:inputText value="#{row.bindings.ContVisits.inputValue}"
+                            label="#{bindings.CtfItemCtfMainVO.hints.ContVisits.label}"
+                            required="#{bindings.CtfItemCtfMainVO.hints.ContVisits.mandatory}"
+                            columns="#{bindings.CtfItemCtfMainVO.hints.ContVisits.displayWidth}"
+                            maximumLength="#{bindings.CtfItemCtfMainVO.hints.ContVisits.precision}"
+                            shortDesc="#{bindings.CtfItemCtfMainVO.hints.ContVisits.tooltip}" id="it13">
+                <f:validator binding="#{row.bindings.ContVisits.validator}"/>
+                <af:convertNumber groupingUsed="false" pattern="#{bindings.CtfItemCtfMainVO.hints.ContVisits.format}"/>
+              </af:inputText>
+            </af:column>
+          </af:table>
+        </af:panelBox>
+        <af:inputText value="#{bindings.CtfComments.inputValue}" label="#{bindings.CtfComments.hints.label}"
+                      required="#{bindings.CtfComments.hints.mandatory}" columns="200"
+                      maximumLength="#{bindings.CtfComments.hints.precision}"
+                      shortDesc="#{bindings.CtfComments.hints.tooltip}" id="it22" rows="4"
+                      binding="#{ctfitembean1.commentView111}" partialTriggers="cb6 cb7">
+          <f:validator binding="#{bindings.CtfComments.validator}"/>
+        </af:inputText>
+        <af:inputText id="it23" value="#{sessionScope.py}" label="Comm......\\"/>
+      </af:panelGroupLayout>
+    </f:facet>
+  </af:panelSplitter>
+  <af:popup autoCancel="disabled" id="p1" binding="#{ctfitembean1.openBalPopup}">
+    <af:panelWindow id="pw1" modal="true" closeIconVisible="false">
+      <af:panelFormLayout id="pfl3">
+        <af:outputText value="Are You Sure You Want to Change Opening Balance" id="ot2"
+                       inlineStyle="font-size:medium;"/>
+        <af:panelGroupLayout id="pgl1">
+          <af:commandButton text="Yes" id="cb8" action="#{ctfitembean1.openBalPopupYes}"/>
+          <af:commandButton text="No" id="cb10" action="#{ctfitembean1.openBalPopupNo}"/>
+          <af:commandButton text="Cancel" id="cb11" action="#{ctfitembean1.openBalPopupCancel}"/>
+        </af:panelGroupLayout>
+      </af:panelFormLayout>
+    </af:panelWindow>
+  </af:popup>
+  <af:popup id="p2" autoCancel="disabled" binding="#{ctfitembean1.receiptPopup}">
+    <af:panelWindow id="pw2" modal="true">
+      <af:panelFormLayout id="pfl4">
+        <af:outputText value="Are You Sure You Want to Change Recipts" id="ot3" inlineStyle="font-size:medium;"/>
+        <af:panelGroupLayout id="pgl2">
+          <af:commandButton text="Yes" id="cb12" action="#{ctfitembean1.receiptPopupYes}"/>
+          <af:commandButton text="No" id="cb13" action="#{ctfitembean1.receiptPopupNo}"/>
+          <af:commandButton text="Cancel" id="cb14" action="#{ctfitembean1.receiptPopupCancel}"/>
+        </af:panelGroupLayout>
+      </af:panelFormLayout>
+    </af:panelWindow>
+  </af:popup>
+  <af:popup autoCancel="disabled" id="p3" binding="#{ctfitembean1.closingBalPopup}">
+    <af:panelWindow id="pw3" modal="true">
+      <af:panelFormLayout id="pfl5">
+        <af:outputText value="Are You Sure You Want to Change Closing Balance" id="ot4"
+                       inlineStyle="font-size:medium;"/>
+        <af:panelGroupLayout id="pgl4">
+          <af:commandButton text="Yes" id="cb15" action="#{ctfitembean1.closingBalPopupYes}"/>
+          <af:commandButton text="No" id="cb16" action="#{ctfitembean1.closingBalPopupNo}"/>
+          <af:commandButton text="Cancel" id="cb17" action="#{ctfitembean1.closingBalPopupCancel}"/>
+        </af:panelGroupLayout>
+      </af:panelFormLayout>
+    </af:panelWindow>
+  </af:popup>
+  <af:popup autoCancel="disabled" id="p4" binding="#{ctfitembean1.avgMonConsPopup}">
+    <af:panelWindow id="pw4" modal="true">
+      <af:panelFormLayout id="pfl6">
+        <af:outputText value="Are You Sure You Want to Change Average Monthly Consumption" id="ot5"
+                       inlineStyle="font-size:medium;"/>
+        <af:panelGroupLayout id="pgl5">
+          <af:commandButton text="Yes" id="cb18" action="#{ctfitembean1.avgMonConsYes}"/>
+          <af:commandButton text="No" id="cb19" action="#{ctfitembean1.avgMonConsNo}"/>
+          <af:commandButton text="Cancel" id="cb20" action="#{ctfitembean1.avgMonConsCancel}"/>
+        </af:panelGroupLayout>
+      </af:panelFormLayout>
+    </af:panelWindow>
+  </af:popup>
+  <af:popup autoCancel="disabled" id="p5" binding="#{ctfitembean1.qtyReqPopup}">
+    <af:panelWindow id="pw5" modal="true">
+      <af:panelFormLayout id="pfl7">
+        <af:outputText value="Are You Sure You Want to Change Quantity Required" id="ot6"
+                       inlineStyle="font-size:medium;"/>
+        <af:panelGroupLayout id="pgl6">
+          <af:commandButton text="Yes" id="cb21" action="#{ctfitembean1.qtyReqYes}"/>
+          <af:commandButton text="No" id="cb22" action="#{ctfitembean1.qtyReqNo}"/>
+          <af:commandButton text="Cancel" id="cb23" action="#{ctfitembean1.qtyReqCancel}"/>
+        </af:panelGroupLayout>
+      </af:panelFormLayout>
+    </af:panelWindow>
+  </af:popup>
+  <af:popup autoCancel="disabled" id="p6" binding="#{ctfitembean1.adjustmentPopup}">
+    <af:panelWindow id="pw6" modal="true">
+      <af:panelFormLayout id="pfl8">
+        <af:outputText value="Adjustment Type Must Be Selected" id="ot7" inlineStyle="font-size:medium;"/>
+        <af:commandButton text="OK" id="cb24" action="#{ctfitembean1.adjustmentOK}"/>
+      </af:panelFormLayout>
+    </af:panelWindow>
+  </af:popup>
+  <af:popup childCreation="deferred" autoCancel="disabled" id="p7" binding="#{ctfitembean1.p7}">
+    <af:panelWindow id="pw7">
+      <af:commandButton text="commandButton 4" id="cb27"/>
+    </af:panelWindow>
+  </af:popup>
+</ui:composition>

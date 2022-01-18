@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68" id="graphsPageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="repParameters1" RangeSize="25" DataControl="LOGAMDataControl" id="repParameters1Iterator"/>
+    <iterator Binds="repFacilityTypeParam1" RangeSize="650" DataControl="LOGAMDataControl"
+              id="repFacilityTypeParam1Iterator"/>
+    <iterator Binds="cypVO1" RangeSize="-1" DataControl="LOGAMDataControl" id="cypVO1Iterator"/>
+    <iterator Binds="dispensedToUserLOV1" RangeSize="-1" DataControl="LOGAMDataControl"
+              id="dispensedToUserLOV1Iterator"/>
+    <iterator Binds="serviceStatisticsLOV1" RangeSize="-1" DataControl="LOGAMDataControl"
+              id="serviceStatisticsLOV1Iterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="repParameters1Iterator" StaticList="false" Uses="LOV_type" id="type" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="repFacilityTypeParam1Iterator" ListOperMode="multiSelect" ListIter="repFacilityTypeParam1Iterator"
+          id="repFacilityTypeParam1" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="FacilityId"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="FacilityId"/>
+        <Item Value="Name"/>
+        <Item Value="FacCode"/>
+      </ListDisplayAttrNames>
+    </list>
+    <action IterBinding="repFacilityTypeParam1Iterator" id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="sup" NDValue="#{sessionScope.repFacType}" NDType="java.lang.Integer"/>
+    </action>
+    <list IterBinding="repParameters1Iterator" StaticList="false" Uses="LOV_periodType" id="periodType"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="repParameters1Iterator" StaticList="false" Uses="LOV_Month" id="Month" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="repParameters1Iterator" StaticList="false" Uses="LOV_Year" id="Year" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="repParameters1Iterator" StaticList="false" Uses="LOV_fm" id="fm" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="repParameters1Iterator" StaticList="false" Uses="LOV_fy" id="fy" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="repParameters1Iterator" StaticList="false" Uses="LOV_tm" id="tm" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="repParameters1Iterator" StaticList="false" Uses="LOV_ty" id="ty" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="repParameters1Iterator" StaticList="false" Uses="LOV_quarter" id="quarter" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="repParameters1Iterator" StaticList="false" Uses="LOV_half" id="half" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="repParameters1Iterator" StaticList="false" Uses="LOV_product" id="product" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <graph IterBinding="cypVO1Iterator" id="cypVO1" xmlns="http://xmlns.oracle.com/adfm/dvt" type="LINE_VERT_ABS">
+      <graphDataMap convert="false" leafOnly="true">
+        <series>
+          <data>
+            <item value="Cyp"/>
+          </data>
+        </series>
+        <groups>
+          <item value="Pdate"/>
+        </groups>
+      </graphDataMap>
+    </graph>
+    <action IterBinding="cypVO1Iterator" id="ExecuteWithParams1" RequiresUpdateModel="true" Action="executeWithParams">
+      <NamedData NDName="dateType" NDValue="#{sessionScope.periodType}" NDType="java.lang.String"/>
+      <NamedData NDName="y" NDValue="#{sessionScope.cy}" NDType="java.lang.String"/>
+      <NamedData NDName="q" NDValue="#{sessionScope.cq}" NDType="java.lang.String"/>
+      <NamedData NDName="m" NDValue="#{sessionScope.cm}" NDType="java.lang.String"/>
+      <NamedData NDName="fy" NDValue="#{sessionScope.cfy}" NDType="java.lang.String"/>
+      <NamedData NDName="ty" NDValue="#{sessionScope.cty}" NDType="java.lang.String"/>
+      <NamedData NDName="fm" NDValue="#{sessionScope.cfm}" NDType="java.lang.String"/>
+      <NamedData NDName="tm" NDValue="#{sessionScope.ctm}" NDType="java.lang.String"/>
+      <NamedData NDName="type" NDValue="#{sessionScope.ct}" NDType="java.lang.String"/>
+      <NamedData NDName="fac" NDValue="#{sessionScope.selectedFaces}" NDType="java.lang.String"/>
+      <NamedData NDName="h" NDValue="#{sessionScope.ch}" NDType="java.lang.String"/>
+      <NamedData NDName="prod" NDValue="#{sessionScope.cprod}" NDType="java.lang.String"/>
+      <NamedData NDName="firstFacility" NDValue="#{sessionScope.firstFacility}" NDType="java.lang.String"/>
+    </action>
+    <list IterBinding="repParameters1Iterator" StaticList="false" Uses="LOV_graphName" id="graphName"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <graph IterBinding="dispensedToUserLOV1Iterator" id="dispensedToUserLOV1" xmlns="http://xmlns.oracle.com/adfm/dvt"
+           type="LINE_VERT_ABS">
+      <graphDataMap convert="false" leafOnly="true">
+        <series>
+          <data>
+            <item value="Dispensed"/>
+          </data>
+        </series>
+        <groups>
+          <item value="DispensedDate"/>
+        </groups>
+      </graphDataMap>
+    </graph>
+    <action IterBinding="dispensedToUserLOV1Iterator" id="ExecuteWithParams2" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="prod" NDValue="#{sessionScope.cprod}" NDType="java.lang.String"/>
+      <NamedData NDName="y" NDValue="#{sessionScope.cy}" NDType="java.lang.String"/>
+      <NamedData NDName="periodType" NDValue="#{sessionScope.periodType}" NDType="java.lang.String"/>
+      <NamedData NDName="type" NDValue="#{sessionScope.ct}" NDType="java.lang.String"/>
+      <NamedData NDName="q" NDValue="#{sessionScope.cq}" NDType="java.lang.String"/>
+      <NamedData NDName="h" NDValue="#{sessionScope.ch}" NDType="java.lang.String"/>
+      <NamedData NDName="m" NDValue="#{sessionScope.cm}" NDType="java.lang.String"/>
+      <NamedData NDName="fm" NDValue="#{sessionScope.cfm}" NDType="java.lang.String"/>
+      <NamedData NDName="fy" NDValue="#{sessionScope.cfy}" NDType="java.lang.String"/>
+      <NamedData NDName="tm" NDValue="#{sessionScope.ctm}" NDType="java.lang.String"/>
+      <NamedData NDName="ty" NDValue="#{sessionScope.cty}" NDType="java.lang.String"/>
+      <NamedData NDName="fac" NDValue="#{sessionScope.selectedFaces}" NDType="java.lang.String"/>
+      <NamedData NDName="firstFacility" NDValue="#{sessionScope.firstFacility}" NDType="java.lang.String"/>
+    </action>
+    <graph IterBinding="serviceStatisticsLOV1Iterator" id="serviceStatisticsLOV1"
+           xmlns="http://xmlns.oracle.com/adfm/dvt" type="COMBINATION_VERT_ABS_2Y">
+      <graphDataMap convert="false" leafOnly="true">
+        <series>
+          <data>
+            <item value="NewUsers"/>
+            <item value="ContUsers"/>
+          </data>
+        </series>
+        <groups>
+          <item value="DispensedDate"/>
+        </groups>
+      </graphDataMap>
+    </graph>
+    <action IterBinding="serviceStatisticsLOV1Iterator" id="ExecuteWithParams3" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="y" NDValue="#{sessionScope.cy}" NDType="java.lang.String"/>
+      <NamedData NDName="prod" NDValue="#{sessionScope.cprod}" NDType="java.lang.String"/>
+      <NamedData NDName="periodType" NDValue="#{sessionScope.periodType}" NDType="java.lang.String"/>
+      <NamedData NDName="type" NDValue="#{sessionScope.ct}" NDType="java.lang.String"/>
+      <NamedData NDName="q" NDValue="#{sessionScope.cq}" NDType="java.lang.String"/>
+      <NamedData NDName="fac" NDValue="#{sessionScope.selectedFaces}" NDType="java.lang.String"/>
+      <NamedData NDName="firstFacility" NDValue="#{sessionScope.firstFacility}" NDType="java.lang.String"/>
+      <NamedData NDName="m" NDValue="#{sessionScope.cm}" NDType="java.lang.String"/>
+      <NamedData NDName="h" NDValue="#{sessionScope.ch}" NDType="java.lang.String"/>
+      <NamedData NDName="fm" NDValue="#{sessionScope.cfm}" NDType="java.lang.String"/>
+      <NamedData NDName="fy" NDValue="#{sessionScope.cfy}" NDType="java.lang.String"/>
+      <NamedData NDName="tm" NDValue="#{sessionScope.ctm}" NDType="java.lang.String"/>
+      <NamedData NDName="ty" NDValue="#{sessionScope.cty}" NDType="java.lang.String"/>
+    </action>
+  </bindings>
+</pageDefinition>

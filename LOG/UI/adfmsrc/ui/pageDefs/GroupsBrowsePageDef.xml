@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.60.81" id="GroupsBrowsePageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="GroupsVO" RangeSize="25" DataControl="LOGAMDataControl" id="GroupsVOIterator"/>
+    <searchRegion Binds="GroupsVOIterator" Criteria="" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="GroupsVOQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="GroupsVOIterator" id="GroupsVO">
+      <nodeDefinition DefName="model.View.GroupsVO" Name="GroupsVO0">
+        <AttrNames>
+          <Item Value="GrpId"/>
+          <Item Value="GrpDesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="GroupsVOIterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+  </bindings>
+</pageDefinition>

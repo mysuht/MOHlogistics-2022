@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.56.60" id="FacTypeOperationPageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="FacTypeVO" RangeSize="25" DataControl="LOGAMDataControl"
+              id="FacTypeVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="FacTypeVOIterator" id="FacTypeId">
+      <AttrNames>
+        <Item Value="FacTypeId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="FacTypeVOIterator" id="FacName">
+      <AttrNames>
+        <Item Value="FacName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="FacTypeVOIterator" id="TypeHierarchy">
+      <AttrNames>
+        <Item Value="TypeHierarchy"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="LOGAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="LOGAMDataControl"/>
+  </bindings>
+</pageDefinition>

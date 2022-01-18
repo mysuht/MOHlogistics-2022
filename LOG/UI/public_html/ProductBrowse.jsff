@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelBox id="pb1">
+    <f:facet name="toolbar">
+      <af:toolbar id="t1">
+        <af:commandButton text="Add" id="cb1" action="insert"/>
+        <af:commandButton text="Modify" id="cb2" action="update"/>
+        <af:commandButton actionListener="#{bindings.Delete.execute}"
+                          text="Delete" disabled="#{!bindings.Delete.enabled}"
+                          id="cb3" partialTriggers="t2"/>
+      </af:toolbar>
+    </f:facet>
+    <af:table value="#{bindings.ProductVO.collectionModel}" var="row"
+              rows="#{bindings.ProductVO.rangeSize}"
+              emptyText="#{bindings.ProductVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.ProductVO.rangeSize}" rowBandingInterval="0"
+              filterModel="#{bindings.ProductVOQuery.queryDescriptor}"
+              queryListener="#{bindings.ProductVOQuery.processQuery}"
+              filterVisible="true" varStatus="vs"
+              selectedRowKeys="#{bindings.ProductVO.collectionModel.selectedRow}"
+              selectionListener="#{bindings.ProductVO.collectionModel.makeCurrent}"
+              rowSelection="single" id="t2" width="100%">
+      <af:column sortProperty="ProdId" filterable="true" sortable="true"
+                 headerText="#{bindings.ProductVO.hints.ProdId.label}" id="c7">
+        <af:outputText value="#{row.ProdId}" id="ot1"/>
+      </af:column>
+      <af:column sortProperty="ProName" filterable="true" sortable="true"
+                 headerText="#{bindings.ProductVO.hints.ProName.label}" id="c8" filterFeatures="caseInsensitive">
+        <af:outputText value="#{row.ProName}" id="ot8"/>
+      </af:column>
+      <af:column sortProperty="ProDose" filterable="true" sortable="true"
+                 headerText="#{bindings.ProductVO.hints.ProDose.label}" id="c5" filterFeatures="caseInsensitive">
+        <af:outputText value="#{row.ProDose}" id="ot2"/>
+      </af:column>
+      <af:column sortProperty="ProdCyp" filterable="true" sortable="true"
+                 headerText="#{bindings.ProductVO.hints.ProdCyp.label}" id="c6">
+        <af:outputText value="#{row.ProdCyp}" id="ot6">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.ProductVO.hints.ProdCyp.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="ProdIsActive" filterable="true" sortable="true"
+                 headerText="#{bindings.ProductVO.hints.ProdIsActive.label}"
+                 id="c4">
+        <af:outputText value="#{row.ProdIsActive}" id="ot9"/>
+      </af:column>
+      <af:column sortProperty="ProdShipQtyIn" filterable="true" sortable="true"
+                 headerText="#{bindings.ProductVO.hints.ProdShipQtyIn.label}"
+                 id="c1">
+        <af:outputText value="#{row.ProdShipQtyIn}" id="ot7">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.ProductVO.hints.ProdShipQtyIn.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="ProdShipQtyWhse" filterable="true"
+                 sortable="true"
+                 headerText="#{bindings.ProductVO.hints.ProdShipQtyWhse.label}"
+                 id="c3">
+        <af:outputText value="#{row.ProdShipQtyWhse}" id="ot3">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.ProductVO.hints.ProdShipQtyWhse.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="ProdShipQtySdp" filterable="true" sortable="true"
+                 headerText="#{bindings.ProductVO.hints.ProdShipQtySdp.label}"
+                 id="c9">
+        <af:outputText value="#{row.ProdShipQtySdp}" id="ot5">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.ProductVO.hints.ProdShipQtySdp.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="PrCtrindex" filterable="true" sortable="true"
+                 headerText="#{bindings.ProductVO.hints.PrCtrindex.label}"
+                 id="c2" rendered="false">
+        <af:outputText value="#{row.PrCtrindex}" id="ot4">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.ProductVO.hints.PrCtrindex.format}"/>
+        </af:outputText>
+      </af:column>
+    </af:table>
+  </af:panelBox>
+</jsp:root>

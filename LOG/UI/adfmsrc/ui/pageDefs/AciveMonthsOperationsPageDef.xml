@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.60.81" id="AciveMonthsOperationsPageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ActiveMonthsVO" RangeSize="25" DataControl="LOGAMDataControl" id="ActiveMonthsVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="ActiveMonthsVOIterator" id="AmId">
+      <AttrNames>
+        <Item Value="AmId"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="ActiveMonthsVOIterator" StaticList="false" Uses="LOV_AmMonth" id="AmMonth"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="ActiveMonthsVOIterator" StaticList="false" Uses="LOV_AmYear" id="AmYear" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="LOGAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="LOGAMDataControl"/>
+  </bindings>
+</pageDefinition>

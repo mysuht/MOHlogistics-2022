@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelGroupLayout id="pgl1">
+    <af:commandButton actionListener="#{bindings.Commit.execute}" text="Save" id="cb1"
+                      action="#{ctfitembean1.createRecords}"/>
+    <af:commandButton actionListener="#{bindings.Rollback.execute}"
+                      text="Cancel"
+                      immediate="true" id="cb2" action="cancel">
+      <af:resetActionListener/>
+    </af:commandButton>
+    <af:commandButton actionListener="#{bindings.Commit.execute}" text="Commit"
+                      id="cb4" rendered="false"/>
+  </af:panelGroupLayout>
+  <af:panelSplitter id="ps1" inlineStyle="width:100%;" splitterPosition="665" dimensionsFrom="parent">
+    <f:facet name="first">
+      <af:panelFormLayout id="pfl1">
+        <af:inputText value="#{bindings.CtfMainId.inputValue}"
+                      label="#{bindings.CtfMainId.hints.label}"
+                      required="#{bindings.CtfMainId.hints.mandatory}"
+                      columns="#{bindings.CtfMainId.hints.displayWidth}"
+                      maximumLength="#{bindings.CtfMainId.hints.precision}"
+                      shortDesc="#{bindings.CtfMainId.hints.tooltip}" id="it2" binding="#{ctfitembean1.ctfMainIdTxt}">
+          <f:validator binding="#{bindings.CtfMainId.validator}"/>
+        </af:inputText>
+        <af:inputListOfValues id="facilityIdId"
+                              popupTitle="Search and Select: #{bindings.FacilityId.hints.label}"
+                              value="#{bindings.FacilityId.inputValue}"
+                              label="Facility No"
+                              model="#{bindings.FacilityId.listOfValuesModel}"
+                              required="#{bindings.FacilityId.hints.mandatory}"
+                              columns="#{bindings.FacilityId.hints.displayWidth}"
+                              shortDesc="#{bindings.FacilityId.hints.tooltip}"
+                              autoSubmit="true" contentStyle="width:80pt;">
+          <f:validator binding="#{bindings.FacilityId.validator}"/>
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.FacilityId.format}"/>
+        </af:inputListOfValues>
+        <af:inputDate value="#{bindings.DeDate.inputValue}"
+                      label="#{bindings.DeDate.hints.label}"
+                      required="#{bindings.DeDate.hints.mandatory}"
+                      shortDesc="#{bindings.DeDate.hints.tooltip}" id="id2"
+                      readOnly="true">
+          <f:validator binding="#{bindings.DeDate.validator}"/>
+          <af:convertDateTime pattern="#{bindings.DeDate.format}"/>
+        </af:inputDate>
+        <af:inputText value="#{bindings.DeStaff.inputValue}"
+                      label="#{bindings.DeStaff.hints.label}"
+                      required="#{bindings.DeStaff.hints.mandatory}"
+                      columns="#{bindings.DeStaff.hints.displayWidth}"
+                      maximumLength="#{bindings.DeStaff.hints.precision}"
+                      shortDesc="#{bindings.DeStaff.hints.tooltip}" id="it7"
+                      readOnly="true">
+          <f:validator binding="#{bindings.DeStaff.validator}"/>
+        </af:inputText>
+        <af:selectBooleanCheckbox value="#{bindings.CtfStatus1.inputValue}"
+                                  label="#{bindings.CtfStatus1.label}"
+                                  shortDesc="#{bindings.CtfStatus1.hints.tooltip}"
+                                  id="sbc1"/>
+        <af:inputText value="#{bindings.CtfComments.inputValue}"
+                      label="#{bindings.CtfComments.hints.label}"
+                      required="#{bindings.CtfComments.hints.mandatory}"
+                      columns="#{bindings.CtfComments.hints.displayWidth}"
+                      maximumLength="#{bindings.CtfComments.hints.precision}"
+                      shortDesc="#{bindings.CtfComments.hints.tooltip}"
+                      id="it4" rows="5">
+          <f:validator binding="#{bindings.CtfComments.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.FacilityId1.inputValue}"
+                      label="#{bindings.FacilityId1.hints.label}"
+                      required="#{bindings.FacilityId1.hints.mandatory}"
+                      columns="#{bindings.FacilityId1.hints.displayWidth}"
+                      maximumLength="#{bindings.FacilityId1.hints.precision}"
+                      shortDesc="#{bindings.FacilityId1.hints.tooltip}" id="it3"
+                      rendered="false">
+          <f:validator binding="#{bindings.FacilityId1.validator}"/>
+        </af:inputText>
+      </af:panelFormLayout>
+    </f:facet>
+    <f:facet name="second">
+      <af:panelFormLayout id="pfl2">
+        <f:facet name="footer"/>
+        <af:inputDate value="#{bindings.PDate.inputValue}"
+                      label="#{bindings.PDate.hints.label}"
+                      required="#{bindings.PDate.hints.mandatory}"
+                      shortDesc="#{bindings.PDate.hints.tooltip}" id="id1" binding="#{ctfitembean1.pdate}"
+                      autoSubmit="true" valueChangeListener="#{ctfitembean1.pDateVCL}">
+          <f:validator binding="#{bindings.PDate.validator}"/>
+          <af:convertDateTime pattern="#{bindings.PDate.format}"/>
+        </af:inputDate>
+        <af:inputText value="#{bindings.FacName.inputValue}"
+                      required="#{bindings.FacName.hints.mandatory}"
+                      columns="#{bindings.FacName.hints.displayWidth}"
+                      maximumLength="#{bindings.FacName.hints.precision}"
+                      shortDesc="#{bindings.FacName.hints.tooltip}" id="it1"
+                      partialTriggers="facilityIdId"
+                      label="#{bindings.FacName.hints.label}">
+          <f:validator binding="#{bindings.FacName.validator}"/>
+        </af:inputText>
+        <af:inputDate value="#{bindings.LcDate.inputValue}"
+                      label="#{bindings.LcDate.hints.label}"
+                      required="#{bindings.LcDate.hints.mandatory}"
+                      shortDesc="#{bindings.LcDate.hints.tooltip}" id="id3"
+                      readOnly="true">
+          <f:validator binding="#{bindings.LcDate.validator}"/>
+          <af:convertDateTime pattern="#{bindings.LcDate.format}"/>
+        </af:inputDate>
+        <af:inputText value="#{bindings.LcStaff.inputValue}"
+                      label="#{bindings.LcStaff.hints.label}"
+                      required="#{bindings.LcStaff.hints.mandatory}"
+                      columns="#{bindings.LcStaff.hints.displayWidth}"
+                      maximumLength="#{bindings.LcStaff.hints.precision}"
+                      shortDesc="#{bindings.LcStaff.hints.tooltip}" id="it5"
+                      readOnly="true">
+          <f:validator binding="#{bindings.LcStaff.validator}"/>
+        </af:inputText>
+      </af:panelFormLayout>
+    </f:facet>
+  </af:panelSplitter>
+  <af:popup childCreation="deferred" autoCancel="disabled" id="p1" binding="#{ctfitembean1.popup1}">
+    <af:panelWindow id="pw1" modal="true" closeIconVisible="false">
+      <af:outputText value="Month Not Initialized Yet" id="ot1"/>
+      <af:commandButton text="OK" id="cb3" action="#{ctfitembean1.hidePopup1}"/>
+    </af:panelWindow>
+  </af:popup>
+</jsp:root>

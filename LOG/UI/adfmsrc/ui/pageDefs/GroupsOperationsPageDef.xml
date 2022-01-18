@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.60.81" id="GroupsOperationsPageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="GroupsVO" RangeSize="25" DataControl="LOGAMDataControl" id="GroupsVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="GroupsVOIterator" id="GrpId">
+      <AttrNames>
+        <Item Value="GrpId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="GroupsVOIterator" id="GrpDesc">
+      <AttrNames>
+        <Item Value="GrpDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="LOGAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="LOGAMDataControl"/>
+  </bindings>
+</pageDefinition>

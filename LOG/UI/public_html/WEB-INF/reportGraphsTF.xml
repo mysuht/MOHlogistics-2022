@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="windows-1256" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="reportGraphsTF">
+    <default-activity>graphs</default-activity>
+    <managed-bean id="__1">
+      <managed-bean-name>repBean</managed-bean-name>
+      <managed-bean-class>ui.repClass</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__2">
+      <managed-bean-name>repGraph</managed-bean-name>
+      <managed-bean-class>ui.graphsClass</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <view id="graphs">
+      <page>/graphs.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

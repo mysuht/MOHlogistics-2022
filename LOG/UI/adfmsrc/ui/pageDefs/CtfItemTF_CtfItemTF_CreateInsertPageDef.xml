@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.56.60"
+                id="CtfItemTF_CtfItemTF_CreateInsertPageDef"
+                Package="ui.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="CtfItemCtfMainVO" RangeSize="25"
+              DataControl="LOGAMDataControl" id="CtfItemCtfMainVOIterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="CtfItemCtfMainVOIterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+  </bindings>
+</pageDefinition>

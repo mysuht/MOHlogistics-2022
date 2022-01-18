@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.56.60"
+                id="ProductTF_ProductTF_CreateInsertPageDef"
+                Package="ui.pageDefs" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="ProductVO" RangeSize="25" DataControl="LOGAMDataControl"
+              id="ProductVOIterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="ProductVOIterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+  </bindings>
+</pageDefinition>

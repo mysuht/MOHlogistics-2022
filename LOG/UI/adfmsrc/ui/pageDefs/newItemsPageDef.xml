@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.60.17" id="newItemsPageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CtfItemReportVO" RangeSize="25" DataControl="LOGAMDataControl" id="CtfItemCtfMainVOIterator"/>
+    <searchRegion Binds="CtfItemCtfMainVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="CtfItemCtfMainVOQuery"/>
+    <iterator Binds="CtfMainReportVO" RangeSize="25" DataControl="LOGAMDataControl" id="CtfMainVOIterator"/>
+  </executables>
+  <bindings>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="LOGAMDataControl"/>
+    <tree IterBinding="CtfItemCtfMainVOIterator" id="CtfItemCtfMainVO">
+      <nodeDefinition DefName="model.View.CtfItemVO" Name="CtfItemCtfMainVO0">
+        <AttrNames>
+          <Item Value="CtfItemId"/>
+          <Item Value="CtfMainId"/>
+          <Item Value="ProdId"/>
+          <Item Value="ProName"/>
+          <Item Value="OpenBal"/>
+          <Item Value="Receipts"/>
+          <Item Value="Issues"/>
+          <Item Value="AdjTypeId"/>
+          <Item Value="Adjustments"/>
+          <Item Value="AvgMnthlyCons"/>
+          <Item Value="QtyRequired"/>
+          <Item Value="QtyReceived"/>
+          <Item Value="ClosingBal"/>
+          <Item Value="NewVisits"/>
+          <Item Value="ContVisits"/>
+          <Item Value="ProDose"/>
+          <Item Value="TypeName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="CtfMainVOIterator" id="Next" RequiresUpdateModel="true" Action="next"/>
+    <action IterBinding="CtfMainVOIterator" id="Previous" RequiresUpdateModel="true" Action="previous"/>
+    <action IterBinding="CtfMainVOIterator" id="setCurrentRowWithKeyValue" RequiresUpdateModel="false"
+            Action="setCurrentRowWithKeyValue">
+      <NamedData NDName="rowKey" NDValue="#{pageFlowScope.mainId}" NDType="java.lang.String"/>
+    </action>
+    <attributeValues IterBinding="CtfMainVOIterator" id="CtfComments">
+      <AttrNames>
+        <Item Value="CtfComments"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="CtfItemCtfMainVOIterator" id="Execute" RequiresUpdateModel="true" Action="iteratorExecute"/>
+    <methodAction id="getItemsByMainId" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getItemsByMainId"
+                  IsViewObjectMethod="false" DataControl="LOGAMDataControl"
+                  InstanceName="data.LOGAMDataControl.dataProvider"
+                  ReturnName="data.LOGAMDataControl.methodResults.getItemsByMainId_LOGAMDataControl_dataProvider_getItemsByMainId_result">
+      <NamedData NDName="mainId" NDValue="#{pageFlowScope.mainId}" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="CalculateValues" RequiresUpdateModel="true" Action="invokeMethod" MethodName="CalculateValues"
+                  IsViewObjectMethod="false" DataControl="LOGAMDataControl"
+                  InstanceName="data.LOGAMDataControl.dataProvider"
+                  ReturnName="data.LOGAMDataControl.methodResults.CalculateValues_LOGAMDataControl_dataProvider_CalculateValues_result">
+      <NamedData NDName="mainId" NDValue="#{pageFlowScope.mainId}" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="SearchMainItems" RequiresUpdateModel="true" Action="invokeMethod" MethodName="SearchMainItems"
+                  IsViewObjectMethod="false" DataControl="LOGAMDataControl"
+                  InstanceName="data.LOGAMDataControl.dataProvider">
+      <NamedData NDName="code" NDValue="#{pageFlowScope.sFacCode}" NDType="java.lang.String"/>
+      <NamedData NDName="date" NDType="oracle.jbo.domain.Date"/>
+      <NamedData NDName="chooseDate" NDValue="#{'3'}" NDType="java.lang.String"/>
+      <NamedData NDName="startDate" NDType="oracle.jbo.domain.Date"/>
+      <NamedData NDName="endDate" NDType="oracle.jbo.domain.Date"/>
+    </methodAction>
+    <action IterBinding="CtfItemCtfMainVOIterator" id="ExecuteItemsReport" InstanceName="LOGAMDataControl.CtfItemReportVO"
+            DataControl="LOGAMDataControl" RequiresUpdateModel="true" Action="iteratorExecute"/>
+  </bindings>
+</pageDefinition>

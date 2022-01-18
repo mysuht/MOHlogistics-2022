@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="windows-1256" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="cypVO"
+  Version="12.1.2.66.68"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.LOV.cypVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="dateType"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="u"/>
+  <Variable
+    Name="y"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="2012"/>
+  <Variable
+    Name="q"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="3"/>
+  <Variable
+    Name="m"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="02"/>
+  <Variable
+    Name="fy"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="2012"/>
+  <Variable
+    Name="ty"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="2012"/>
+  <Variable
+    Name="fm"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="03"/>
+  <Variable
+    Name="tm"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="09"/>
+  <Variable
+    Name="type"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="1"/>
+  <Variable
+    Name="fac"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="3"/>
+  <Variable
+    Name="h"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="prod"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="4"/>
+  <Variable
+    Name="firstFacility"
+    Kind="where"
+    Type="java.lang.String"
+    DefaultValue="3"/>
+  <SQLQuery><![CDATA[select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                    
+p.prod_id,to_char(cm.p_date,'mm/yyyy') pdate                                                                         
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_date(to_char(cm.p_date,'mm/yyyy'),'mm/yyyy') between to_date(:fm ||'/'||:fy,'mm/yyyy') and to_date(:tm||'/'||:ty,'mm/yyyy')                                                               
+and F.SUP_CODE in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                         
+AND (select distinct type_hierarchy from fac_type ft, facility ff where    
+ft.fac_type_id = ff.fac_type_id    
+and    
+ff.facility_id = :firstFacility         
+) <> 3      
+                                     
+                                                                
+ and p.prod_id=:prod and 'u' = :dateType and '0' <> :type                                                           
+                                                           
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                                           
+ union                                                          
+                                                         
+select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                    
+p.prod_id,to_char(cm.p_date,'mm/yyyy')    pdate                                                                      
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y                                                               
+ and to_char(cm.p_date,'mm')= :m                                                           
+and F.SUP_CODE in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                         
+AND (select distinct type_hierarchy from fac_type ft, facility ff where    
+ft.fac_type_id = ff.fac_type_id    
+and    
+ff.facility_id = :firstFacility         
+) <> 3                        
+ and '0' <> :type                                                      
+ and p.prod_id=:prod and 'mon' = :dateType                                                            
+                                                           
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                                           
+ union                                                          
+                                                          
+select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                    
+p.prod_id,to_char(cm.p_date,'mm/yyyy')    pdate                                                                      
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y                                                               
+ and to_char(cm.p_date,'Q')= :q                                                           
+                                                            
+ and '0' <> :type                                                      
+ and F.SUP_CODE in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                        
+AND (select distinct type_hierarchy from fac_type ft, facility ff where   
+ft.fac_type_id = ff.fac_type_id   
+and   
+ff.facility_id = :firstFacility        
+) <> 3                                     
+ and p.prod_id=:prod and 'qua' = :dateType                                                            
+                                                           
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                                           
+ union                                                           
+                                                           
+select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                    
+p.prod_id,to_char(cm.p_date,'mm/yyyy')  pdate                                                                        
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y and                                                                           
+ to_char(cm.p_date,'Q') in ('1','2')                                                                          
+ and p.prod_id=:prod and 'hy' = :dateType and 1 = :h                                                      
+ and '0' <> :type                                                      
+ and F.SUP_CODE in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                        
+AND (select distinct type_hierarchy from fac_type ft, facility ff where   
+ft.fac_type_id = ff.fac_type_id   
+and   
+ff.facility_id = :firstFacility        
+) <> 3                                      
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')       
+   
+ union                                                                   
+select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp, p.prod_id,                                   
+to_char(cm.p_date,'mm/yyyy')     pdate                                                                     
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y and                                                                           
+ to_char(cm.p_date,'Q') in ('3','4')                                                                        
+ and p.prod_id=:prod and 'hy' = :dateType and 2 = :h                                                   
+ and F.SUP_CODE in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                        
+AND (select distinct type_hierarchy from fac_type ft, facility ff where   
+ft.fac_type_id = ff.fac_type_id   
+and   
+ff.facility_id = :firstFacility        
+) <> 3                                                 
+ and '0' <> :type                                                      
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                                                       
+ union                                                             
+ select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                   
+ p.prod_id,to_char(cm.p_date,'mm/yyyy')   pdate                                                                       
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y                                                                            
+                                                                        
+ and p.prod_id=:prod and 'ann' = :dateType                                                      
+ and '0' <> :type                                                      
+ and F.SUP_CODE in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                        
+AND (select distinct type_hierarchy from fac_type ft, facility ff where   
+ft.fac_type_id = ff.fac_type_id   
+and   
+ff.facility_id = :firstFacility        
+) <> 3                                    
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                        
+              
+       UNION       
+--/////////////// NOT alL /////////////       
+select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                    
+p.prod_id,to_char(cm.p_date,'mm/yyyy') pdate                                                                         
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_date(to_char(cm.p_date,'mm/yyyy'),'mm/yyyy') between to_date(:fm ||'/'||:fy,'mm/yyyy') and to_date(:tm||'/'||:ty,'mm/yyyy')                                                               
+and cm.facility_id in ( select regexp_substr 
+(:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                         
+                                     
+ and ft.type_hierarchy=3                                                                          
+ and p.prod_id=:prod and 'u' = :dateType and '0' <> :type                                                           
+                                                           
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                                           
+ union                                                          
+                                                         
+select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                    
+p.prod_id,to_char(cm.p_date,'mm/yyyy')    pdate                                                                      
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y                                                               
+ and to_char(cm.p_date,'mm')= :m                                                           
+ and ft.type_hierarchy=3                                             
+ and cm.facility_id in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                         
+                                      
+ and '0' <> :type                                                      
+ and p.prod_id=:prod and 'mon' = :dateType                                                            
+                                                           
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                                           
+ union                                                          
+                                                          
+select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                    
+p.prod_id,to_char(cm.p_date,'mm/yyyy')    pdate                                                                      
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y                                                               
+ and to_char(cm.p_date,'Q')= :q                                                           
+ and ft.type_hierarchy=3                                                               
+ and '0' <> :type                                                      
+ and cm.facility_id in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                         
+                                      
+ and p.prod_id=:prod and 'qua' = :dateType                                                            
+                                                           
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                                           
+ union                                                           
+                                                           
+select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                    
+p.prod_id,to_char(cm.p_date,'mm/yyyy')  pdate                                                                        
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y and                                                                           
+ to_char(cm.p_date,'Q') in ('1','2') and ft.type_hierarchy=3                                                                          
+ and p.prod_id=:prod and 'hy' = :dateType and 1 = :h                                                      
+ and '0' <> :type                                                      
+ and cm.facility_id in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                         
+                                     
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                                                      
+ union                                                                   
+select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp, p.prod_id,                                   
+to_char(cm.p_date,'mm/yyyy')     pdate                                                                     
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y and                                                                           
+ to_char(cm.p_date,'Q') in ('3','4') and ft.type_hierarchy=3                                                                          
+ and p.prod_id=:prod and 'hy' = :dateType and 2 = :h                                                   
+ and cm.facility_id in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                         
+                                                  
+ and '0' <> :type                                                      
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                                                       
+ union                                                             
+ select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                   
+ p.prod_id,to_char(cm.p_date,'mm/yyyy')   pdate                                                                       
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y                                                                            
+ and ft.type_hierarchy=3                                                                          
+ and p.prod_id=:prod and 'ann' = :dateType                                                      
+ and '0' <> :type                                                      
+ and cm.facility_id in ( select regexp_substr (:fac, '[^,]+',1,level) from dual connect by regexp_substr (:fac,'[^,]+',1,level) is not null )                                         
+                                  
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                        
+                                        
+                                        
+   union                                     
+                                        
+-------------------------                                        
+-------------------------------                                        
+-------------- All ------------                                        
+-----------------------------                                        
+select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                   
+p.prod_id,to_char(cm.p_date,'mm/yyyy')     pdate                                                                     
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_date(to_char(cm.p_date,'mm/yyyy'),'mm/yyyy') between to_date(:fm ||'/'||:fy,'mm/yyyy') and to_date(:tm||'/'||:ty,'mm/yyyy')                                                               
+                                                           
+ and ft.type_hierarchy=3                                                                          
+ and p.prod_id=:prod and 'u' = :dateType and '0' = :type                                                           
+                                                           
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                                           
+ union                                                          
+                                                         
+select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                   
+p.prod_id,to_char(cm.p_date,'mm/yyyy')     pdate                                                                     
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y                                                               
+ and to_char(cm.p_date,'mm')= :m                                                           
+ and ft.type_hierarchy=3                                                         
+ and '0' = :type                                                      
+ and p.prod_id=:prod and 'mon' = :dateType                                                            
+                                                           
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                                           
+ union                                                          
+                                                          
+select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                   
+p.prod_id,to_char(cm.p_date,'mm/yyyy')     pdate                                                                     
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y                                                               
+ and to_char(cm.p_date,'Q')= :q                                                           
+ and ft.type_hierarchy=3                                                               
+ and 0 = :type                                                      
+ and p.prod_id=:prod and 'qua' = :dateType                                                            
+                                                           
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                                           
+ union                                                           
+                                                           
+select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                   
+p.prod_id,to_char(cm.p_date,'mm/yyyy')      pdate                                                                    
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y and                                                                           
+ to_char(cm.p_date,'Q') in ('1','2') and ft.type_hierarchy=3                                                                          
+ and p.prod_id=:prod and 'hy' = :dateType and 1 = :h                                                      
+ and '0' = :type                                                      
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                                                      
+ union                                                                   
+select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                   
+p.prod_id,to_char(cm.p_date,'mm/yyyy')      pdate                                                                    
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y and                                                                           
+ to_char(cm.p_date,'Q') in ('3','4') and ft.type_hierarchy=3                                                                          
+ and p.prod_id=:prod and 'hy' = :dateType and 2 = :h                                                   
+                                                       
+ and '0' = :type                                                      
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                                                                       
+ union                                                             
+ select ( case when p.prod_id not in (3,7,12) then round(sum(ci.issues /  p.prod_cyp) ) else round(sum(ci.issues *  p.prod_cyp) ) end )  cyp,                                   
+ p.prod_id,to_char(cm.p_date,'mm/yyyy')   pdate                                                                       
+ from ctf_item ci, ctf_main cm, facility f, fac_type ft,product p                                                                          
+ where ci.prod_id = p.prod_id(+) and                                                                          
+ ci.ctf_main_id = cm.ctf_main_id(+)                                                                           
+ and cm.facility_id = f.facility_id and                                                                           
+ f.fac_type_id= ft.fac_type_id(+)                                                                           
+ and to_char(cm.p_date,'yyyy')=:y                                                                            
+ and ft.type_hierarchy=3                                                                          
+ and p.prod_id=:prod and 'ann' = :dateType                                                      
+ and '0' = :type                                                      
+ group by  p.prod_id,to_char(cm.p_date,'mm/yyyy')                   
+  order by 3]]></SQLQuery>
+  <ViewAttribute
+    Name="Cyp"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="CYP"
+    Expression="CYP"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMAT
+          ResId="model.LOV.cypVO.Cyp_FMT_FORMAT"/>
+        <FMT_FORMATTER
+          ResId="model.LOV.cypVO.Cyp_FMT_FORMATTER"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ProdId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="7"
+    Scale="0"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="PROD_ID"
+    Expression="PROD_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="Pdate"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="7"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PDATE"
+    Expression="PDATE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NoName1"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    SQLType="VARCHAR"
+    Precision="7">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NoName2"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="$none$"
+    SQLType="NUMERIC"
+    IsSelected="false"
+    SDOHidden="true"/>
+  <ViewAttribute
+    Name="NoName3"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="7"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.modelBundle"/>
+  </ResourceBundle>
+</ViewObject>

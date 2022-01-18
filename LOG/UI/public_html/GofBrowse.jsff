@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:facelets="http://xmlns.oracle.com/jdev/webapp/facelets"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:messages id="m1"/>
+    <af:panelBox text="Group Of Facilities" id="pb1">
+        <f:facet name="toolbar">
+            <af:toolbar id="t2">
+                <af:commandButton text="Add" id="cb1" action="insert"/>
+                <af:commandButton text="Modify" id="cb2" action="update"/>
+                <af:commandButton actionListener="#{bindings.Delete.execute}" text="Delete"
+                                  disabled="#{!bindings.Delete.enabled}" id="cb3"/>
+            </af:toolbar>
+        </f:facet>
+        <af:table value="#{bindings.GroupOfFacilitiesVO.collectionModel}" var="row"
+                  rows="#{bindings.GroupOfFacilitiesVO.rangeSize}"
+                  emptyText="#{bindings.GroupOfFacilitiesVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                  fetchSize="#{bindings.GroupOfFacilitiesVO.rangeSize}" rowBandingInterval="0"
+                  filterModel="#{bindings.GroupOfFacilitiesVOQuery.queryDescriptor}"
+                  queryListener="#{bindings.GroupOfFacilitiesVOQuery.processQuery}" filterVisible="true" varStatus="vs"
+                  selectedRowKeys="#{bindings.GroupOfFacilitiesVO.collectionModel.selectedRow}"
+                  selectionListener="#{bindings.GroupOfFacilitiesVO.collectionModel.makeCurrent}" rowSelection="single"
+                  id="t1" width="100%" partialTriggers="::cb3">
+            <af:column sortProperty="#{bindings.GroupOfFacilitiesVO.hints.GofId.name}" filterable="true" sortable="true"
+                       headerText="#{bindings.GroupOfFacilitiesVO.hints.GofId.label}" id="c1">
+                <af:outputText value="#{row.GofId}" id="ot1">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.GroupOfFacilitiesVO.hints.GofId.format}"/>
+                </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.GroupOfFacilitiesVO.hints.GofFacilityId.name}" filterable="true"
+                       sortable="true" headerText="#{bindings.GroupOfFacilitiesVO.hints.GofFacilityId.label}" id="c2">
+                <af:outputText value="#{row.GofFacilityId}" id="ot2">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.GroupOfFacilitiesVO.hints.GofFacilityId.format}"/>
+                </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.GroupOfFacilitiesVO.hints.FacCode.name}" filterable="true"
+                       sortable="true" headerText="#{bindings.GroupOfFacilitiesVO.hints.FacCode.label}" id="c3">
+                <af:outputText value="#{row.FacCode}" id="ot3"/>
+            </af:column>
+            <af:column sortProperty="#{bindings.GroupOfFacilitiesVO.hints.FacName.name}" filterable="true"
+                       sortable="true" headerText="#{bindings.GroupOfFacilitiesVO.hints.FacName.label}" id="c4">
+                <af:outputText value="#{row.FacName}" id="ot4"/>
+            </af:column>
+            <af:column sortProperty="#{bindings.GroupOfFacilitiesVO.hints.GofGrpId.name}" filterable="true"
+                       sortable="true" headerText="#{bindings.GroupOfFacilitiesVO.hints.GofGrpId.label}" id="c5">
+                <af:outputText value="#{row.GofGrpId}" id="ot5">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.GroupOfFacilitiesVO.hints.GofGrpId.format}"/>
+                </af:outputText>
+            </af:column>
+            <af:column sortProperty="#{bindings.GroupOfFacilitiesVO.hints.GrpDesc.name}" filterable="true"
+                       sortable="true" headerText="#{bindings.GroupOfFacilitiesVO.hints.GrpDesc.label}" id="c6">
+                <af:outputText value="#{row.GrpDesc}" id="ot6"/>
+            </af:column>
+        </af:table>
+    </af:panelBox>
+</ui:composition>

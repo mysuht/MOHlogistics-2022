@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="windows-1256" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CtfItemCtfMainIudsVL"
+  Version="11.1.2.60.17"
+  EntityAssociation="model.Asso.FkCtfItemCtfMainASSO">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.VL.CtfItemCtfMainIudsVL_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="CtfMain"
+    Cardinality="1"
+    Source="true"
+    Owner="model.View.CtfMainVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CtfMain"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.View.CtfMainVO.CtfMainId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="CtfItemCtfMainIuds"
+    Cardinality="-1"
+    Owner="model.View.CtfItemCtfMainIudsVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CtfItemCtfMainIuds"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.View.CtfItemCtfMainIudsVO.CtfMainId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.modelBundle"/>
+  </ResourceBundle>
+</ViewLink>

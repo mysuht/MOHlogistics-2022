@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.2.66.68"
+                id="CtfMainTF_CtfMainTF_provideCtfMainByFacilityReportPageDef" Package="ui.pageDefs"
+                SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="provideCtfMainByFacilityReport" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="provideCtfMainByFacilityReport" IsViewObjectMethod="false" DataControl="LOGAMDataControl"
+                  InstanceName="data.LOGAMDataControl.dataProvider">
+      <NamedData NDName="code" NDValue="#{pageFlowScope.sFacCode}" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

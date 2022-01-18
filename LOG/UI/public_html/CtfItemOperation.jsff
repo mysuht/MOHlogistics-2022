@@ -1,0 +1,304 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelGroupLayout id="pgl2">
+    <af:panelBox text="Main Information" id="pb2">
+      <f:facet name="toolbar">
+        <af:toolbar id="t1">
+          <af:commandButton actionListener="#{bindings.Commit.execute}"
+                            text="Save" id="cb1" action="back"/>
+          <af:commandButton actionListener="#{bindings.Rollback.execute}"
+                            text="Cancel" immediate="true" id="cb2"
+                            action="back">
+            <af:resetActionListener/>
+          </af:commandButton>
+        </af:toolbar>
+      </f:facet>
+      <af:panelSplitter id="ps1" inlineStyle="width:100%; height:153px;"
+                        splitterPosition="306" disabled="true">
+        <f:facet name="first">
+          <af:panelFormLayout id="pfl3">
+            <f:facet name="footer"/>
+            <af:inputText value="#{bindings.CtfItemId.inputValue}"
+                          label="#{bindings.CtfItemId.hints.label}"
+                          required="#{bindings.CtfItemId.hints.mandatory}"
+                          columns="#{bindings.CtfItemId.hints.displayWidth}"
+                          maximumLength="#{bindings.CtfItemId.hints.precision}"
+                          shortDesc="#{bindings.CtfItemId.hints.tooltip}"
+                          id="it22" binding="#{ctfitembean.ctfItemId}">
+              <f:validator binding="#{bindings.CtfItemId.validator}"/>
+            </af:inputText>
+            <af:inputDate value="#{bindings.PDate.inputValue}"
+                          label="#{bindings.PDate.hints.label}"
+                          required="#{bindings.PDate.hints.mandatory}"
+                          shortDesc="#{bindings.PDate.hints.tooltip}" id="id1"
+                          binding="#{ctfitembean.operDate}">
+              <f:validator binding="#{bindings.PDate.validator}"/>
+              <af:convertDateTime pattern="#{bindings.PDate.format}"/>
+            </af:inputDate>
+            <af:inputListOfValues id="prodIdId"
+                                  popupTitle="Search and Select: #{bindings.ProdId.hints.label}"
+                                  value="#{bindings.ProdId.inputValue}"
+                                  label="Product No."
+                                  model="#{bindings.ProdId.listOfValuesModel}"
+                                  required="#{bindings.ProdId.hints.mandatory}"
+                                  columns="#{bindings.ProdId.hints.displayWidth}"
+                                  shortDesc="#{bindings.ProdId.hints.tooltip}"
+                                  autoSubmit="true"
+                                  binding="#{ctfitembean.prodId}">
+              <f:validator binding="#{bindings.ProdId.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.ProdId.format}"/>
+            </af:inputListOfValues>
+            <af:inputText value="#{bindings.AdjTypeId1.inputValue}"
+                          label="#{bindings.AdjTypeId1.hints.label}"
+                          required="#{bindings.AdjTypeId1.hints.mandatory}"
+                          columns="#{bindings.AdjTypeId1.hints.displayWidth}"
+                          maximumLength="#{bindings.AdjTypeId1.hints.precision}"
+                          shortDesc="#{bindings.AdjTypeId1.hints.tooltip}"
+                          id="it6" rendered="false">
+              <f:validator binding="#{bindings.AdjTypeId1.validator}"/>
+            </af:inputText>
+            <af:inputText value="#{bindings.ProdId1.inputValue}"
+                          label="#{bindings.ProdId1.hints.label}"
+                          required="#{bindings.ProdId1.hints.mandatory}"
+                          columns="#{bindings.ProdId1.hints.displayWidth}"
+                          maximumLength="#{bindings.ProdId1.hints.precision}"
+                          shortDesc="#{bindings.ProdId1.hints.tooltip}" id="it4"
+                          rendered="false">
+              <f:validator binding="#{bindings.ProdId1.validator}"/>
+            </af:inputText>
+          </af:panelFormLayout>
+        </f:facet>
+        <f:facet name="second">
+          <af:panelFormLayout id="pfl4">
+            <f:facet name="footer"/>
+            <af:inputText value="#{bindings.CtfMainId.inputValue}"
+                          label="#{bindings.CtfMainId.hints.label}"
+                          required="#{bindings.CtfMainId.hints.mandatory}"
+                          columns="#{bindings.CtfMainId.hints.displayWidth}"
+                          maximumLength="#{bindings.CtfMainId.hints.precision}"
+                          shortDesc="#{bindings.CtfMainId.hints.tooltip}"
+                          id="it11" readOnly="true"
+                          binding="#{ctfitembean.ctfMainId}">
+              <f:validator binding="#{bindings.CtfMainId.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.CtfMainId.format}"/>
+            </af:inputText>
+            <af:spacer width="10" height="10" id="s4"/>
+            <af:spacer width="10" height="10" id="s3"/>
+            <af:inputText value="#{bindings.ProName.inputValue}"
+                          required="#{bindings.ProName.hints.mandatory}"
+                          columns="#{bindings.ProName.hints.displayWidth}"
+                          maximumLength="#{bindings.ProName.hints.precision}"
+                          shortDesc="#{bindings.ProName.hints.tooltip}"
+                          id="it15" label="#{bindings.ProName.hints.label}"
+                          partialTriggers="prodIdId">
+              <f:validator binding="#{bindings.ProName.validator}"/>
+            </af:inputText>
+          </af:panelFormLayout>
+        </f:facet>
+      </af:panelSplitter>
+    </af:panelBox>
+    <af:panelBox text="Quantity" id="pb1" disclosed="false">
+      <f:facet name="toolbar">
+        <af:toolbar id="t2">
+          <af:commandButton text="Get Last Close Balance" id="cb4"
+                            actionListener="#{ctfitembean.setopenBal}"/>
+          <af:commandButton text="Calculate" id="cb3"
+                            actionListener="#{ctfitembean.calculateValues}"/>
+        </af:toolbar>
+      </f:facet>
+      <af:panelSplitter id="ps2" inlineStyle="width:100%;"
+                        splitterPosition="282" disabled="true">
+        <f:facet name="first">
+          <af:panelFormLayout id="pfl1">
+            <f:facet name="footer"/>
+            <af:inputText value="#{bindings.OpenBal.inputValue}"
+                          label="#{bindings.OpenBal.hints.label}"
+                          required="#{bindings.OpenBal.hints.mandatory}"
+                          columns="#{bindings.OpenBal.hints.displayWidth}"
+                          maximumLength="#{bindings.OpenBal.hints.precision}"
+                          shortDesc="#{bindings.OpenBal.hints.tooltip}" id="it9"
+                          binding="#{ctfitembean.openBal}" autoSubmit="true">
+              <f:validator binding="#{bindings.OpenBal.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.OpenBal.format}"/>
+            </af:inputText>
+            <af:inputText value="#{bindings.Receipts.inputValue}"
+                          label="#{bindings.Receipts.hints.label}"
+                          required="#{bindings.Receipts.hints.mandatory}"
+                          columns="#{bindings.Receipts.hints.displayWidth}"
+                          maximumLength="#{bindings.Receipts.hints.precision}"
+                          shortDesc="#{bindings.Receipts.hints.tooltip}"
+                          id="it16" binding="#{ctfitembean.receipt}"
+                          autoSubmit="true">
+              <f:validator binding="#{bindings.Receipts.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.Receipts.format}"/>
+            </af:inputText>
+            <af:inputListOfValues id="adjTypeIdId"
+                                  popupTitle="Search and Select: #{bindings.AdjTypeId.hints.label}"
+                                  value="#{bindings.AdjTypeId.inputValue}"
+                                  label="Adjustment No."
+                                  model="#{bindings.AdjTypeId.listOfValuesModel}"
+                                  required="#{bindings.AdjTypeId.hints.mandatory}"
+                                  columns="#{bindings.AdjTypeId.hints.displayWidth}"
+                                  shortDesc="#{bindings.AdjTypeId.hints.tooltip}"
+                                  autoSubmit="true"
+                                  binding="#{ctfitembean.adjId}">
+              <f:validator binding="#{bindings.AdjTypeId.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.AdjTypeId.format}"/>
+            </af:inputListOfValues>
+            <af:inputText value="#{bindings.Adjustments.inputValue}"
+                          label="#{bindings.Adjustments.hints.label}"
+                          required="#{bindings.Adjustments.hints.mandatory}"
+                          columns="#{bindings.Adjustments.hints.displayWidth}"
+                          maximumLength="#{bindings.Adjustments.hints.precision}"
+                          shortDesc="#{bindings.Adjustments.hints.tooltip}"
+                          id="it12" binding="#{ctfitembean.adjAmount}"
+                          autoSubmit="true">
+              <f:validator binding="#{bindings.Adjustments.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.Adjustments.format}"/>
+            </af:inputText>
+            <af:inputText value="#{bindings.QtyRequired.inputValue}"
+                          label="#{bindings.QtyRequired.hints.label}"
+                          required="#{bindings.QtyRequired.hints.mandatory}"
+                          columns="#{bindings.QtyRequired.hints.displayWidth}"
+                          maximumLength="#{bindings.QtyRequired.hints.precision}"
+                          shortDesc="#{bindings.QtyRequired.hints.tooltip}"
+                          id="it14" binding="#{ctfitembean.qtyReq}"
+                          autoSubmit="true" partialTriggers="it5 it3">
+              <f:validator binding="#{bindings.QtyRequired.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.QtyRequired.format}"/>
+            </af:inputText>
+          </af:panelFormLayout>
+        </f:facet>
+        <f:facet name="second">
+          <af:panelFormLayout id="pfl2">
+            <f:facet name="footer"/>
+            <af:inputText value="#{bindings.Issues.inputValue}"
+                          label="#{bindings.Issues.hints.label}"
+                          required="#{bindings.Issues.hints.mandatory}"
+                          columns="#{bindings.Issues.hints.displayWidth}"
+                          maximumLength="#{bindings.Issues.hints.precision}"
+                          shortDesc="#{bindings.Issues.hints.tooltip}" id="it1"
+                          binding="#{ctfitembean.issue}" autoSubmit="true">
+              <f:validator binding="#{bindings.Issues.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.Issues.format}"/>
+            </af:inputText>
+            <af:inputText value="#{bindings.ClosingBal.inputValue}"
+                          label="#{bindings.ClosingBal.hints.label}"
+                          required="#{bindings.ClosingBal.hints.mandatory}"
+                          columns="#{bindings.ClosingBal.hints.displayWidth}"
+                          maximumLength="#{bindings.ClosingBal.hints.precision}"
+                          shortDesc="#{bindings.ClosingBal.hints.tooltip}"
+                          id="it5" binding="#{ctfitembean.closebal}"
+                          partialTriggers="it1 it9 it16 it12">
+              <f:validator binding="#{bindings.ClosingBal.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.ClosingBal.format}"/>
+            </af:inputText>
+            <af:inputText value="#{bindings.TypeName.inputValue}"
+                          label="#{bindings.AdjTypeId.hints.label}"
+                          required="#{bindings.TypeName.hints.mandatory}"
+                          columns="#{bindings.TypeName.hints.displayWidth}"
+                          maximumLength="#{bindings.TypeName.hints.precision}"
+                          shortDesc="#{bindings.TypeName.hints.tooltip}"
+                          id="it18" partialTriggers="adjTypeIdId">
+              <f:validator binding="#{bindings.TypeName.validator}"/>
+            </af:inputText>
+            <af:inputText value="#{bindings.QtyReceived.inputValue}"
+                          label="#{bindings.QtyReceived.hints.label}"
+                          required="#{bindings.QtyReceived.hints.mandatory}"
+                          columns="#{bindings.QtyReceived.hints.displayWidth}"
+                          maximumLength="#{bindings.QtyReceived.hints.precision}"
+                          shortDesc="#{bindings.QtyReceived.hints.tooltip}"
+                          id="it7">
+              <f:validator binding="#{bindings.QtyReceived.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.QtyReceived.format}"/>
+            </af:inputText>
+            <af:inputText value="#{bindings.AvgMnthlyCons.inputValue}"
+                          label="#{bindings.AvgMnthlyCons.hints.label}"
+                          required="#{bindings.AvgMnthlyCons.hints.mandatory}"
+                          columns="#{bindings.AvgMnthlyCons.hints.displayWidth}"
+                          maximumLength="#{bindings.AvgMnthlyCons.hints.precision}"
+                          shortDesc="#{bindings.AvgMnthlyCons.hints.tooltip}"
+                          id="it3" binding="#{ctfitembean.avgMonCon}"
+                          partialTriggers="it1" autoSubmit="true">
+              <f:validator binding="#{bindings.AvgMnthlyCons.validator}"/>
+            </af:inputText>
+          </af:panelFormLayout>
+        </f:facet>
+      </af:panelSplitter>
+    </af:panelBox>
+    <af:panelBox text="Error &amp; Users" id="pb3" disclosed="false">
+      <f:facet name="toolbar"/>
+      <af:panelSplitter id="ps3" inlineStyle="width:100%;"
+                        splitterPosition="357" disabled="true">
+        <f:facet name="first">
+          <af:panelFormLayout id="pfl5">
+            <f:facet name="footer"/>
+            <af:inputText value="#{bindings.NewVisits.inputValue}"
+                          label="#{bindings.NewVisits.hints.label}"
+                          required="#{bindings.NewVisits.hints.mandatory}"
+                          columns="#{bindings.NewVisits.hints.displayWidth}"
+                          maximumLength="#{bindings.NewVisits.hints.precision}"
+                          shortDesc="#{bindings.NewVisits.hints.tooltip}"
+                          id="it8">
+              <f:validator binding="#{bindings.NewVisits.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.NewVisits.format}"/>
+            </af:inputText>
+            <af:selectBooleanCheckbox value="#{bindings.ErrOb1.inputValue}"
+                                      label="#{bindings.ErrOb1.label}"
+                                      shortDesc="#{bindings.ErrOb1.hints.tooltip}"
+                                      id="sbc1"/>
+            <af:selectBooleanCheckbox value="#{bindings.ErrQtyRcvd1.inputValue}"
+                                      label="#{bindings.ErrQtyRcvd1.label}"
+                                      shortDesc="#{bindings.ErrQtyRcvd1.hints.tooltip}"
+                                      id="sbc3"/>
+            <af:selectBooleanCheckbox value="#{bindings.DeStat1.inputValue}"
+                                      label="#{bindings.DeStat1.label}"
+                                      shortDesc="#{bindings.DeStat1.hints.tooltip}"
+                                      id="sbc6"/>
+          </af:panelFormLayout>
+        </f:facet>
+        <f:facet name="second">
+          <af:panelFormLayout id="pfl6">
+            <f:facet name="footer"/>
+            <af:inputText value="#{bindings.ContVisits.inputValue}"
+                          label="#{bindings.ContVisits.hints.label}"
+                          required="#{bindings.ContVisits.hints.mandatory}"
+                          columns="#{bindings.ContVisits.hints.displayWidth}"
+                          maximumLength="#{bindings.ContVisits.hints.precision}"
+                          shortDesc="#{bindings.ContVisits.hints.tooltip}"
+                          id="it20">
+              <f:validator binding="#{bindings.ContVisits.validator}"/>
+              <af:convertNumber groupingUsed="false"
+                                pattern="#{bindings.ContVisits.format}"/>
+            </af:inputText>
+            <af:selectBooleanCheckbox value="#{bindings.ErrCb1.inputValue}"
+                                      label="#{bindings.ErrCb1.label}"
+                                      shortDesc="#{bindings.ErrCb1.hints.tooltip}"
+                                      id="sbc2"/>
+            <af:selectBooleanCheckbox value="#{bindings.ErrQtyRqrd.inputValue}"
+                                      label="#{bindings.ErrQtyRqrd.label}"
+                                      shortDesc="#{bindings.ErrQtyRqrd.hints.tooltip}"
+                                      id="sbc4"/>
+            <af:selectBooleanCheckbox value="#{bindings.ErrAmc1.inputValue}"
+                                      label="#{bindings.ErrAmc1.label}"
+                                      shortDesc="#{bindings.ErrAmc1.hints.tooltip}"
+                                      id="sbc5"/>
+          </af:panelFormLayout>
+        </f:facet>
+      </af:panelSplitter>
+    </af:panelBox>
+  </af:panelGroupLayout>
+</jsp:root>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.56.60" id="CtfItemBrowsePageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CtfItemCtfMainVO" RangeSize="25"
+              DataControl="LOGAMDataControl" id="CtfItemCtfMainVOIterator"/>
+    <searchRegion Binds="CtfItemCtfMainVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="CtfItemCtfMainVOQuery"/>
+  </executables>
+  <bindings>
+    <action IterBinding="CtfItemCtfMainVOIterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="CtfItemCtfMainVOIterator" id="CtfItemCtfMainVO">
+      <nodeDefinition DefName="model.View.CtfItemVO" Name="CtfItemCtfMainVO0">
+        <AttrNames>
+          <Item Value="CtfItemId"/>
+          <Item Value="CtfMainId"/>
+          <Item Value="PDate"/>
+          <Item Value="ProdId"/>
+          <Item Value="OpenBal"/>
+          <Item Value="Receipts"/>
+          <Item Value="Issues"/>
+          <Item Value="Adjustments"/>
+          <Item Value="AdjTypeId"/>
+          <Item Value="ClosingBal"/>
+          <Item Value="ErrOb"/>
+          <Item Value="ErrCb"/>
+          <Item Value="DeStat"/>
+          <Item Value="NewVisits"/>
+          <Item Value="ContVisits"/>
+          <Item Value="ErrQtyRqrd"/>
+          <Item Value="ErrQtyRcvd"/>
+          <Item Value="ErrAmc"/>
+          <Item Value="AvgMnthlyCons"/>
+          <Item Value="QtyRequired"/>
+          <Item Value="QtyReceived"/>
+          <Item Value="TypeName"/>
+          <Item Value="AdjTypeId1"/>
+          <Item Value="ProName"/>
+          <Item Value="ProdId1"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

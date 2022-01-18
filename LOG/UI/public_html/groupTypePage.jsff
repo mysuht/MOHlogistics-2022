@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelBox text="Groups Types" id="pb1">
+    <f:facet name="toolbar">
+      <af:panelGroupLayout id="pgl1">
+        <af:button text="Add" id="b1" actionListener="#{bindings.CreateInsert.execute}">
+          <af:showPopupBehavior popupId="p1" triggerType="click"/>
+        </af:button>
+        <af:button text="update" id="b2">
+          <af:showPopupBehavior popupId="p1" triggerType="click"/>
+        </af:button>
+        <af:button text="delete" id="b3" actionListener="#{bindings.Delete.execute}"/>
+        <af:button actionListener="#{bindings.Execute.execute}" text="Execute" disabled="#{!bindings.Execute.enabled}"
+                   id="b15" partialTriggers="t1"/>
+      </af:panelGroupLayout>
+    </f:facet>
+    <af:panelGroupLayout id="pgl3" layout="scroll">
+      <af:table value="#{bindings.GroupsVO.collectionModel}" var="row" rows="#{bindings.GroupsVO.rangeSize}"
+                emptyText="#{bindings.GroupsVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                rowBandingInterval="0" selectedRowKeys="#{bindings.GroupsVO.collectionModel.selectedRow}"
+                selectionListener="#{bindings.GroupsVO.collectionModel.makeCurrent}" rowSelection="single"
+                fetchSize="#{bindings.GroupsVO.rangeSize}" filterModel="#{bindings.GroupsVOQuery.queryDescriptor}"
+                queryListener="#{bindings.GroupsVOQuery.processQuery}" filterVisible="true" varStatus="vs" id="t1"
+                partialTriggers="::b1 ::b91 ::b81 ::b3 ::b14 ::b15" inlineStyle="height:200px;">
+        <af:column sortProperty="#{bindings.GroupsVO.hints.GrpId.name}" filterable="true" sortable="true"
+                   headerText="#{bindings.GroupsVO.hints.GrpId.label}" id="c1">
+          <af:outputText value="#{row.GrpId}" shortDesc="#{bindings.GroupsVO.hints.GrpId.tooltip}" id="ot1">
+            <af:convertNumber groupingUsed="false" pattern="#{bindings.GroupsVO.hints.GrpId.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.GroupsVO.hints.GrpDesc.name}" filterable="true" sortable="true"
+                   headerText="#{bindings.GroupsVO.hints.GrpDesc.label}" id="c2" width="400">
+          <af:outputText value="#{row.GrpDesc}" shortDesc="#{bindings.GroupsVO.hints.GrpDesc.tooltip}" id="ot2"/>
+        </af:column>
+      </af:table>
+    </af:panelGroupLayout>
+  </af:panelBox>
+  <af:separator id="s1"/>
+  <af:separator id="s2"/>
+  <af:panelBox text="Groups" id="pb2">
+    <f:facet name="toolbar">
+      <af:panelGroupLayout id="pgl2">
+        <af:button text="Add" id="b4" actionListener="#{bindings.CreateInsert1.execute}">
+          <af:showPopupBehavior popupId="p2" triggerType="click"/>
+        </af:button>
+        <af:button text="update" id="b5">
+          <af:showPopupBehavior popupId="p2" triggerType="click"/>
+        </af:button>
+        <af:button text="delete" id="b6" actionListener="#{bindings.Delete1.execute}"/>
+        <af:button actionListener="#{bindings.Execute1.execute}" text="Execute1"
+                   disabled="#{!bindings.Execute1.enabled}" id="b16" partialTriggers="t2"/>
+      </af:panelGroupLayout>
+    </f:facet>
+    <af:panelGroupLayout id="pgl4" layout="scroll">
+      <af:table value="#{bindings.GroupOfFacilitiesGroupsVO.collectionModel}" var="row"
+                rows="#{bindings.GroupOfFacilitiesGroupsVO.rangeSize}"
+                emptyText="#{bindings.GroupOfFacilitiesGroupsVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                rowBandingInterval="0"
+                selectedRowKeys="#{bindings.GroupOfFacilitiesGroupsVO.collectionModel.selectedRow}"
+                selectionListener="#{bindings.GroupOfFacilitiesGroupsVO.collectionModel.makeCurrent}"
+                rowSelection="single" fetchSize="#{bindings.GroupOfFacilitiesGroupsVO.rangeSize}"
+                filterModel="#{bindings.GroupOfFacilitiesGroupsVOQuery.queryDescriptor}"
+                queryListener="#{bindings.GroupOfFacilitiesGroupsVOQuery.processQuery}" filterVisible="true"
+                varStatus="vs" id="t2" partialTriggers="::b4 ::b5 ::b6 ::t1 ::b91 ::b81 ::b11 ::b16"
+                inlineStyle="height:200px;">
+        <af:column sortProperty="#{bindings.GroupOfFacilitiesGroupsVO.hints.GofId.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.GroupOfFacilitiesGroupsVO.hints.GofId.label}" id="c3"
+                   visible="false">
+          <af:outputText value="#{row.GofId}" shortDesc="#{bindings.GroupOfFacilitiesGroupsVO.hints.GofId.tooltip}"
+                         id="ot3" visible="false">
+            <af:convertNumber groupingUsed="false" pattern="#{bindings.GroupOfFacilitiesGroupsVO.hints.GofId.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.GroupOfFacilitiesGroupsVO.hints.GofFacilityId.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.GroupOfFacilitiesGroupsVO.hints.GofFacilityId.label}" id="c4"
+                   visible="false">
+          <af:outputText value="#{row.GofFacilityId}"
+                         shortDesc="#{bindings.GroupOfFacilitiesGroupsVO.hints.GofFacilityId.tooltip}" id="ot4"
+                         visible="false">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.GroupOfFacilitiesGroupsVO.hints.GofFacilityId.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.GroupOfFacilitiesGroupsVO.hints.GofGrpId.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.GroupOfFacilitiesGroupsVO.hints.GofGrpId.label}" id="c5"
+                   visible="false">
+          <af:outputText value="#{row.GofGrpId}"
+                         shortDesc="#{bindings.GroupOfFacilitiesGroupsVO.hints.GofGrpId.tooltip}" id="ot5">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.GroupOfFacilitiesGroupsVO.hints.GofGrpId.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.GroupOfFacilitiesGroupsVO.hints.GrpDesc.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.GroupOfFacilitiesGroupsVO.hints.GrpDesc.label}" id="c6">
+          <af:outputText value="#{row.GrpDesc}" shortDesc="#{bindings.GroupOfFacilitiesGroupsVO.hints.GrpDesc.tooltip}"
+                         id="ot6"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.GroupOfFacilitiesGroupsVO.hints.GrpId.name}" filterable="true"
+                   sortable="true" headerText="#{bindings.GroupOfFacilitiesGroupsVO.hints.GrpId.label}" id="c7"
+                   visible="false">
+          <af:outputText value="#{row.GrpId}" shortDesc="#{bindings.GroupOfFacilitiesGroupsVO.hints.GrpId.tooltip}"
+                         id="ot7">
+            <af:convertNumber groupingUsed="false" pattern="#{bindings.GroupOfFacilitiesGroupsVO.hints.GrpId.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column filterable="true" sortable="true"
+                   headerText="#{bindings.GroupOfFacilitiesGroupsVO.hints.FacCode.label}" id="c8" visible="false">
+          <af:outputText value="#{row.FacCode}" shortDesc="#{bindings.GroupOfFacilitiesGroupsVO.hints.FacCode.tooltip}"
+                         id="ot8"/>
+        </af:column>
+        <af:column filterable="true" sortable="true"
+                   headerText="#{bindings.GroupOfFacilitiesGroupsVO.hints.FacilityId.label}" id="c9" visible="false">
+          <af:outputText value="#{row.FacilityId}"
+                         shortDesc="#{bindings.GroupOfFacilitiesGroupsVO.hints.FacilityId.tooltip}" id="ot9">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.GroupOfFacilitiesGroupsVO.hints.FacilityId.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column filterable="true" sortable="true"
+                   headerText="#{bindings.GroupOfFacilitiesGroupsVO.hints.FacName.label}" id="c10" visible="false">
+          <af:outputText value="#{row.FacName}" shortDesc="#{bindings.GroupOfFacilitiesGroupsVO.hints.FacName.tooltip}"
+                         id="ot10"/>
+        </af:column>
+        <af:column headerText="#{bindings.GroupOfFacilitiesGroupsVO.hints.facTypeName.label}" id="c11" visible="false">
+          <af:outputText value="#{row.facTypeName}"
+                         shortDesc="#{bindings.GroupOfFacilitiesGroupsVO.hints.facTypeName.tooltip}" id="ot12"/>
+        </af:column>
+        <af:column headerText="Type Name" id="c12" width="400">
+          <af:outputText value="#{row.Aa}" shortDesc="#{bindings.GroupOfFacilitiesGroupsVO.hints.Aa.tooltip}"
+                         id="ot13"/>
+        </af:column>
+      </af:table>
+    </af:panelGroupLayout>
+  </af:panelBox>
+  <af:popup childCreation="deferred" autoCancel="disabled" id="p1" partialTriggers="t1"
+            binding="#{backingBeanScope.launcher.pmain}">
+    <af:panelWindow id="pw1">
+      <af:panelFormLayout id="pfl1">
+        <af:inputText value="#{bindings.GrpDesc.inputValue}" label="#{bindings.GrpDesc.hints.label}"
+                      required="#{bindings.GrpDesc.hints.mandatory}" columns="#{bindings.GrpDesc.hints.displayWidth}"
+                      maximumLength="#{bindings.GrpDesc.hints.precision}" shortDesc="#{bindings.GrpDesc.hints.tooltip}"
+                      id="it1">
+          <f:validator binding="#{bindings.GrpDesc.validator}"/>
+        </af:inputText>
+      </af:panelFormLayout>
+      <af:button actionListener="#{bindings.Commit.execute}" text="Commit" disabled="#{!bindings.Commit.enabled}"
+                 id="b7" rendered="false"/>
+      <af:button text="حفظ" id="b12" actionListener="#{bindings.Commit.execute}"/>
+      <af:button text="جديد" id="b14" actionListener="#{bindings.CreateInsert.execute}"/>
+      <af:button text="رجوع" id="b13" actionListener="#{backingBeanScope.launcher.pMainHide}"/>
+      <af:button actionListener="#{bindings.Rollback.execute}" text="Rollback" disabled="#{!bindings.Rollback.enabled}"
+                 immediate="true" id="b10" rendered="false">
+        <af:resetActionListener/>
+      </af:button>
+    </af:panelWindow>
+  </af:popup>
+  <af:popup childCreation="deferred" autoCancel="disabled" id="p2" partialTriggers="t2"
+            binding="#{backingBeanScope.launcher.psub}">
+    <af:panelWindow id="pw2">
+      <af:panelFormLayout id="pfl2">
+        <af:inputListOfValues id="gofFacilityIdId" popupTitle="Search and Select: #{bindings.GofFacilityId.hints.label}"
+                              value="#{bindings.GofFacilityId.inputValue}" label="#{bindings.GofFacilityId.hints.label}"
+                              model="#{bindings.GofFacilityId.listOfValuesModel}"
+                              required="#{bindings.GofFacilityId.hints.mandatory}"
+                              columns="#{bindings.GofFacilityId.hints.displayWidth}"
+                              shortDesc="#{bindings.GofFacilityId.hints.tooltip}" autoSubmit="true">
+          <f:validator binding="#{bindings.GofFacilityId.validator}"/>
+          <af:convertNumber groupingUsed="false" pattern="#{bindings.GofFacilityId.format}"/>
+        </af:inputListOfValues>
+        <af:inputListOfValues id="gofGrpIdId" popupTitle="Search and Select: #{bindings.GofGrpId.hints.label}"
+                              value="#{bindings.GofGrpId.inputValue}" label="#{bindings.GofGrpId.hints.label}"
+                              model="#{bindings.GofGrpId.listOfValuesModel}"
+                              required="#{bindings.GofGrpId.hints.mandatory}"
+                              columns="#{bindings.GofGrpId.hints.displayWidth}"
+                              shortDesc="#{bindings.GofGrpId.hints.tooltip}" visible="false">
+          <f:validator binding="#{bindings.GofGrpId.validator}"/>
+          <af:convertNumber groupingUsed="false" pattern="#{bindings.GofGrpId.format}"/>
+        </af:inputListOfValues>
+        <af:inputText value="#{bindings.GrpDesc1.inputValue}" label="#{bindings.GrpDesc1.hints.label}"
+                      required="#{bindings.GrpDesc1.hints.mandatory}" columns="#{bindings.GrpDesc1.hints.displayWidth}"
+                      maximumLength="#{bindings.GrpDesc1.hints.precision}"
+                      shortDesc="#{bindings.GrpDesc1.hints.tooltip}" id="it2" visible="false">
+          <f:validator binding="#{bindings.GrpDesc1.validator}"/>
+        </af:inputText>
+        <af:inputText value="#{bindings.GrpId.inputValue}" label="#{bindings.GrpId.hints.label}"
+                      required="#{bindings.GrpId.hints.mandatory}" columns="#{bindings.GrpId.hints.displayWidth}"
+                      maximumLength="#{bindings.GrpId.hints.precision}" shortDesc="#{bindings.GrpId.hints.tooltip}"
+                      id="it3" visible="false">
+          <f:validator binding="#{bindings.GrpId.validator}"/>
+          <af:convertNumber groupingUsed="false" pattern="#{bindings.GrpId.format}"/>
+        </af:inputText>
+        <af:outputText value="#{bindings.facTypeName.inputValue}" shortDesc="#{bindings.facTypeName.hints.tooltip}"
+                       id="ot11" partialTriggers="gofFacilityIdId"/>
+      </af:panelFormLayout>
+      <af:button actionListener="#{bindings.Commit.execute}" text="Commit" disabled="#{!bindings.Commit.enabled}"
+                 id="b81" rendered="false"/>
+      <af:button text="حفظ" id="b8" actionListener="#{bindings.Commit.execute}"/>
+      <af:button text="جديد" id="b11" actionListener="#{bindings.CreateInsert1.execute}"/>
+      <af:button text="رجوع" id="b9" actionListener="#{bindings.Rollback.execute}" immediate="true"
+                 action="#{backingBeanScope.launcher.pSubHide}">
+        <af:resetActionListener/>
+      </af:button>
+      <af:button actionListener="#{bindings.Rollback.execute}" text="Rollback" disabled="#{!bindings.Rollback.enabled}"
+                 immediate="true" id="b91" rendered="false">
+        <af:resetActionListener/>
+      </af:button>
+    </af:panelWindow>
+  </af:popup>
+</ui:composition>

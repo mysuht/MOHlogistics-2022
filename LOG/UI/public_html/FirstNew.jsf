@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='windows-1256'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="FirstNew.jsf" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:pageTemplate viewId="/oracle/ui/pattern/dynamicShell/dynamicTabShell.jspx" value="#{bindings.ptb1}"
+                             id="pt1">
+                <f:facet name="copyright"/>
+                <f:facet name="about"/>
+                <f:facet name="navigation">
+                    <af:decorativeBox id="db1">
+                        <f:facet name="center">
+                            <af:panelGroupLayout id="pgl1" layout="vertical">
+                                <af:panelList id="pl1">
+                                    <af:commandLink text="Facility Type" id="cl1"
+                                                    actionListener="#{backingBeanScope.launcher.launchFacTypeTF}"
+                                                    partialSubmit="true"
+                                                    inlineStyle="font-size:small; font-weight:bold;"/>
+                                    <af:commandLink text="Facility" id="cl2"
+                                                    actionListener="#{backingBeanScope.launcher.launchFacilityTF}"
+                                                    partialSubmit="true"
+                                                    inlineStyle="font-size:small; font-weight:bold;"/>
+                                    <af:commandLink text="Adjustment Type" id="cl3"
+                                                    actionListener="#{backingBeanScope.launcher.launchAdjTypeTF}"
+                                                    partialSubmit="true"
+                                                    inlineStyle="font-size:small; font-weight:bold;"/>
+                                    <af:commandLink text="Product" id="cl4"
+                                                    inlineStyle="font-size:small; font-weight:bold;"
+                                                    actionListener="#{backingBeanScope.launcher.launchProductTF}"/>
+                                    <af:commandLink text="Approve" id="cl5"
+                                                    inlineStyle="font-size:small; font-weight:bold;"
+                                                    actionListener="#{backingBeanScope.launcher.launchApproveTF}"/>
+                                    <af:commandLink text="Initiate Month" id="cl6"
+                                                    inlineStyle="font-size:small; font-weight:bold;"
+                                                    actionListener="#{backingBeanScope.launcher.launchInitiateMonthsTF}"/>
+                                    <af:commandLink text="Query" id="cl7"
+                                                    inlineStyle="font-size:small; font-weight:bold;"
+                                                    actionListener="#{backingBeanScope.launcher.launchQueryTF}"/>
+                                    <af:commandLink text="Groups" id="cl9"
+                                                    inlineStyle="font-size:small; font-weight:bold;"
+                                                    actionListener="#{backingBeanScope.launcher.launchGroupsTF}"
+                                                    rendered="false"/>
+                                    <af:commandLink text="Goup Of Facilities" id="cl8"
+                                                    inlineStyle="font-size:small; font-weight:bold;"
+                                                    actionListener="#{backingBeanScope.launcher.launchGofTF}"
+                                                    rendered="false"/>
+                                    <af:commandLink text="Group Types" id="cl10"
+                                                    inlineStyle="font-size:small; font-weight:bold;"
+                                                    actionListener="#{backingBeanScope.launcher.launchGofTF1}"/>
+                                </af:panelList>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="top"/>
+                    </af:decorativeBox>
+                </f:facet>
+                <f:facet name="globalLinks"/>
+                <f:facet name="status"/>
+                <f:facet name="globalToolbar">
+                    <af:toolbar id="t1">
+                        <af:commandButton actionListener="#{bindings.Commit.execute}" text="Save"
+                                          disabled="#{!bindings.Commit.enabled}" id="cb1"/>
+                        <af:commandButton actionListener="#{bindings.Rollback.execute}" text="Cancel"
+                                          disabled="#{!bindings.Rollback.enabled}" immediate="true" id="cb2">
+                            <af:resetActionListener/>
+                        </af:commandButton>
+                    </af:toolbar>
+                </f:facet>
+                <f:facet name="globalSearch"/>
+                <f:facet name="globalTabs">
+                    <af:navigationPane id="np1">
+                        <af:commandNavigationItem text="Lookup" id="cni1" selected="true"
+                                                  rendered="#{sessionScope.sType}"/>
+                        <af:commandNavigationItem text="CTF" id="cni2" action="second"/>
+                        <af:commandNavigationItem text="Report" id="cni3" action="third"/>
+                    </af:navigationPane>
+                </f:facet>
+                <f:facet name="welcome"/>
+                <f:facet name="innerToolbar"/>
+                <f:attribute name="legalAreaPosition" value="0"/>
+            </af:pageTemplate>
+        </af:form>
+    </af:document>
+</f:view>

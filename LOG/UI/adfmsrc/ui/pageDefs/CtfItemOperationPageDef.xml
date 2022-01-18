@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.56.60" id="CtfItemOperationPageDef"
+                Package="ui.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CtfItemCtfMainVO" RangeSize="25"
+              DataControl="LOGAMDataControl" id="CtfItemCtfMainVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="CtfItemId">
+      <AttrNames>
+        <Item Value="CtfItemId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="CtfMainId">
+      <AttrNames>
+        <Item Value="CtfMainId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="PDate">
+      <AttrNames>
+        <Item Value="PDate"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false" IterBinding="CtfItemCtfMainVOIterator"
+                  Uses="LOV_ProdId" id="ProdId"/>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="OpenBal">
+      <AttrNames>
+        <Item Value="OpenBal"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="Receipts">
+      <AttrNames>
+        <Item Value="Receipts"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="Issues">
+      <AttrNames>
+        <Item Value="Issues"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="Adjustments">
+      <AttrNames>
+        <Item Value="Adjustments"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false" IterBinding="CtfItemCtfMainVOIterator"
+                  Uses="LOV_AdjTypeId" id="AdjTypeId"/>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="ClosingBal">
+      <AttrNames>
+        <Item Value="ClosingBal"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="NewVisits">
+      <AttrNames>
+        <Item Value="NewVisits"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="ContVisits">
+      <AttrNames>
+        <Item Value="ContVisits"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="QtyRequired">
+      <AttrNames>
+        <Item Value="QtyRequired"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="QtyReceived">
+      <AttrNames>
+        <Item Value="QtyReceived"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="TypeName">
+      <AttrNames>
+        <Item Value="TypeName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="AdjTypeId1">
+      <AttrNames>
+        <Item Value="AdjTypeId1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="ProName">
+      <AttrNames>
+        <Item Value="ProName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="ProdId1">
+      <AttrNames>
+        <Item Value="ProdId1"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="CtfItemCtfMainVOIterator" id="ErrOb1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ErrOb"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <button IterBinding="CtfItemCtfMainVOIterator" id="ErrCb1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ErrCb"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <button IterBinding="CtfItemCtfMainVOIterator" id="ErrQtyRcvd1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ErrQtyRcvd"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <button IterBinding="CtfItemCtfMainVOIterator" id="ErrQtyRqrd"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ErrQtyRqrd"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="LOGAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="LOGAMDataControl"/>
+    <button IterBinding="CtfItemCtfMainVOIterator" id="DeStat1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="DeStat"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="CtfItemCtfMainVOIterator" id="AvgMnthlyCons">
+      <AttrNames>
+        <Item Value="AvgMnthlyCons"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="CtfItemCtfMainVOIterator" id="ErrAmc1"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="ErrAmc"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="1"/>
+        <Item Value="0"/>
+      </ValueList>
+    </button>
+  </bindings>
+</pageDefinition>
